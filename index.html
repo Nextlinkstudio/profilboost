@@ -6,7 +6,7 @@
   <title>ProfiBoost — CV qui captivent les recruteurs</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -32,7 +32,7 @@
 
     html { scroll-behavior: smooth; overflow-x: hidden; }
     body {
-      font-family: 'Inter', sans-serif;
+      font-family: 'Poppins', sans-serif;
       color: var(--gray-900);
       background: var(--white);
       -webkit-font-smoothing: antialiased;
@@ -86,6 +86,8 @@
       display: flex; align-items: center; justify-content: center;
     }
     .nav-logo-icon svg { width: 20px; height: 20px; }
+    .nav-logo-img { height: 36px; width: auto; display: block; }
+    .footer-logo-img { height: 30px; width: auto; display: block; }
     .nav-links { display: flex; align-items: center; gap: 36px; list-style: none; }
     .nav-links a {
       color: rgba(255,255,255,.80); text-decoration: none;
@@ -116,7 +118,7 @@
     }
     .hero-label {
       font-size: 11px; font-weight: 600; letter-spacing: 2px;
-      color: rgba(255,255,255,.55); text-transform: uppercase;
+      color: var(--blue-light); text-transform: uppercase;
       margin-bottom: 22px;
     }
     .hero-title {
@@ -287,6 +289,15 @@
       color: var(--gray-900); text-align: center;
       letter-spacing: -.4px; margin-bottom: 14px;
     }
+    .underline-blue {
+      position: relative; display: inline-block;
+    }
+    .underline-blue::after {
+      content: '';
+      position: absolute; bottom: -4px; left: 0; right: 0;
+      height: 3px; border-radius: 2px;
+      background: var(--blue);
+    }
     .section-subtitle {
       font-size: 16px; color: var(--gray-500);
       text-align: center; max-width: 520px; margin: 0 auto 60px;
@@ -294,7 +305,7 @@
     }
     .why-grid {
       display: flex; align-items: flex-start;
-      gap: 0; margin-top: 12px;
+      gap: 0; margin-top: 40px;
     }
     .why-card {
       flex: 1; text-align: center; padding: 32px 40px;
@@ -302,7 +313,7 @@
     }
     .why-card + .why-card::before {
       content: ''; position: absolute;
-      left: 0; top: 16px; bottom: 16px;
+      left: 0; top: 52px; bottom: 52px;
       width: 1px; background: #e2e8f0;
     }
     .why-icon {
@@ -430,11 +441,16 @@
 
     /* ─── PLUS SECTION ───────────────────────────────────── */
     .plus-section {
+      background: transparent;
+      padding: 0 64px 80px;
+    }
+    .plus-inner-card {
       background: linear-gradient(140deg, #0a1628 0%, #0d1e44 60%, #0e2050 100%);
-      padding: 80px 0;
+      border-radius: 24px;
+      padding: 60px 56px;
       position: relative; overflow: hidden;
     }
-    .plus-section::before {
+    .plus-inner-card::before {
       content: '';
       position: absolute; inset: 0;
       background: radial-gradient(ellipse 50% 80% at 20% 50%, rgba(37,99,235,.10) 0%, transparent 70%);
@@ -445,24 +461,23 @@
       color: white; letter-spacing: -.4px; margin-bottom: 12px;
     }
     .plus-title .plus-accent { color: var(--blue-light); }
-    .plus-subtitle { color: rgba(255,255,255,.55); font-size: 15px; max-width: 340px; line-height: 1.6; }
+    .plus-subtitle { color: rgba(255,255,255,.55); font-size: 15px; max-width: 520px; line-height: 1.6; white-space: nowrap; }
     .plus-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
     .plus-card {
-      background: rgba(255,255,255,.06);
-      border: 1px solid rgba(255,255,255,.12);
-      border-radius: var(--radius-lg); padding: 28px 24px;
-      transition: all .25s; backdrop-filter: blur(8px);
+      background: var(--white);
+      border-radius: var(--radius-lg); padding: 22px 20px;
+      display: flex; align-items: flex-start; gap: 16px;
+      transition: all .25s;
     }
-    .plus-card:hover { background: rgba(255,255,255,.10); border-color: rgba(255,255,255,.22); transform: translateY(-3px); }
+    .plus-card:hover { transform: translateY(-3px); box-shadow: var(--shadow-md); }
     .plus-card-icon {
-      width: 44px; height: 44px; border-radius: 12px;
-      background: rgba(37,99,235,.25); border: 1px solid rgba(37,99,235,.35);
+      width: 42px; height: 42px; border-radius: 12px;
+      background: var(--blue-pale); flex-shrink: 0;
       display: flex; align-items: center; justify-content: center;
-      margin-bottom: 16px;
     }
-    .plus-card-icon svg { width: 22px; height: 22px; color: var(--blue-light); }
-    .plus-card h3 { font-size: 16px; font-weight: 700; color: white; margin-bottom: 8px; }
-    .plus-card p { font-size: 13.5px; color: rgba(255,255,255,.55); line-height: 1.6; }
+    .plus-card-icon svg { width: 20px; height: 20px; color: var(--blue); }
+    .plus-card h3 { font-size: 15px; font-weight: 700; color: var(--gray-900); margin-bottom: 4px; }
+    .plus-card p { font-size: 13px; color: var(--gray-500); line-height: 1.55; }
 
     /* ─── LINKEDIN SECTION ───────────────────────────────── */
     .linkedin-section { padding: 90px 0; background: var(--white); }
@@ -539,11 +554,16 @@
 
     /* ─── CTA BANNER ─────────────────────────────────────── */
     .cta-banner {
+      background: transparent;
+      padding: 0 64px 80px;
+    }
+    .cta-inner-card {
       background: linear-gradient(135deg, #1d4ed8 0%, #2563eb 50%, #3b82f6 100%);
-      padding: 64px 0;
+      border-radius: 24px;
+      padding: 52px 56px;
       position: relative; overflow: hidden;
     }
-    .cta-banner::before {
+    .cta-inner-card::before {
       content: '';
       position: absolute; inset: 0;
       background: radial-gradient(ellipse 60% 80% at 100% 50%, rgba(255,255,255,.08) 0%, transparent 60%);
@@ -680,6 +700,12 @@
       .why-card + .why-card::before { top: 0; bottom: auto; left: 16px; right: 16px; width: auto; height: 1px; }
       .cv-service-inner, .linkedin-inner { grid-template-columns: 1fr; }
       .plus-cards { grid-template-columns: 1fr; }
+      .plus-section { padding: 0 16px 60px; }
+      .plus-inner-card { padding: 40px 24px; border-radius: 16px; }
+      .plus-br { display: none; }
+      .plus-subtitle { white-space: normal; max-width: 100%; }
+      .cta-banner { padding: 0 16px 60px; }
+      .cta-inner-card { padding: 40px 24px; border-radius: 16px; }
       .cta-inner { flex-direction: column; text-align: center; }
       .footer-inner { grid-template-columns: 1fr; text-align: center; }
       .footer-nav { flex-wrap: wrap; justify-content: center; }
@@ -693,16 +719,11 @@
 <header class="navbar">
   <div class="container navbar-inner">
     <a href="#" class="nav-logo">
-      <div class="nav-logo-icon">
-        <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/>
-        </svg>
-      </div>
-      ProfiBoost
+      <img src="images/profilboost_logo_sombre.svg" alt="ProfiBoost" class="nav-logo-img" />
     </a>
     <ul class="nav-links">
       <li><a href="#">Accueil</a></li>
-      <li><a href="#">Nos services</a></li>
+      <li><a href="services.html">Nos services</a></li>
       <li><a href="#">À propos</a></li>
       <li><a href="#">Ressources</a></li>
     </ul>
@@ -718,7 +739,7 @@
 <!-- ───────── MOBILE MENU ───────── -->
 <nav class="mobile-menu" id="mobileMenu">
   <a href="#" onclick="closeMenu()">Accueil</a>
-  <a href="#" onclick="closeMenu()">Nos services</a>
+  <a href="services.html" onclick="closeMenu()">Nos services</a>
   <a href="#" onclick="closeMenu()">À propos</a>
   <a href="#" onclick="closeMenu()">Ressources</a>
   <a href="#" class="btn btn-primary mobile-cta" onclick="closeMenu()">Nous contacter</a>
@@ -838,7 +859,7 @@
 <!-- ───────── WHY SECTION ───────── -->
 <section class="why-section">
   <div class="container">
-    <h2 class="section-title reveal">Pourquoi choisir ProfiBoost ?</h2>
+    <h2 class="section-title reveal">Pourquoi <span class="underline-blue">choisir</span> ProfiBoost ?</h2>
     <div class="why-grid">
       <div class="why-card reveal">
         <div class="why-icon">
@@ -874,6 +895,15 @@
 <!-- ───────── CV SERVICE SECTION ───────── -->
 <section class="cv-service">
   <div class="container">
+    <!-- Header centré -->
+    <div class="reveal" style="text-align:center;margin-bottom:48px;">
+      <p class="section-label">Nos services</p>
+      <h2 class="section-title" style="margin-bottom:12px;">Création de CV &amp; Lettre de Motivation</h2>
+      <p style="color:var(--gray-500);font-size:15px;line-height:1.65;max-width:520px;margin:0 auto;">
+        Nous transformons votre parcours en un CV clair, percutant et stratégique, accompagné d'une lettre de motivation qui fait la différence.
+      </p>
+    </div>
+
     <div class="cv-service-inner">
       <!-- Visual left -->
       <div class="cv-service-visual reveal">
@@ -888,11 +918,6 @@
 
       <!-- Content right -->
       <div class="reveal reveal-delay-1">
-        <p class="section-label" style="text-align:left;">Nos services</p>
-        <h2 class="section-title" style="text-align:left;margin-bottom:12px;">Création de CV &amp; Lettre de Motivation</h2>
-        <p style="color:var(--gray-500);font-size:15px;line-height:1.65;margin-bottom:0;">
-          Nous transformons votre parcours en un CV clair, percutant et stratégique, accompagné d'une lettre de motivation qui fait la différence.
-        </p>
         <div class="service-features">
           <div class="service-feature">
             <div class="svc-icon">
@@ -940,9 +965,10 @@
 <!-- ───────── PLUS SECTION ───────── -->
 <section class="plus-section">
   <div class="container">
+  <div class="plus-inner-card">
     <div class="plus-header reveal">
       <h2 class="plus-title">Les <span class="plus-accent">+</span> de ProfiBoost</h2>
-      <p class="plus-subtitle">Un accompagnement complet pour maximiser vos chances de décrocher le poste que vous visez.</p>
+      <p class="plus-subtitle">Un accompagnement complet pour maximiser vos chances<br class="plus-br"> de décrocher le poste que vous visez.</p>
     </div>
     <div class="plus-cards">
       <div class="plus-card reveal">
@@ -951,8 +977,10 @@
             <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/>
           </svg>
         </div>
-        <h3>Paiement en 4 fois</h3>
-        <p>Payez en plusieurs fois sans frais.</p>
+        <div>
+          <h3>Paiement en 4 fois</h3>
+          <p>Payez en plusieurs fois sans frais.</p>
+        </div>
       </div>
       <div class="plus-card reveal reveal-delay-1">
         <div class="plus-card-icon">
@@ -960,8 +988,10 @@
             <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
           </svg>
         </div>
-        <h3>Livraison en 72h</h3>
-        <p>Des délais rapides pour ne pas rater vos opportunités.</p>
+        <div>
+          <h3>Livraison en 72h</h3>
+          <p>Des délais rapides pour ne pas rater vos opportunités.</p>
+        </div>
       </div>
       <div class="plus-card reveal reveal-delay-2">
         <div class="plus-card-icon">
@@ -969,10 +999,13 @@
             <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/>
           </svg>
         </div>
-        <h3>Satisfait ou remboursé</h3>
-        <p>Votre satisfaction est notre priorité absolue.</p>
+        <div>
+          <h3>Satisfait ou remboursé</h3>
+          <p>Votre satisfaction est notre priorité absolue.</p>
+        </div>
       </div>
     </div>
+  </div>
   </div>
 </section>
 
@@ -1079,6 +1112,7 @@
 <!-- ───────── CTA BANNER ───────── -->
 <section class="cta-banner">
   <div class="container">
+    <div class="cta-inner-card">
     <div class="cta-inner">
       <div class="cta-icon">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -1094,6 +1128,7 @@
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
       </a>
     </div>
+    </div>
   </div>
 </section>
 
@@ -1102,16 +1137,11 @@
   <div class="container">
     <div class="footer-inner">
       <a href="#" class="footer-logo">
-        <div class="footer-logo-icon">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/>
-          </svg>
-        </div>
-        ProfiBoost
+        <img src="images/profilboost_logo_sombre.svg" alt="ProfiBoost" class="footer-logo-img" />
       </a>
       <ul class="footer-nav">
         <li><a href="#">Accueil</a></li>
-        <li><a href="#">Nos services</a></li>
+        <li><a href="services.html">Nos services</a></li>
         <li><a href="#">À propos</a></li>
         <li><a href="#">Ressources</a></li>
         <li><a href="#">Contact</a></li>

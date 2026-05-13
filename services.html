@@ -1,0 +1,1120 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Nos services — ProfilBoost</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --navy: #0d1b3e;
+      --navy-mid: #112354;
+      --blue: #2563eb;
+      --blue-light: #3b82f6;
+      --blue-pale: #dbeafe;
+      --white: #ffffff;
+      --gray-50: #f8fafc;
+      --gray-100: #f1f5f9;
+      --gray-300: #cbd5e1;
+      --gray-500: #64748b;
+      --gray-700: #334155;
+      --gray-900: #0f172a;
+      --radius: 12px;
+      --radius-lg: 20px;
+      --shadow: 0 4px 24px rgba(13,27,62,.08);
+      --shadow-md: 0 8px 40px rgba(13,27,62,.14);
+      --shadow-lg: 0 20px 60px rgba(13,27,62,.20);
+    }
+
+    html { scroll-behavior: smooth; overflow-x: hidden; }
+    body {
+      font-family: 'Poppins', sans-serif;
+      color: var(--gray-900);
+      background: var(--white);
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    /* ─── UTILITIES ─────────────────────────────────────── */
+    .container { max-width: 1140px; margin: 0 auto; padding: 0 24px; }
+    .btn {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 13px 26px; border-radius: 50px; font-size: 15px;
+      font-weight: 600; cursor: pointer; border: none;
+      text-decoration: none; transition: all .22s ease; white-space: nowrap;
+    }
+    .btn-primary {
+      background: var(--blue); color: var(--white);
+      box-shadow: 0 4px 20px rgba(37,99,235,.40);
+    }
+    .btn-primary:hover { background: #1d4ed8; transform: translateY(-1px); box-shadow: 0 8px 28px rgba(37,99,235,.50); }
+    .btn-white {
+      background: var(--white); color: var(--blue);
+      box-shadow: 0 4px 20px rgba(0,0,0,.15);
+    }
+    .btn-white:hover { background: #f0f6ff; transform: translateY(-1px); }
+
+    /* ─── NAVBAR ─────────────────────────────────────────── */
+    .navbar {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      background: var(--navy);
+      border-bottom: 1px solid rgba(255,255,255,.07);
+      backdrop-filter: blur(12px);
+    }
+    body { padding-top: 68px; }
+    .navbar-inner {
+      display: flex; align-items: center; justify-content: space-between;
+      height: 68px;
+    }
+    .nav-logo {
+      display: flex; align-items: center; gap: 10px;
+      text-decoration: none; color: var(--white);
+      font-weight: 800; font-size: 20px; letter-spacing: -.3px;
+    }
+    .nav-logo-img { height: 36px; width: auto; display: block; }
+    .footer-logo-img { height: 30px; width: auto; display: block; }
+    .nav-links { display: flex; align-items: center; gap: 36px; list-style: none; }
+    .nav-links a {
+      color: rgba(255,255,255,.80); text-decoration: none;
+      font-size: 12.5px; font-weight: 600; letter-spacing: .8px;
+      text-transform: uppercase; transition: color .18s;
+    }
+    .nav-links a:hover, .nav-links a.active { color: var(--white); }
+    .nav-links a.active { border-bottom: 2px solid var(--blue); padding-bottom: 2px; }
+    .nav-cta { display: flex; align-items: center; gap: 12px; }
+
+    /* ─── HERO ───────────────────────────────────────────── */
+    .hero {
+      background: linear-gradient(160deg, #08122a 0%, #0b1a3e 35%, #0d2055 65%, #0e2460 100%);
+      padding: 32px 0 40px;
+      overflow: hidden; position: relative;
+    }
+    .hero::before {
+      content: '';
+      position: absolute; inset: 0;
+      background:
+        radial-gradient(ellipse 55% 70% at 75% 40%, rgba(37,99,235,.16) 0%, transparent 65%),
+        radial-gradient(ellipse 30% 40% at 10% 80%, rgba(14,36,96,.5) 0%, transparent 60%);
+      pointer-events: none;
+    }
+    .hero-inner {
+      display: grid; grid-template-columns: 55% 45%;
+      gap: 24px; align-items: center;
+      min-height: 200px;
+    }
+    .breadcrumb {
+      display: flex; align-items: center; gap: 8px;
+      font-size: 13px; font-weight: 500; margin-bottom: 24px;
+    }
+    .breadcrumb a { color: var(--blue-light); text-decoration: none; }
+    .breadcrumb a:hover { text-decoration: underline; }
+    .breadcrumb-sep { color: rgba(255,255,255,.4); font-size: 11px; }
+    .breadcrumb-current { color: rgba(255,255,255,.6); }
+    .hero-title {
+      font-size: clamp(36px, 5vw, 64px);
+      font-weight: 900; line-height: 1.1;
+      color: var(--white); margin-bottom: 22px;
+      letter-spacing: -.5px;
+    }
+    .hero-subtitle {
+      color: rgba(255,255,255,.62); font-size: 15px;
+      line-height: 1.7; max-width: 480px;
+    }
+
+    /* Hero visual */
+    .hero-visual {
+      display: flex; align-items: center; justify-content: center;
+      position: relative; height: 220px;
+    }
+    .cv-fan {
+      position: relative; width: 100%; height: 100%;
+    }
+    .cv-img {
+      position: absolute;
+      border-radius: 10px;
+      object-fit: cover;
+      box-shadow: 0 20px 60px rgba(0,0,0,.55);
+      transition: transform .4s ease, box-shadow .4s ease;
+    }
+    .cv-img-1 {
+      width: 90px; top: 12px; left: 20%;
+      transform: rotate(-6deg); z-index: 1;
+      box-shadow: -8px 20px 50px rgba(0,0,0,.65);
+    }
+    .cv-img-2 {
+      width: 112px; top: 0; left: 42%;
+      transform: rotate(2deg); z-index: 2;
+      box-shadow: 0 24px 64px rgba(0,0,0,.55);
+    }
+    .cv-img-3 {
+      width: 98px; top: 18px; left: 70%;
+      transform: rotate(10deg); z-index: 1;
+      box-shadow: 10px 20px 50px rgba(0,0,0,.5); opacity: .92;
+    }
+    .cv-fan:hover .cv-img-1 { transform: rotate(-8deg) translateX(-6px); }
+    .cv-fan:hover .cv-img-2 { transform: rotate(0deg) translateY(-8px); box-shadow: 0 32px 80px rgba(0,0,0,.6); }
+    .cv-fan:hover .cv-img-3 { transform: rotate(12deg) translateX(6px); }
+
+    @keyframes floatImg1 { 0%, 100% { transform: rotate(-6deg) translateY(0px); } 50% { transform: rotate(-6deg) translateY(-10px); } }
+    @keyframes floatImg2 { 0%, 100% { transform: rotate(2deg) translateY(0px); } 50% { transform: rotate(2deg) translateY(-12px); } }
+    @keyframes floatImg3 { 0%, 100% { transform: rotate(10deg) translateY(0px); } 50% { transform: rotate(10deg) translateY(-8px); } }
+    .cv-fan:not(:hover) .cv-img-1 { animation: floatImg1 5.5s ease-in-out infinite; }
+    .cv-fan:not(:hover) .cv-img-2 { animation: floatImg2 5s ease-in-out infinite .4s; }
+    .cv-fan:not(:hover) .cv-img-3 { animation: floatImg3 6s ease-in-out infinite .8s; }
+
+    /* Decorative shapes */
+    .deco-shape { position: absolute; pointer-events: none; }
+    .deco-triangle-1 { top: 28px; right: 18px; width: 0; height: 0; border-left: 22px solid transparent; border-right: 22px solid transparent; border-bottom: 38px solid #2563eb; opacity: .9; }
+    .deco-triangle-2 { bottom: 70px; right: 14px; width: 0; height: 0; border-left: 13px solid transparent; border-right: 13px solid transparent; border-bottom: 22px solid rgba(255,255,255,.30); }
+    .deco-circle-1 { top: 24px; left: 42%; width: 36px; height: 36px; border-radius: 50%; border: 3px solid rgba(255,255,255,.25); }
+    .deco-circle-2 { bottom: 80px; left: 6%; width: 18px; height: 18px; border-radius: 50%; border: 2.5px solid rgba(255,255,255,.20); }
+    .deco-dot { width: 5px; height: 5px; border-radius: 50%; background: #4d94ff; opacity: .55; }
+    .deco-dots-grid { position: absolute; top: 60px; right: 0; display: grid; grid-template-columns: repeat(5, 10px); gap: 9px; }
+
+    /* ─── SECTION COMMONS ──────────────────────────────── */
+    .section-label {
+      font-size: 11px; font-weight: 700; letter-spacing: 2.5px;
+      text-transform: uppercase; color: var(--blue); margin-bottom: 12px;
+      text-align: center;
+    }
+    .section-title {
+      font-size: clamp(24px, 2.8vw, 36px); font-weight: 800;
+      color: var(--gray-900); text-align: center;
+      letter-spacing: -.4px; margin-bottom: 14px;
+    }
+    .underline-blue { position: relative; display: inline-block; }
+    .underline-blue::after {
+      content: ''; position: absolute; bottom: -4px; left: 0; right: 0;
+      height: 3px; border-radius: 2px; background: var(--blue);
+    }
+    .section-subtitle {
+      font-size: 15px; color: var(--gray-500);
+      text-align: center; max-width: 520px; margin: 0 auto;
+      line-height: 1.65;
+    }
+
+    /* ─── SERVICES CARDS ────────────────────────────────── */
+    .services-section { padding: 80px 0; background: var(--white); }
+    .services-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 24px; margin-top: 52px;
+    }
+    .service-card {
+      background: var(--white);
+      border: 1px solid var(--gray-100);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      transition: all .25s ease;
+      display: flex; flex-direction: column;
+    }
+    .service-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); border-color: var(--blue-pale); }
+    .service-card-body { padding: 24px 24px 0; }
+    .service-num {
+      font-size: 10.5px; font-weight: 700; letter-spacing: 2px;
+      text-transform: uppercase; color: var(--blue); margin-bottom: 10px;
+    }
+    .service-card-title {
+      font-size: 17px; font-weight: 800;
+      color: var(--gray-900); margin-bottom: 18px; line-height: 1.3;
+    }
+    .service-img-placeholder {
+      width: 100%; aspect-ratio: 4/3;
+      background: var(--gray-100);
+      border-radius: var(--radius);
+      overflow: hidden; margin-bottom: 0;
+      display: flex; align-items: center; justify-content: center;
+      color: var(--gray-300);
+    }
+    .service-img-placeholder img {
+      width: 100%; height: 100%; object-fit: cover; display: block;
+    }
+    .service-img-placeholder-inner {
+      display: flex; flex-direction: column; align-items: center; gap: 8px;
+    }
+    .service-img-placeholder-inner svg { width: 32px; height: 32px; color: var(--gray-300); }
+    .service-img-placeholder-inner span { font-size: 11px; color: var(--gray-300); font-weight: 500; }
+    .service-checklist {
+      padding: 20px 24px 20px; list-style: none; display: flex; flex-direction: column; gap: 10px;
+    }
+    .service-checklist li {
+      display: flex; align-items: center; gap: 10px;
+      font-size: 13.5px; color: var(--gray-700);
+    }
+    .check-circle {
+      width: 18px; height: 18px; border-radius: 50%;
+      background: var(--blue); flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .check-circle svg { width: 10px; height: 10px; color: white; }
+    .service-card-footer {
+      padding: 0 24px 24px; margin-top: auto;
+    }
+    .service-link {
+      display: inline-flex; align-items: center; gap: 6px;
+      color: var(--blue); font-size: 14px; font-weight: 700;
+      text-decoration: none; transition: gap .18s;
+    }
+    .service-link:hover { gap: 10px; }
+    .service-link svg { width: 14px; height: 14px; }
+
+    /* ─── PROCESS SECTION ──────────────────────────────── */
+    .process-section { padding: 80px 0; background: var(--gray-50); }
+    .process-steps {
+      display: grid; grid-template-columns: repeat(4, 1fr);
+      gap: 16px; margin-top: 52px; position: relative;
+    }
+    .process-steps::before {
+      content: ''; position: absolute;
+      top: 42px; left: calc(12.5% + 42px); right: calc(12.5% + 42px);
+      height: 2px; background: var(--blue-pale);
+      z-index: 0;
+    }
+    .process-step {
+      display: flex; flex-direction: column; align-items: center;
+      text-align: center; padding: 0 16px;
+      position: relative; z-index: 1;
+    }
+    .process-icon {
+      width: 84px; height: 84px; border-radius: 50%;
+      background: var(--white); border: 2px solid var(--blue-pale);
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 20px;
+      box-shadow: 0 4px 16px rgba(37,99,235,.10);
+    }
+    .process-icon svg { width: 32px; height: 32px; color: var(--blue); }
+    .process-step-header {
+      display: flex; align-items: center; gap: 8px; margin-bottom: 8px; justify-content: center;
+    }
+    .process-num {
+      width: 22px; height: 22px; border-radius: 50%;
+      background: var(--blue); color: white;
+      font-size: 11px; font-weight: 800;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+    .process-step-title {
+      font-size: 14px; font-weight: 700; color: var(--gray-900);
+    }
+    .process-step-desc {
+      font-size: 13px; color: var(--gray-500); line-height: 1.6;
+    }
+
+    /* ─── WHY SECTION ──────────────────────────────────── */
+    .why-section { padding: 80px 0; background: var(--white); }
+    .why-inner {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 80px; align-items: center;
+    }
+    .why-left .why-label {
+      font-size: 10.5px; font-weight: 700; letter-spacing: 2.5px;
+      text-transform: uppercase; color: var(--blue); margin-bottom: 16px;
+    }
+    .why-left .why-title {
+      font-size: clamp(26px, 3vw, 40px); font-weight: 800;
+      color: var(--gray-900); letter-spacing: -.4px;
+      line-height: 1.2; margin-bottom: 24px;
+    }
+    .why-left .why-desc {
+      font-size: 14.5px; color: var(--gray-500); line-height: 1.7;
+      margin-bottom: 28px;
+    }
+    .why-checklist { display: flex; flex-direction: column; gap: 18px; margin-bottom: 48px; }
+    .why-check-item {
+      display: flex; align-items: center; gap: 12px;
+      font-size: 14px; font-weight: 600; color: var(--gray-700);
+    }
+    .why-check-item .check-circle { width: 20px; height: 20px; }
+    .why-check-item .check-circle svg { width: 11px; height: 11px; }
+    .why-features-grid {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+    .why-feature-box {
+      background: var(--gray-50); border: 1px solid var(--gray-100);
+      border-radius: var(--radius); padding: 20px;
+      transition: all .22s;
+    }
+    .why-feature-box:hover { border-color: var(--blue-pale); box-shadow: var(--shadow); }
+    .why-feature-icon {
+      width: 40px; height: 40px; border-radius: 10px;
+      background: var(--blue-pale);
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 12px;
+    }
+    .why-feature-icon svg { width: 20px; height: 20px; color: var(--blue); }
+    .why-feature-title { font-size: 13.5px; font-weight: 700; color: var(--gray-900); margin-bottom: 6px; }
+    .why-feature-desc { font-size: 12.5px; color: var(--gray-500); line-height: 1.55; }
+
+    /* ─── TESTIMONIALS ──────────────────────────────────── */
+    .testimonials-section { padding: 80px 0; background: var(--gray-50); }
+    .testimonials-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 24px; margin-top: 52px;
+    }
+    .testimonial-card {
+      background: var(--white); border-radius: var(--radius-lg);
+      padding: 28px; box-shadow: var(--shadow);
+      border: 1px solid var(--gray-100);
+      display: flex; flex-direction: column; gap: 16px;
+      transition: all .22s;
+    }
+    .testimonial-card:hover { transform: translateY(-3px); box-shadow: var(--shadow-md); }
+    .testimonial-stars { color: #fbbf24; font-size: 15px; letter-spacing: 2px; }
+    .testimonial-text {
+      font-size: 14px; color: var(--gray-700); line-height: 1.7;
+      font-style: italic; flex: 1;
+    }
+    .testimonial-author { display: flex; align-items: center; gap: 12px; }
+    .testimonial-avatar {
+      width: 42px; height: 42px; border-radius: 50%;
+      background: linear-gradient(135deg, #60a5fa, #3b82f6);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 14px; font-weight: 700; color: white; flex-shrink: 0;
+      overflow: hidden;
+    }
+    .testimonial-avatar img { width: 100%; height: 100%; object-fit: cover; }
+    .testimonial-name { font-size: 14px; font-weight: 700; color: var(--gray-900); }
+    .testimonial-role { font-size: 12px; color: var(--gray-500); margin-top: 2px; }
+    .testimonial-dots {
+      display: flex; justify-content: center; gap: 8px; margin-top: 36px;
+    }
+    .testimonial-dot {
+      width: 8px; height: 8px; border-radius: 50%;
+      background: var(--blue-pale); transition: background .2s;
+    }
+    .testimonial-dot.active { background: var(--blue); }
+
+    /* ─── CTA BANNER ────────────────────────────────────── */
+    .cta-banner { padding: 0 0 80px; }
+    .cta-inner-card {
+      background: linear-gradient(140deg, #0a1628 0%, #0d1e44 60%, #0e2050 100%);
+      border-radius: 24px;
+      padding: 52px 56px;
+      position: relative; overflow: hidden;
+    }
+    .cta-inner-card::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: radial-gradient(ellipse 50% 80% at 20% 50%, rgba(37,99,235,.12) 0%, transparent 70%);
+    }
+    .cta-inner {
+      display: flex; align-items: center; justify-content: space-between;
+      gap: 40px; position: relative; z-index: 1;
+    }
+    .cta-logo-icon {
+      width: 64px; height: 64px; border-radius: 16px;
+      background: rgba(37,99,235,.25); border: 1.5px solid rgba(37,99,235,.4);
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+    .cta-logo-icon svg { width: 32px; height: 32px; color: white; }
+    .cta-text h2 {
+      font-size: clamp(20px, 2.2vw, 28px); font-weight: 800;
+      color: white; margin-bottom: 8px; letter-spacing: -.3px;
+    }
+    .cta-text p { color: rgba(255,255,255,.65); font-size: 14.5px; max-width: 380px; line-height: 1.65; }
+
+    /* ─── FOOTER ─────────────────────────────────────────── */
+    .footer { background: var(--navy); padding: 56px 0 24px; }
+    .footer-top {
+      display: grid; grid-template-columns: 1.5fr 1fr 1fr 1fr 1.4fr;
+      gap: 40px; margin-bottom: 48px;
+    }
+    .footer-brand {}
+    .footer-logo {
+      display: flex; align-items: center; gap: 10px;
+      text-decoration: none; color: white; font-weight: 800; font-size: 18px;
+      margin-bottom: 16px;
+    }
+    .footer-brand-desc {
+      font-size: 13px; color: rgba(255,255,255,.45); line-height: 1.65;
+      margin-bottom: 20px; max-width: 220px;
+    }
+    .footer-socials { display: flex; gap: 10px; }
+    .social-link {
+      width: 34px; height: 34px; border-radius: 8px;
+      border: 1px solid rgba(255,255,255,.18);
+      display: flex; align-items: center; justify-content: center;
+      color: rgba(255,255,255,.6); text-decoration: none;
+      transition: all .18s;
+    }
+    .social-link:hover { background: rgba(255,255,255,.1); color: white; border-color: rgba(255,255,255,.35); }
+    .social-link svg { width: 15px; height: 15px; }
+    .footer-col-title {
+      font-size: 13px; font-weight: 700; color: var(--white);
+      margin-bottom: 18px; letter-spacing: .3px;
+    }
+    .footer-col-links { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+    .footer-col-links a {
+      color: rgba(255,255,255,.48); text-decoration: none; font-size: 13px;
+      transition: color .18s;
+    }
+    .footer-col-links a:hover { color: rgba(255,255,255,.85); }
+    .footer-newsletter-form { display: flex; gap: 8px; margin-top: 4px; }
+    .footer-newsletter-input {
+      flex: 1; padding: 10px 14px; border-radius: 8px;
+      background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.14);
+      color: white; font-size: 13px; font-family: 'Poppins', sans-serif;
+      outline: none; transition: border-color .18s;
+    }
+    .footer-newsletter-input::placeholder { color: rgba(255,255,255,.35); }
+    .footer-newsletter-input:focus { border-color: var(--blue); }
+    .footer-newsletter-btn {
+      padding: 10px 16px; border-radius: 8px; border: none;
+      background: var(--blue); color: white; font-size: 13px; font-weight: 600;
+      cursor: pointer; transition: background .18s; font-family: 'Poppins', sans-serif;
+      white-space: nowrap;
+    }
+    .footer-newsletter-btn:hover { background: #1d4ed8; }
+    .footer-newsletter-desc {
+      font-size: 12px; color: rgba(255,255,255,.35); margin-bottom: 14px; line-height: 1.5;
+    }
+    .footer-divider { border: none; border-top: 1px solid rgba(255,255,255,.08); margin-bottom: 20px; }
+    .footer-bottom {
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .footer-copy { color: rgba(255,255,255,.32); font-size: 13px; }
+    .footer-legal { display: flex; gap: 24px; }
+    .footer-legal a { color: rgba(255,255,255,.32); text-decoration: none; font-size: 13px; transition: color .18s; }
+    .footer-legal a:hover { color: rgba(255,255,255,.65); }
+
+    /* ─── ANIMATIONS ─────────────────────────────────────── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .fade-up { animation: fadeUp .65s ease both; }
+    .fade-up-2 { animation: fadeUp .65s .12s ease both; }
+    .fade-up-3 { animation: fadeUp .65s .24s ease both; }
+
+    .reveal { opacity: 0; transform: translateY(28px); transition: opacity .6s ease, transform .6s ease; }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    .reveal-delay-1 { transition-delay: .1s; }
+    .reveal-delay-2 { transition-delay: .2s; }
+    .reveal-delay-3 { transition-delay: .3s; }
+
+    /* ─── HAMBURGER ─────────────────────────────────────── */
+    .hamburger {
+      display: none; flex-direction: column; justify-content: center;
+      gap: 5px; width: 36px; height: 36px; cursor: pointer;
+      background: none; border: none; padding: 4px;
+    }
+    .hamburger span { display: block; height: 2px; background: white; border-radius: 2px; transition: all .3s ease; transform-origin: center; }
+    .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .hamburger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+    .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+    .mobile-menu {
+      display: none; position: fixed; inset: 0; top: 68px;
+      background: var(--navy); z-index: 99;
+      flex-direction: column; align-items: center; justify-content: center;
+      gap: 8px; opacity: 0; transform: translateY(-12px);
+      transition: opacity .3s ease, transform .3s ease; pointer-events: none;
+    }
+    .mobile-menu.open { opacity: 1; transform: translateY(0); pointer-events: all; }
+    .mobile-menu a { color: white; text-decoration: none; font-size: 22px; font-weight: 700; padding: 14px 32px; letter-spacing: .5px; width: 100%; text-align: center; transition: background .18s; }
+    .mobile-menu a:hover { background: rgba(255,255,255,.07); }
+    .mobile-menu .mobile-cta { margin-top: 16px; }
+
+    /* ─── RESPONSIVE ─────────────────────────────────────── */
+    @media (max-width: 1024px) {
+      .footer-top { grid-template-columns: 1fr 1fr 1fr; }
+      .footer-brand { grid-column: 1 / -1; }
+    }
+    @media (max-width: 900px) {
+      .nav-links { display: none; }
+      .hamburger { display: flex; }
+      .mobile-menu { display: flex; }
+      .nav-cta .btn-primary { display: none; }
+      .hero-inner { grid-template-columns: 1fr; }
+      .hero-visual { height: 240px; }
+      .cv-img-1 { width: 95px; top: 20px; left: calc(50% - 190px); }
+      .cv-img-2 { width: 115px; top: 0; left: calc(50% - 75px); }
+      .cv-img-3 { width: 100px; top: 25px; left: calc(50% + 45px); }
+      .services-grid { grid-template-columns: 1fr; }
+      .process-steps { grid-template-columns: 1fr 1fr; }
+      .process-steps::before { display: none; }
+      .why-inner { grid-template-columns: 1fr; }
+      .testimonials-grid { grid-template-columns: 1fr; }
+      .cta-inner { flex-direction: column; text-align: center; }
+      .cta-inner-card { padding: 40px 24px; border-radius: 16px; }
+      .footer-top { grid-template-columns: 1fr 1fr; }
+      .footer-brand { grid-column: 1 / -1; }
+      .footer-bottom { flex-direction: column; gap: 12px; text-align: center; }
+    }
+    @media (max-width: 600px) {
+      .process-steps { grid-template-columns: 1fr; }
+      .why-features-grid { grid-template-columns: 1fr; }
+      .footer-top { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ───────── NAVBAR ───────── -->
+<header class="navbar">
+  <div class="container navbar-inner">
+    <a href="index.html" class="nav-logo">
+      <img src="images/profilboost_logo_sombre.svg" alt="ProfilBoost" class="nav-logo-img" />
+    </a>
+    <ul class="nav-links">
+      <li><a href="index.html">Accueil</a></li>
+      <li><a href="services.html" class="active">Nos services</a></li>
+      <li><a href="#">À propos</a></li>
+      <li><a href="#">Ressources</a></li>
+    </ul>
+    <div class="nav-cta">
+      <a href="#" class="btn btn-primary">Nous contacter</a>
+      <button class="hamburger" id="hamburger" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- ───────── MOBILE MENU ───────── -->
+<nav class="mobile-menu" id="mobileMenu">
+  <a href="index.html" onclick="closeMenu()">Accueil</a>
+  <a href="services.html" onclick="closeMenu()">Nos services</a>
+  <a href="#" onclick="closeMenu()">À propos</a>
+  <a href="#" onclick="closeMenu()">Ressources</a>
+  <a href="#" class="btn btn-primary mobile-cta" onclick="closeMenu()">Nous contacter</a>
+</nav>
+
+<!-- ───────── HERO ───────── -->
+<section class="hero">
+  <div class="container">
+    <div class="hero-inner">
+      <div class="hero-content">
+        <div class="breadcrumb fade-up">
+          <a href="index.html">Accueil</a>
+          <span class="breadcrumb-sep">›</span>
+          <span class="breadcrumb-current">Nos services</span>
+        </div>
+        <h1 class="hero-title fade-up-2">Nos services</h1>
+        <p class="hero-subtitle fade-up-3">
+          Des solutions professionnelles pour valoriser votre profil,
+          séduire les recruteurs et booster votre carrière.
+        </p>
+      </div>
+
+      <div class="hero-visual">
+        <div class="deco-shape deco-triangle-1"></div>
+        <div class="deco-shape deco-triangle-2"></div>
+        <div class="deco-shape deco-circle-1"></div>
+        <div class="deco-shape deco-circle-2"></div>
+        <div class="deco-dots-grid">
+          <div class="deco-dot"></div><div class="deco-dot"></div><div class="deco-dot"></div><div class="deco-dot"></div><div class="deco-dot"></div>
+          <div class="deco-dot"></div><div class="deco-dot"></div><div class="deco-dot"></div><div class="deco-dot"></div><div class="deco-dot"></div>
+          <div class="deco-dot"></div><div class="deco-dot"></div><div class="deco-dot"></div><div class="deco-dot"></div><div class="deco-dot"></div>
+          <div class="deco-dot"></div><div class="deco-dot"></div><div class="deco-dot"></div><div class="deco-dot"></div><div class="deco-dot"></div>
+        </div>
+        <div class="cv-fan">
+          <img src="images/cv_1.png" alt="Exemple CV 1" class="cv-img cv-img-1" />
+          <img src="images/CV_2.png" alt="Exemple CV 2" class="cv-img cv-img-2" />
+          <img src="images/CV_3.png" alt="Exemple CV 3" class="cv-img cv-img-3" />
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ───────── SERVICES CARDS ───────── -->
+<section class="services-section">
+  <div class="container">
+    <div class="reveal">
+      <p class="section-label">Nos prestations</p>
+      <h2 class="section-title">Des services pensés pour votre <span class="underline-blue">réussite</span></h2>
+      <p class="section-subtitle" style="margin-top: 16px;">
+        Chaque prestation est réalisée par des experts en recrutement
+        pour vous offrir des documents percutants et optimisés.
+      </p>
+    </div>
+
+    <div class="services-grid">
+
+      <!-- Service 1 -->
+      <div class="service-card reveal">
+        <div class="service-card-body">
+          <p class="service-num">Service N°1</p>
+          <h3 class="service-card-title">Création de CV &amp;<br>Lettre de Motivation</h3>
+          <div class="service-img-placeholder">
+            <!-- Remplacez cette div par une balise <img> lorsque vous ajouterez l'image -->
+            <div class="service-img-placeholder-inner">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/>
+              </svg>
+              <span>Image à venir</span>
+            </div>
+          </div>
+        </div>
+        <ul class="service-checklist">
+          <li>
+            <div class="check-circle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+            Design professionnel et moderne
+          </li>
+          <li>
+            <div class="check-circle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+            Contenu optimisé ATS
+          </li>
+          <li>
+            <div class="check-circle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+            Adapté à votre secteur d'activité
+          </li>
+          <li>
+            <div class="check-circle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+            Lettre de motivation percutante
+          </li>
+        </ul>
+        <div class="service-card-footer">
+          <a href="service-cv-lm.html" class="service-link">
+            En savoir plus
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <!-- Service 2 -->
+      <div class="service-card reveal reveal-delay-1">
+        <div class="service-card-body">
+          <p class="service-num">Service N°2</p>
+          <h3 class="service-card-title">Optimisation du<br>Profil LinkedIn</h3>
+          <div class="service-img-placeholder">
+            <div class="service-img-placeholder-inner">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/>
+              </svg>
+              <span>Image à venir</span>
+            </div>
+          </div>
+        </div>
+        <ul class="service-checklist">
+          <li>
+            <div class="check-circle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+            Optimisation complète de votre profil
+          </li>
+          <li>
+            <div class="check-circle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+            Titre et résumé impactants
+          </li>
+          <li>
+            <div class="check-circle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+            Mots-clés stratégiques pour le SEO
+          </li>
+          <li>
+            <div class="check-circle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+            Mise en avant de vos compétences
+          </li>
+        </ul>
+        <div class="service-card-footer">
+          <a href="#" class="service-link">
+            En savoir plus
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <!-- Service 3 -->
+      <div class="service-card reveal reveal-delay-2">
+        <div class="service-card-body">
+          <p class="service-num">Service N°3</p>
+          <h3 class="service-card-title">Coaching &amp;<br>Préparation entretien</h3>
+          <div class="service-img-placeholder">
+            <div class="service-img-placeholder-inner">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/>
+              </svg>
+              <span>Image à venir</span>
+            </div>
+          </div>
+        </div>
+        <ul class="service-checklist">
+          <li>
+            <div class="check-circle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+            Préparation aux entretiens
+          </li>
+          <li>
+            <div class="check-circle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+            Réponses aux questions fréquentes
+          </li>
+          <li>
+            <div class="check-circle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+            Pitch de présentation efficace
+          </li>
+          <li>
+            <div class="check-circle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+            Conseils personnalisés
+          </li>
+        </ul>
+        <div class="service-card-footer">
+          <a href="#" class="service-link">
+            En savoir plus
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ───────── PROCESS SECTION ───────── -->
+<section class="process-section">
+  <div class="container">
+    <div class="reveal" style="text-align:center;">
+      <h2 class="section-title">Notre processus en 4 étapes</h2>
+      <p class="section-subtitle" style="margin-top:12px;">Un accompagnement simple, rapide et efficace.</p>
+    </div>
+
+    <div class="process-steps">
+
+      <div class="process-step reveal">
+        <div class="process-icon">
+          <!-- Chat / analyse -->
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/>
+          </svg>
+        </div>
+        <div class="process-step-header">
+          <div class="process-num">1</div>
+          <h3 class="process-step-title">Analyse de vos besoins</h3>
+        </div>
+        <p class="process-step-desc">Nous échangeons sur votre parcours, vos objectifs et vos attentes.</p>
+      </div>
+
+      <div class="process-step reveal reveal-delay-1">
+        <div class="process-icon">
+          <!-- Edit / rédaction -->
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/>
+          </svg>
+        </div>
+        <div class="process-step-header">
+          <div class="process-num">2</div>
+          <h3 class="process-step-title">Rédaction &amp; conception</h3>
+        </div>
+        <p class="process-step-desc">Nos experts créent des documents sur-mesure et optimisés.</p>
+      </div>
+
+      <div class="process-step reveal reveal-delay-2">
+        <div class="process-icon">
+          <!-- Refresh / révisions -->
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="1 4 1 10 7 10"/><polyline points="23 20 23 14 17 14"/>
+            <path d="M20.49 9A9 9 0 005.64 5.64L1 10M23 14l-4.64 4.36A9 9 0 013.51 15"/>
+          </svg>
+        </div>
+        <div class="process-step-header">
+          <div class="process-num">3</div>
+          <h3 class="process-step-title">Révisions incluses</h3>
+        </div>
+        <p class="process-step-desc">Vous bénéficiez de révisions illimitées jusqu'à votre entière satisfaction.</p>
+      </div>
+
+      <div class="process-step reveal reveal-delay-3">
+        <div class="process-icon">
+          <!-- Send / livraison -->
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/>
+          </svg>
+        </div>
+        <div class="process-step-header">
+          <div class="process-num">4</div>
+          <h3 class="process-step-title">Livraison rapide</h3>
+        </div>
+        <p class="process-step-desc">Vous recevez vos documents prêts à l'emploi sous 72h en moyenne.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ───────── WHY SECTION ───────── -->
+<section class="why-section">
+  <div class="container">
+    <div class="why-inner">
+
+      <!-- Left content -->
+      <div class="why-left reveal">
+        <p class="why-label">Pourquoi nous choisir ?</p>
+        <h2 class="why-title">L'expertise qui fait<br>la différence</h2>
+        <p class="why-desc">
+          Chez ProfilBoost, nous combinons expertise en recrutement, connaissance des ATS et accompagnement humain pour des résultats concrets.
+        </p>
+        <ul class="why-checklist">
+          <li class="why-check-item">
+            <div class="check-circle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+            Experts certifiés en recrutement
+          </li>
+          <li class="why-check-item">
+            <div class="check-circle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+            Méthodes éprouvées et à jour
+          </li>
+          <li class="why-check-item">
+            <div class="check-circle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+            Accompagnement personnalisé
+          </li>
+          <li class="why-check-item">
+            <div class="check-circle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+            Satisfaction garantie
+          </li>
+        </ul>
+        <a href="#" class="btn btn-primary">Découvrir notre approche</a>
+      </div>
+
+      <!-- Right feature boxes -->
+      <div class="why-features-grid reveal reveal-delay-1">
+
+        <div class="why-feature-box">
+          <div class="why-feature-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/>
+              <path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/>
+            </svg>
+          </div>
+          <h4 class="why-feature-title">Experts en recrutement</h4>
+          <p class="why-feature-desc">Nos rédacteurs sont des professionnels RH spécialisés par secteur.</p>
+        </div>
+
+        <div class="why-feature-box">
+          <div class="why-feature-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="3"/><path d="M19.07 4.93a10 10 0 010 14.14M4.93 4.93a10 10 0 000 14.14M15.54 8.46a5 5 0 010 7.07M8.46 8.46a5 5 0 000 7.07"/>
+            </svg>
+          </div>
+          <h4 class="why-feature-title">Optimisation ATS</h4>
+          <p class="why-feature-desc">Nous optimisons vos documents pour passer les filtres des ATS les plus utilisés.</p>
+        </div>
+
+        <div class="why-feature-box">
+          <div class="why-feature-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+            </svg>
+          </div>
+          <h4 class="why-feature-title">Confidentialité garantie</h4>
+          <p class="why-feature-desc">Vos informations sont 100% confidentielles et sécurisées.</p>
+        </div>
+
+        <div class="why-feature-box">
+          <div class="why-feature-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+            </svg>
+          </div>
+          <h4 class="why-feature-title">Satisfaction assurée</h4>
+          <p class="why-feature-desc">Des centaines de clients satisfaits et des avis 5 étoiles.</p>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ───────── TESTIMONIALS ───────── -->
+<section class="testimonials-section">
+  <div class="container">
+    <div class="reveal" style="text-align:center;">
+      <h2 class="section-title">Ils nous font <span class="underline-blue">confiance</span></h2>
+    </div>
+
+    <div class="testimonials-grid">
+
+      <div class="testimonial-card reveal">
+        <div class="testimonial-stars">★★★★★</div>
+        <p class="testimonial-text">
+          "Grâce à ProfilBoost, mon CV a retenu l'attention des recruteurs et j'ai décroché 3 entretiens en une semaine !"
+        </p>
+        <div class="testimonial-author">
+          <div class="testimonial-avatar" style="background: linear-gradient(135deg, #60a5fa, #2563eb);">
+            TL
+          </div>
+          <div>
+            <p class="testimonial-name">Thomas L.</p>
+            <p class="testimonial-role">Chef de projet IT</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="testimonial-card reveal reveal-delay-1">
+        <div class="testimonial-stars">★★★★★</div>
+        <p class="testimonial-text">
+          "Un service professionnel, rapide et à l'écoute. Mon profil LinkedIn est maintenant beaucoup plus visible."
+        </p>
+        <div class="testimonial-author">
+          <div class="testimonial-avatar" style="background: linear-gradient(135deg, #f9a8d4, #ec4899);">
+            SM
+          </div>
+          <div>
+            <p class="testimonial-name">Sophie M.</p>
+            <p class="testimonial-role">Marketing Manager</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="testimonial-card reveal reveal-delay-2">
+        <div class="testimonial-stars">★★★★★</div>
+        <p class="testimonial-text">
+          "La préparation aux entretiens m'a permis de gagner en confiance et d'obtenir le poste souhaité."
+        </p>
+        <div class="testimonial-author">
+          <div class="testimonial-avatar" style="background: linear-gradient(135deg, #6ee7b7, #059669);">
+            JR
+          </div>
+          <div>
+            <p class="testimonial-name">Julien R.</p>
+            <p class="testimonial-role">Ingénieur mécanique</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="testimonial-dots">
+      <div class="testimonial-dot active"></div>
+      <div class="testimonial-dot"></div>
+      <div class="testimonial-dot"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ───────── CTA BANNER ───────── -->
+<section class="cta-banner">
+  <div class="container">
+    <div class="cta-inner-card reveal">
+      <div class="cta-inner">
+        <div class="cta-logo-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 00-2.91-.09z"/>
+            <path d="M12 15l-3-3a22 22 0 012-3.95A12.88 12.88 0 0122 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 01-4 2z"/>
+          </svg>
+        </div>
+        <div class="cta-text">
+          <h2>Prêt à booster votre carrière ?</h2>
+          <p>Discutons de votre projet et trouvons ensemble la solution adaptée à vos objectifs.</p>
+        </div>
+        <a href="#" class="btn btn-white">
+          Nous contacter
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ───────── FOOTER ───────── -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-top">
+
+      <!-- Brand -->
+      <div class="footer-brand">
+        <a href="index.html" class="footer-logo">
+          <img src="images/profilboost_logo_sombre.svg" alt="ProfilBoost" class="footer-logo-img" />
+        </a>
+        <p class="footer-brand-desc">
+          Nous aidons les professionnels à valoriser leur profil et à atteindre leurs objectifs de carrière.
+        </p>
+        <div class="footer-socials">
+          <a href="#" class="social-link" aria-label="LinkedIn">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
+          </a>
+          <a href="#" class="social-link" aria-label="Instagram">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+          </a>
+          <a href="#" class="social-link" aria-label="YouTube">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22.54 6.42a2.78 2.78 0 00-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46A2.78 2.78 0 001.46 6.42 29 29 0 001 12a29 29 0 00.46 5.58 2.78 2.78 0 001.95 1.95C5.12 20 12 20 12 20s6.88 0 8.59-.46a2.78 2.78 0 001.95-1.95A29 29 0 0023 12a29 29 0 00-.46-5.58z"/><polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <!-- Navigation -->
+      <div>
+        <h4 class="footer-col-title">Navigation</h4>
+        <ul class="footer-col-links">
+          <li><a href="index.html">Accueil</a></li>
+          <li><a href="services.html">Nos services</a></li>
+          <li><a href="#">À propos</a></li>
+          <li><a href="#">Ressources</a></li>
+          <li><a href="#">Contact</a></li>
+        </ul>
+      </div>
+
+      <!-- Nos services -->
+      <div>
+        <h4 class="footer-col-title">Nos services</h4>
+        <ul class="footer-col-links">
+          <li><a href="#">Création de CV &amp; LM</a></li>
+          <li><a href="#">Optimisation LinkedIn</a></li>
+          <li><a href="#">Coaching entretien</a></li>
+          <li><a href="#">Autres services</a></li>
+        </ul>
+      </div>
+
+      <!-- Ressources -->
+      <div>
+        <h4 class="footer-col-title">Ressources</h4>
+        <ul class="footer-col-links">
+          <li><a href="#">Conseils carrière</a></li>
+          <li><a href="#">Guides gratuits</a></li>
+          <li><a href="#">Blog</a></li>
+          <li><a href="#">FAQ</a></li>
+        </ul>
+      </div>
+
+      <!-- Newsletter -->
+      <div>
+        <h4 class="footer-col-title">Newsletter</h4>
+        <p class="footer-newsletter-desc">Recevez nos conseils carrière et nos offres exclusives.</p>
+        <div class="footer-newsletter-form">
+          <input type="email" class="footer-newsletter-input" placeholder="Votre email" />
+          <button class="footer-newsletter-btn">S'inscrire</button>
+        </div>
+      </div>
+
+    </div>
+
+    <hr class="footer-divider" />
+    <div class="footer-bottom">
+      <p class="footer-copy">© 2024 ProfilBoost. Tous droits réservés.</p>
+      <div class="footer-legal">
+        <a href="#">Mentions légales</a>
+        <a href="#">Politique de confidentialité</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  const revealEls = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+  revealEls.forEach(el => io.observe(el));
+
+  const hamburger = document.getElementById('hamburger');
+  const mobileMenu = document.getElementById('mobileMenu');
+  hamburger.addEventListener('click', () => {
+    hamburger.classList.toggle('open');
+    mobileMenu.classList.toggle('open');
+    document.body.style.overflow = mobileMenu.classList.contains('open') ? 'hidden' : '';
+  });
+  function closeMenu() {
+    hamburger.classList.remove('open');
+    mobileMenu.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  const navbar = document.querySelector('.navbar');
+  window.addEventListener('scroll', () => {
+    navbar.style.boxShadow = window.scrollY > 20 ? '0 4px 24px rgba(0,0,0,.25)' : 'none';
+  });
+</script>
+</body>
+</html>
