@@ -1,0 +1,1098 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Coaching &amp; Préparation entretien — ProfilBoost</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --navy: #0d1b3e;
+      --navy-mid: #112354;
+      --blue: #2563eb;
+      --blue-light: #3b82f6;
+      --blue-pale: #dbeafe;
+      --white: #ffffff;
+      --gray-50: #f8fafc;
+      --gray-100: #f1f5f9;
+      --gray-300: #cbd5e1;
+      --gray-500: #64748b;
+      --gray-700: #334155;
+      --gray-900: #0f172a;
+      --radius: 12px;
+      --radius-lg: 20px;
+      --shadow: 0 4px 24px rgba(13,27,62,.08);
+      --shadow-md: 0 8px 40px rgba(13,27,62,.14);
+      --shadow-lg: 0 20px 60px rgba(13,27,62,.20);
+    }
+
+    html { scroll-behavior: smooth; overflow-x: hidden; }
+    body {
+      font-family: 'Poppins', sans-serif;
+      color: var(--gray-900);
+      background: var(--white);
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    /* ─── UTILITIES ─────────────────────────────────────── */
+    .container { max-width: 1140px; margin: 0 auto; padding: 0 24px; }
+    .btn {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 13px 26px; border-radius: 50px; font-size: 15px;
+      font-weight: 600; cursor: pointer; border: none;
+      text-decoration: none; transition: all .22s ease; white-space: nowrap;
+    }
+    .btn-primary { background: var(--blue); color: var(--white); box-shadow: 0 4px 20px rgba(37,99,235,.40); }
+    .btn-primary:hover { background: #1d4ed8; transform: translateY(-1px); box-shadow: 0 8px 28px rgba(37,99,235,.50); }
+    .btn-white { background: var(--white); color: var(--blue); box-shadow: 0 4px 20px rgba(0,0,0,.15); }
+    .btn-white:hover { background: #f0f6ff; transform: translateY(-1px); }
+
+    /* ─── NAVBAR ─────────────────────────────────────────── */
+    .navbar {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      background: var(--navy);
+      border-bottom: 1px solid rgba(255,255,255,.07);
+      backdrop-filter: blur(12px);
+    }
+    body { padding-top: 68px; }
+    .navbar-inner { display: flex; align-items: center; justify-content: space-between; height: 68px; }
+    .nav-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; color: var(--white); font-weight: 800; font-size: 20px; letter-spacing: -.3px; }
+    .nav-logo-img { height: 36px; width: auto; display: block; }
+    .footer-logo-img { height: 30px; width: auto; display: block; }
+    .nav-links { display: flex; align-items: center; gap: 36px; list-style: none; }
+    .nav-links a { color: rgba(255,255,255,.80); text-decoration: none; font-size: 12.5px; font-weight: 600; letter-spacing: .8px; text-transform: uppercase; transition: color .18s; }
+    .nav-links a:hover, .nav-links a.active { color: var(--white); }
+    .nav-links a.active { border-bottom: 2px solid var(--blue); padding-bottom: 2px; }
+    .nav-cta { display: flex; align-items: center; gap: 12px; }
+
+    /* ─── HERO ───────────────────────────────────────────── */
+    .hero {
+      background: linear-gradient(160deg, #08122a 0%, #0b1a3e 35%, #0d2055 65%, #0e2460 100%);
+      padding: 52px 0 80px;
+      overflow: hidden; position: relative;
+    }
+    .hero::before {
+      content: '';
+      position: absolute; inset: 0;
+      background:
+        radial-gradient(ellipse 55% 70% at 75% 40%, rgba(37,99,235,.16) 0%, transparent 65%),
+        radial-gradient(ellipse 30% 40% at 10% 80%, rgba(14,36,96,.5) 0%, transparent 60%);
+      pointer-events: none;
+    }
+    .hero-inner { display: grid; grid-template-columns: 55% 45%; gap: 24px; align-items: center; min-height: 420px; }
+    .breadcrumb { display: flex; align-items: center; gap: 8px; font-size: 13px; font-weight: 500; margin-bottom: 18px; }
+    .breadcrumb a { color: var(--blue-light); text-decoration: none; }
+    .breadcrumb a:hover { text-decoration: underline; }
+    .breadcrumb-sep { color: rgba(255,255,255,.4); font-size: 11px; }
+    .breadcrumb-current { color: rgba(255,255,255,.6); }
+    .hero-label { font-size: 11px; font-weight: 700; letter-spacing: 2.5px; text-transform: uppercase; color: var(--blue-light); margin-bottom: 14px; }
+    .hero-title { font-size: clamp(32px, 4vw, 52px); font-weight: 900; line-height: 1.1; color: var(--white); margin-bottom: 20px; letter-spacing: -.5px; }
+    .hero-title .accent { color: #34d399; }
+    .hero-subtitle { color: rgba(255,255,255,.60); font-size: 14.5px; line-height: 1.7; max-width: 480px; margin-bottom: 28px; }
+    .hero-badges { display: flex; flex-direction: row; gap: 0; margin-bottom: 32px; flex-wrap: wrap; }
+    .hero-badge + .hero-badge { border-left: 1px solid rgba(255,255,255,.20); padding-left: 18px; margin-left: 18px; }
+    .hero-badge { display: flex; align-items: center; gap: 8px; font-size: 13px; font-weight: 600; color: rgba(255,255,255,.85); }
+    .hero-badge-icon { width: 30px; height: 30px; border-radius: 50%; background: var(--blue); flex-shrink: 0; display: flex; align-items: center; justify-content: center; }
+    .hero-badge-icon svg { width: 14px; height: 14px; color: white; }
+    .hero-actions { display: flex; align-items: center; gap: 18px; margin-bottom: 28px; }
+    .hero-social-proof { display: flex; align-items: center; gap: 12px; }
+    .avatars { display: flex; }
+    .avatar { width: 32px; height: 32px; border-radius: 50%; border: 2.5px solid rgba(13,27,62,.8); margin-left: -9px; overflow: hidden; flex-shrink: 0; }
+    .avatar:first-child { margin-left: 0; }
+    .avatar-initials { width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; font-size: 10px; font-weight: 700; color: white; }
+    .proof-text { font-size: 13px; color: rgba(255,255,255,.65); }
+    .proof-text strong { color: var(--white); font-weight: 600; }
+
+    /* ─── HERO VISUAL — VIDEO CALL MOCKUP ───────────────── */
+    .hero-visual { display: flex; align-items: center; justify-content: center; position: relative; height: 460px; }
+    .vc-wrap { position: relative; width: 100%; height: 100%; }
+
+    .vc-screen {
+      position: absolute; top: 16px; left: 0;
+      width: 310px;
+      background: #0f172a; border-radius: 12px; overflow: hidden;
+      box-shadow: 0 24px 64px rgba(0,0,0,.60); z-index: 2;
+    }
+    .vc-topbar {
+      background: #1e293b; padding: 8px 12px;
+      display: flex; align-items: center; justify-content: space-between;
+      border-bottom: 1px solid rgba(255,255,255,.08);
+    }
+    .vc-topbar-left { display: flex; align-items: center; gap: 8px; }
+    .vc-logo-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--blue); }
+    .vc-title { font-size: 9px; font-weight: 700; color: rgba(255,255,255,.85); }
+    .vc-live { background: #dc2626; border-radius: 3px; padding: 1px 5px; font-size: 7px; font-weight: 800; color: white; letter-spacing: .5px; }
+    .vc-duration { font-size: 8px; color: rgba(255,255,255,.4); }
+
+    .vc-videos {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 3px; padding: 3px; background: #0a0f1e;
+    }
+    .vc-tile {
+      aspect-ratio: 4/3; border-radius: 6px;
+      position: relative; overflow: hidden;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .vc-tile-coach { background: linear-gradient(145deg, #1e3a5f, #1d4ed8); }
+    .vc-tile-client { background: linear-gradient(145deg, #1a2a3a, #0e4d6e); }
+    .vc-tile-avatar {
+      width: 38px; height: 38px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 13px; font-weight: 800; color: white;
+    }
+    .vc-tile-coach .vc-tile-avatar { background: rgba(37,99,235,.5); }
+    .vc-tile-client .vc-tile-avatar { background: rgba(14,116,144,.5); }
+    .vc-tile-name {
+      position: absolute; bottom: 5px; left: 6px;
+      background: rgba(0,0,0,.55); border-radius: 3px;
+      padding: 2px 6px; font-size: 7.5px; font-weight: 600; color: white;
+    }
+    .vc-tile-mic {
+      position: absolute; bottom: 5px; right: 6px;
+      width: 14px; height: 14px; border-radius: 50%;
+      background: rgba(0,0,0,.45);
+      display: flex; align-items: center; justify-content: center;
+    }
+    .vc-tile-mic svg { width: 8px; height: 8px; color: rgba(255,255,255,.7); }
+
+    .vc-agenda {
+      background: #1e293b; padding: 8px 12px;
+      border-top: 1px solid rgba(255,255,255,.06);
+    }
+    .vc-agenda-title { font-size: 7.5px; font-weight: 700; color: rgba(255,255,255,.4); text-transform: uppercase; letter-spacing: .8px; margin-bottom: 5px; }
+    .vc-agenda-item {
+      display: flex; align-items: center; gap: 6px;
+      font-size: 8.5px; font-weight: 500; color: rgba(255,255,255,.55);
+      padding: 3px 0;
+    }
+    .vc-agenda-item.active { color: white; }
+    .vc-agenda-dot { width: 6px; height: 6px; border-radius: 50%; background: rgba(255,255,255,.25); flex-shrink: 0; }
+    .vc-agenda-item.active .vc-agenda-dot { background: #34d399; }
+    .vc-agenda-check { width: 6px; height: 6px; flex-shrink: 0; }
+    .vc-agenda-check svg { width: 6px; height: 6px; color: #34d399; }
+
+    .vc-controls {
+      background: #0f172a; padding: 8px 12px;
+      display: flex; align-items: center; justify-content: center; gap: 8px;
+      border-top: 1px solid rgba(255,255,255,.06);
+    }
+    .vc-ctrl { width: 26px; height: 26px; border-radius: 50%; display: flex; align-items: center; justify-content: center; }
+    .vc-ctrl-gray { background: #334155; }
+    .vc-ctrl-red { background: #dc2626; }
+    .vc-ctrl svg { width: 11px; height: 11px; color: white; }
+
+    /* Score card floating */
+    .vc-score-card {
+      position: absolute; bottom: 30px; right: 0;
+      background: white; border-radius: 12px; padding: 14px 16px;
+      box-shadow: 0 12px 36px rgba(0,0,0,.20); min-width: 150px; z-index: 3;
+      animation: floatCard 5s ease-in-out infinite;
+    }
+    @keyframes floatCard { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-6px)} }
+    .vc-score-title { font-size: 9px; font-weight: 700; color: var(--gray-700); letter-spacing: .5px; text-transform: uppercase; margin-bottom: 10px; }
+    .vc-score-row { margin-bottom: 7px; }
+    .vc-score-row:last-child { margin-bottom: 0; }
+    .vc-score-label { font-size: 8.5px; color: var(--gray-500); margin-bottom: 3px; display: flex; justify-content: space-between; }
+    .vc-score-label span:last-child { font-weight: 700; color: var(--gray-900); }
+    .vc-progress-bar { height: 5px; background: var(--gray-100); border-radius: 3px; overflow: hidden; }
+    .vc-progress-fill { height: 100%; border-radius: 3px; background: linear-gradient(90deg, var(--blue), var(--blue-light)); }
+
+    /* Decorative shapes */
+    .deco-shape { position: absolute; pointer-events: none; }
+    .deco-triangle-1 { top: 28px; right: 18px; width: 0; height: 0; border-left: 22px solid transparent; border-right: 22px solid transparent; border-bottom: 38px solid #2563eb; opacity: .9; }
+    .deco-triangle-2 { bottom: 70px; right: 14px; width: 0; height: 0; border-left: 13px solid transparent; border-right: 13px solid transparent; border-bottom: 22px solid rgba(255,255,255,.30); }
+    .deco-circle-1 { top: 24px; left: 42%; width: 36px; height: 36px; border-radius: 50%; border: 3px solid rgba(255,255,255,.25); }
+    .deco-circle-2 { bottom: 80px; left: 6%; width: 18px; height: 18px; border-radius: 50%; border: 2.5px solid rgba(255,255,255,.20); }
+    .deco-dot { width: 5px; height: 5px; border-radius: 50%; background: #4d94ff; opacity: .55; }
+    .deco-dots-grid { position: absolute; top: 60px; right: 0; display: grid; grid-template-columns: repeat(5, 10px); gap: 9px; }
+
+    /* ─── SECTION COMMONS ──────────────────────────────── */
+    .section-label { font-size: 11px; font-weight: 700; letter-spacing: 2.5px; text-transform: uppercase; color: var(--blue); margin-bottom: 12px; text-align: center; }
+    .section-title { font-size: clamp(24px, 2.8vw, 36px); font-weight: 800; color: var(--gray-900); text-align: center; letter-spacing: -.4px; margin-bottom: 14px; }
+    .underline-blue { position: relative; display: inline-block; }
+    .underline-blue::after { content: ''; position: absolute; bottom: -4px; left: 0; right: 0; height: 3px; border-radius: 2px; background: var(--blue); }
+    .section-subtitle { font-size: 15px; color: var(--gray-500); text-align: center; max-width: 540px; margin: 0 auto; line-height: 1.65; }
+
+    /* ─── FEATURES SECTION (4 cols) ─────────────────────── */
+    .features-section { padding: 90px 0; background: var(--white); }
+    .features-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; margin-top: 52px; }
+    .feature-card { background: var(--white); border: 1px solid var(--gray-100); border-radius: var(--radius-lg); padding: 32px 24px; text-align: center; box-shadow: var(--shadow); transition: all .25s; }
+    .feature-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); border-color: var(--blue-pale); }
+    .feature-card-icon { width: 56px; height: 56px; border-radius: 50%; background: var(--blue-pale); display: flex; align-items: center; justify-content: center; margin: 0 auto 18px; }
+    .feature-card-icon svg { width: 24px; height: 24px; color: var(--blue); }
+    .feature-card h3 { font-size: 14.5px; font-weight: 700; color: var(--gray-900); margin-bottom: 10px; line-height: 1.3; }
+    .feature-card p { font-size: 13px; color: var(--gray-500); line-height: 1.6; }
+
+    /* ─── DELIVERABLES SECTION ──────────────────────────── */
+    .deliverables-section { padding: 90px 0; background: var(--gray-50); }
+    .deliverables-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+    .deliverables-content {}
+    .deliverables-label { font-size: 10.5px; font-weight: 700; letter-spacing: 2.5px; text-transform: uppercase; color: var(--blue); margin-bottom: 14px; }
+    .deliverables-title { font-size: clamp(26px, 3vw, 38px); font-weight: 800; color: var(--gray-900); letter-spacing: -.4px; line-height: 1.2; margin-bottom: 32px; }
+    .deliverables-list { list-style: none; display: flex; flex-direction: column; gap: 14px; margin-bottom: 36px; }
+    .deliverables-list li { display: flex; align-items: center; gap: 12px; font-size: 14px; font-weight: 500; color: var(--gray-700); }
+    .check-circle { width: 20px; height: 20px; border-radius: 50%; background: var(--blue); flex-shrink: 0; display: flex; align-items: center; justify-content: center; }
+    .check-circle svg { width: 11px; height: 11px; color: white; }
+    .formats-box { background: var(--white); border: 1px solid var(--gray-100); border-radius: var(--radius); padding: 20px 22px; }
+    .formats-box-title { font-size: 12px; font-weight: 700; color: var(--gray-700); margin-bottom: 14px; letter-spacing: .5px; text-transform: uppercase; }
+    .formats-list { display: flex; gap: 12px; flex-wrap: wrap; }
+    .format-item { display: flex; align-items: center; gap: 8px; background: var(--gray-50); border: 1px solid var(--gray-100); border-radius: 8px; padding: 8px 14px; font-size: 13px; font-weight: 600; color: var(--gray-700); }
+    .format-item svg { width: 16px; height: 16px; }
+    .format-item.visio { color: #2563eb; }
+    .format-item.pdf { color: #dc2626; }
+    .format-item.presentiel { color: #16a34a; }
+
+    /* Coaching rapport card (deliverables visual) */
+    .deliverables-visual { position: relative; }
+    .coaching-visual-wrap { position: relative; height: 460px; }
+    .blob-deco { position: absolute; border-radius: 50%; background: linear-gradient(135deg, rgba(37,99,235,.10), rgba(37,99,235,.04)); z-index: 0; }
+    .blob-1 { width: 280px; height: 280px; top: -30px; left: -20px; }
+    .blob-2 { width: 130px; height: 130px; bottom: 30px; right: 30px; }
+
+    .coaching-rapport-card {
+      position: absolute; top: 20px; left: 0;
+      width: 295px; background: white; border-radius: 16px;
+      overflow: hidden; box-shadow: var(--shadow-lg); z-index: 2;
+      transition: transform .4s ease;
+    }
+    .coaching-rapport-card:hover { transform: translateY(-4px); }
+    .rapport-header {
+      background: linear-gradient(135deg, #0d2055, #1d4ed8);
+      padding: 18px 20px;
+      display: flex; align-items: center; gap: 12px;
+    }
+    .rapport-header-icon {
+      width: 40px; height: 40px; border-radius: 10px;
+      background: rgba(255,255,255,.15);
+      display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+    }
+    .rapport-header-icon svg { width: 20px; height: 20px; color: white; }
+    .rapport-header-title { font-size: 13px; font-weight: 800; color: white; }
+    .rapport-header-sub { font-size: 9.5px; color: rgba(255,255,255,.65); margin-top: 2px; }
+
+    .rapport-body { padding: 16px 20px; }
+    .rapport-section-title { font-size: 9px; font-weight: 700; color: var(--gray-500); letter-spacing: 1px; text-transform: uppercase; margin-bottom: 10px; }
+    .rapport-criteria { display: flex; flex-direction: column; gap: 9px; margin-bottom: 14px; }
+    .rapport-criterion { display: flex; align-items: center; gap: 10px; }
+    .rc-label { font-size: 9.5px; font-weight: 500; color: var(--gray-700); flex: 1; }
+    .rc-bar-wrap { width: 70px; height: 5px; background: var(--gray-100); border-radius: 3px; overflow: hidden; }
+    .rc-bar { height: 100%; border-radius: 3px; }
+    .rc-bar-green { background: linear-gradient(90deg, #22c55e, #16a34a); }
+    .rc-bar-blue { background: linear-gradient(90deg, var(--blue), var(--blue-light)); }
+    .rc-bar-yellow { background: linear-gradient(90deg, #f59e0b, #fbbf24); }
+    .rc-score { font-size: 9px; font-weight: 800; color: var(--gray-900); width: 24px; text-align: right; }
+
+    .rapport-divider { height: 1px; background: var(--gray-100); margin: 12px 0; }
+    .rapport-points { display: flex; flex-direction: column; gap: 6px; }
+    .rapport-point { display: flex; align-items: flex-start; gap: 7px; font-size: 9px; color: var(--gray-700); line-height: 1.4; }
+    .rapport-point-dot { width: 6px; height: 6px; border-radius: 50%; background: #22c55e; flex-shrink: 0; margin-top: 3px; }
+
+    /* Axes d'amélioration panel */
+    .coaching-axes-card {
+      position: absolute; bottom: 40px; right: -5px;
+      background: white; border-radius: 12px; padding: 14px 16px;
+      box-shadow: 0 8px 32px rgba(0,0,0,.14); min-width: 155px; z-index: 3;
+    }
+    .axes-title { font-size: 10px; font-weight: 700; color: var(--gray-700); letter-spacing: .5px; text-transform: uppercase; margin-bottom: 10px; }
+    .axes-item { display: flex; align-items: center; gap: 7px; font-size: 9px; color: var(--gray-700); padding: 4px 0; }
+    .axes-item + .axes-item { border-top: 1px solid var(--gray-100); }
+    .axes-icon { width: 18px; height: 18px; border-radius: 50%; background: #fef3c7; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .axes-icon svg { width: 9px; height: 9px; color: #d97706; }
+
+    /* Session badge */
+    .coaching-session-badge {
+      position: absolute; top: 14px; right: -5px;
+      background: white; border-radius: 10px; padding: 10px 14px;
+      box-shadow: 0 8px 28px rgba(0,0,0,.13); z-index: 3;
+      display: flex; align-items: center; gap: 10px;
+    }
+    .session-badge-icon { width: 30px; height: 30px; border-radius: 8px; background: var(--blue-pale); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .session-badge-icon svg { width: 15px; height: 15px; color: var(--blue); }
+    .session-badge-text { font-size: 9px; color: var(--gray-500); }
+    .session-badge-value { font-size: 12px; font-weight: 800; color: var(--gray-900); }
+
+    /* ─── PROCESS SECTION ──────────────────────────────── */
+    .process-section { padding: 90px 0; background: var(--white); }
+    .process-steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-top: 52px; position: relative; }
+    .process-steps::before { content: ''; position: absolute; top: 42px; left: calc(12.5% + 42px); right: calc(12.5% + 42px); height: 2px; background: var(--blue-pale); z-index: 0; }
+    .process-step { display: flex; flex-direction: column; align-items: center; text-align: center; padding: 0 16px; position: relative; z-index: 1; }
+    .process-icon { width: 84px; height: 84px; border-radius: 50%; background: var(--white); border: 2px solid var(--blue-pale); display: flex; align-items: center; justify-content: center; margin-bottom: 20px; box-shadow: 0 4px 16px rgba(37,99,235,.10); }
+    .process-icon svg { width: 32px; height: 32px; color: var(--blue); }
+    .process-step-header { display: flex; align-items: center; gap: 8px; margin-bottom: 8px; justify-content: center; }
+    .process-num { width: 22px; height: 22px; border-radius: 50%; background: var(--blue); color: white; font-size: 11px; font-weight: 800; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .process-step-title { font-size: 14px; font-weight: 700; color: var(--gray-900); }
+    .process-step-desc { font-size: 13px; color: var(--gray-500); line-height: 1.6; }
+
+    /* ─── WHY SECTION ───────────────────────────────────── */
+    .why-section { padding: 90px 0; background: var(--gray-50); }
+    .stats-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; margin-top: 52px; }
+    .stat-card { display: flex; align-items: center; gap: 18px; padding: 24px 0; }
+    .stat-icon { width: 52px; height: 52px; border-radius: 50%; background: var(--blue-pale); flex-shrink: 0; display: flex; align-items: center; justify-content: center; }
+    .stat-icon svg { width: 22px; height: 22px; color: var(--blue); }
+    .stat-text { display: flex; flex-direction: column; }
+    .stat-value { font-size: 24px; font-weight: 900; color: var(--gray-900); margin-bottom: 2px; letter-spacing: -.5px; line-height: 1.2; }
+    .stat-label { font-size: 13px; color: var(--gray-500); line-height: 1.5; }
+
+    /* ─── CTA BANNER ────────────────────────────────────── */
+    .cta-banner { padding: 0 0 90px; }
+    .cta-inner-card { background: linear-gradient(140deg, #0a1628 0%, #0d1e44 60%, #0e2050 100%); border-radius: 24px; padding: 60px 56px; position: relative; overflow: hidden; }
+    .cta-inner-card::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse 50% 80% at 20% 50%, rgba(37,99,235,.12) 0%, transparent 70%); }
+    .cta-inner { display: flex; align-items: center; justify-content: space-between; gap: 40px; position: relative; z-index: 1; }
+    .cta-logo-icon { width: 64px; height: 64px; border-radius: 16px; background: rgba(37,99,235,.25); border: 1.5px solid rgba(37,99,235,.4); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .cta-logo-icon svg { width: 32px; height: 32px; color: white; }
+    .cta-text h2 { font-size: clamp(20px, 2.2vw, 28px); font-weight: 800; color: white; margin-bottom: 8px; letter-spacing: -.3px; }
+    .cta-text p { color: rgba(255,255,255,.65); font-size: 14.5px; max-width: 400px; line-height: 1.65; }
+
+    /* ─── FOOTER ─────────────────────────────────────────── */
+    .footer { background: var(--navy); padding: 56px 0 24px; }
+    .footer-top { display: grid; grid-template-columns: 1.5fr 1fr 1fr 1fr 1.4fr; gap: 40px; margin-bottom: 48px; }
+    .footer-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; color: white; font-weight: 800; font-size: 18px; margin-bottom: 16px; }
+    .footer-brand-desc { font-size: 13px; color: rgba(255,255,255,.45); line-height: 1.65; margin-bottom: 20px; max-width: 220px; }
+    .footer-socials { display: flex; gap: 10px; }
+    .social-link { width: 34px; height: 34px; border-radius: 8px; border: 1px solid rgba(255,255,255,.18); display: flex; align-items: center; justify-content: center; color: rgba(255,255,255,.6); text-decoration: none; transition: all .18s; }
+    .social-link:hover { background: rgba(255,255,255,.1); color: white; border-color: rgba(255,255,255,.35); }
+    .social-link svg { width: 15px; height: 15px; }
+    .footer-col-title { font-size: 13px; font-weight: 700; color: var(--white); margin-bottom: 18px; letter-spacing: .3px; }
+    .footer-col-links { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+    .footer-col-links a { color: rgba(255,255,255,.48); text-decoration: none; font-size: 13px; transition: color .18s; }
+    .footer-col-links a:hover { color: rgba(255,255,255,.85); }
+    .footer-newsletter-form { display: flex; gap: 8px; margin-top: 4px; }
+    .footer-newsletter-input { flex: 1; padding: 10px 14px; border-radius: 8px; background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.14); color: white; font-size: 13px; font-family: 'Poppins', sans-serif; outline: none; transition: border-color .18s; }
+    .footer-newsletter-input::placeholder { color: rgba(255,255,255,.35); }
+    .footer-newsletter-input:focus { border-color: var(--blue); }
+    .footer-newsletter-btn { padding: 10px 16px; border-radius: 8px; border: none; background: var(--blue); color: white; font-size: 13px; font-weight: 600; cursor: pointer; transition: background .18s; font-family: 'Poppins', sans-serif; white-space: nowrap; }
+    .footer-newsletter-btn:hover { background: #1d4ed8; }
+    .footer-newsletter-desc { font-size: 12px; color: rgba(255,255,255,.35); margin-bottom: 14px; line-height: 1.5; }
+    .footer-divider { border: none; border-top: 1px solid rgba(255,255,255,.08); margin-bottom: 20px; }
+    .footer-bottom { display: flex; align-items: center; justify-content: space-between; }
+    .footer-copy { color: rgba(255,255,255,.32); font-size: 13px; }
+    .footer-legal { display: flex; gap: 24px; }
+    .footer-legal a { color: rgba(255,255,255,.32); text-decoration: none; font-size: 13px; transition: color .18s; }
+    .footer-legal a:hover { color: rgba(255,255,255,.65); }
+
+    /* ─── ANIMATIONS ─────────────────────────────────────── */
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
+    .fade-up { animation: fadeUp .65s ease both; }
+    .fade-up-2 { animation: fadeUp .65s .12s ease both; }
+    .fade-up-3 { animation: fadeUp .65s .24s ease both; }
+    .fade-up-4 { animation: fadeUp .65s .36s ease both; }
+    .reveal { opacity: 0; transform: translateY(28px); transition: opacity .6s ease, transform .6s ease; }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    .reveal-delay-1 { transition-delay: .1s; }
+    .reveal-delay-2 { transition-delay: .2s; }
+    .reveal-delay-3 { transition-delay: .3s; }
+
+    /* ─── HAMBURGER ─────────────────────────────────────── */
+    .hamburger { display: none; flex-direction: column; justify-content: center; gap: 5px; width: 36px; height: 36px; cursor: pointer; background: none; border: none; padding: 4px; }
+    .hamburger span { display: block; height: 2px; background: white; border-radius: 2px; transition: all .3s ease; transform-origin: center; }
+    .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .hamburger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+    .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+    .mobile-menu { display: none; position: fixed; inset: 0; top: 68px; background: var(--navy); z-index: 99; flex-direction: column; align-items: center; justify-content: center; gap: 8px; opacity: 0; transform: translateY(-12px); transition: opacity .3s ease, transform .3s ease; pointer-events: none; }
+    .mobile-menu.open { opacity: 1; transform: translateY(0); pointer-events: all; }
+    .mobile-menu a { color: white; text-decoration: none; font-size: 22px; font-weight: 700; padding: 14px 32px; letter-spacing: .5px; width: 100%; text-align: center; transition: background .18s; }
+    .mobile-menu a:hover { background: rgba(255,255,255,.07); }
+    .mobile-menu .mobile-cta { margin-top: 16px; }
+
+    /* ─── RESPONSIVE ─────────────────────────────────────── */
+    @media (max-width: 1024px) {
+      .features-grid { grid-template-columns: repeat(2, 1fr); }
+      .stats-grid { grid-template-columns: repeat(2, 1fr); }
+      .footer-top { grid-template-columns: 1fr 1fr 1fr; }
+      .footer-brand { grid-column: 1 / -1; }
+    }
+    @media (max-width: 900px) {
+      .nav-links { display: none; }
+      .hamburger { display: flex; }
+      .mobile-menu { display: flex; }
+      .nav-cta .btn-primary { display: none; }
+      .hero-inner { grid-template-columns: 1fr; }
+      .hero-visual { height: 320px; }
+      .vc-screen { width: 250px; left: 50%; transform: translateX(-125px); }
+      .vc-score-card { display: none; }
+      .deliverables-inner { grid-template-columns: 1fr; gap: 48px; }
+      .coaching-visual-wrap { height: 420px; }
+      .process-steps { grid-template-columns: 1fr 1fr; }
+      .process-steps::before { display: none; }
+      .cta-inner { flex-direction: column; text-align: center; }
+      .cta-inner-card { padding: 40px 24px; border-radius: 16px; }
+      .footer-top { grid-template-columns: 1fr 1fr; }
+      .footer-brand { grid-column: 1 / -1; }
+      .footer-bottom { flex-direction: column; gap: 12px; text-align: center; }
+    }
+    @media (max-width: 600px) {
+      .features-grid { grid-template-columns: 1fr; }
+      .stats-grid { grid-template-columns: 1fr 1fr; }
+      .process-steps { grid-template-columns: 1fr; }
+      .footer-top { grid-template-columns: 1fr; }
+      .hero-badge { flex-direction: row; align-items: center; text-align: left; }
+      .hero-badge + .hero-badge { border-left: none; padding-left: 0; margin-left: 0; border-top: 1px solid rgba(255,255,255,.20); padding-top: 14px; margin-top: 14px; }
+      .hero-badges { flex-direction: column; align-items: flex-start; }
+      .hero-actions { justify-content: flex-start; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ───────── NAVBAR ───────── -->
+<header class="navbar">
+  <div class="container navbar-inner">
+    <a href="index.html" class="nav-logo">
+      <img src="images/profilboost_logo_sombre.svg" alt="ProfilBoost" class="nav-logo-img" />
+    </a>
+    <ul class="nav-links">
+      <li><a href="index.html">Accueil</a></li>
+      <li><a href="services.html" class="active">Nos services</a></li>
+      <li><a href="#">À propos</a></li>
+      <li><a href="#">Ressources</a></li>
+    </ul>
+    <div class="nav-cta">
+      <a href="#" class="btn btn-primary">Nous contacter</a>
+      <button class="hamburger" id="hamburger" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- ───────── MOBILE MENU ───────── -->
+<nav class="mobile-menu" id="mobileMenu">
+  <a href="index.html" onclick="closeMenu()">Accueil</a>
+  <a href="services.html" onclick="closeMenu()">Nos services</a>
+  <a href="#" onclick="closeMenu()">À propos</a>
+  <a href="#" onclick="closeMenu()">Ressources</a>
+  <a href="#" class="btn btn-primary mobile-cta" onclick="closeMenu()">Nous contacter</a>
+</nav>
+
+<!-- ───────── HERO ───────── -->
+<section class="hero">
+  <div class="container">
+    <div class="hero-inner">
+
+      <div class="hero-content">
+        <nav class="breadcrumb fade-up">
+          <a href="index.html">Accueil</a>
+          <span class="breadcrumb-sep">›</span>
+          <a href="services.html">Nos services</a>
+          <span class="breadcrumb-sep">›</span>
+          <span class="breadcrumb-current">Coaching &amp; Préparation entretien</span>
+        </nav>
+        <p class="hero-label fade-up">Service N°3</p>
+        <h1 class="hero-title fade-up-2">Coaching &amp;<br>Préparation <span class="accent">entretien</span></h1>
+        <p class="hero-subtitle fade-up-3">
+          Entraînez-vous en conditions réelles avec un coach expert et abordez vos entretiens avec la confiance et les techniques qui font la différence.
+        </p>
+        <div class="hero-badges fade-up-3">
+          <span class="hero-badge">
+            <span class="hero-badge-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2"/></svg>
+            </span>
+            Simulations réelles
+          </span>
+          <span class="hero-badge">
+            <span class="hero-badge-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89L17 22l-5-3-5 3 1.523-9.11"/></svg>
+            </span>
+            Techniques éprouvées
+          </span>
+          <span class="hero-badge">
+            <span class="hero-badge-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
+            </span>
+            Feedback personnalisé
+          </span>
+          <span class="hero-badge">
+            <span class="hero-badge-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg>
+            </span>
+            Confiance retrouvée
+          </span>
+        </div>
+        <div class="hero-actions fade-up-4">
+          <a href="#" class="btn btn-primary">
+            Réserver mon coaching
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+        </div>
+        <div class="hero-social-proof fade-up-4">
+          <div class="avatars">
+            <div class="avatar"><div class="avatar-initials" style="background:linear-gradient(135deg,#60a5fa,#2563eb);">TL</div></div>
+            <div class="avatar"><div class="avatar-initials" style="background:linear-gradient(135deg,#f9a8d4,#ec4899);">SM</div></div>
+            <div class="avatar"><div class="avatar-initials" style="background:linear-gradient(135deg,#6ee7b7,#059669);">JR</div></div>
+            <div class="avatar"><div class="avatar-initials" style="background:linear-gradient(135deg,#fcd34d,#f59e0b);">AL</div></div>
+          </div>
+          <p class="proof-text"><strong>+300 candidats coachés</strong> · 4,9/5 basé sur 150+ avis</p>
+        </div>
+      </div>
+
+      <!-- Hero Visual — Video call mockup -->
+      <div class="hero-visual">
+        <div class="deco-shape deco-triangle-1"></div>
+        <div class="deco-shape deco-triangle-2"></div>
+        <div class="deco-shape deco-circle-1"></div>
+        <div class="deco-shape deco-circle-2"></div>
+        <div class="deco-dots-grid">
+          <div class="deco-dot"></div><div class="deco-dot"></div><div class="deco-dot"></div><div class="deco-dot"></div><div class="deco-dot"></div>
+          <div class="deco-dot"></div><div class="deco-dot"></div><div class="deco-dot"></div><div class="deco-dot"></div><div class="deco-dot"></div>
+          <div class="deco-dot"></div><div class="deco-dot"></div><div class="deco-dot"></div><div class="deco-dot"></div><div class="deco-dot"></div>
+          <div class="deco-dot"></div><div class="deco-dot"></div><div class="deco-dot"></div><div class="deco-dot"></div><div class="deco-dot"></div>
+        </div>
+
+        <div class="vc-wrap">
+          <!-- Video call screen -->
+          <div class="vc-screen">
+            <div class="vc-topbar">
+              <div class="vc-topbar-left">
+                <div class="vc-logo-dot"></div>
+                <span class="vc-title">ProfilBoost Coaching · Séance en cours</span>
+              </div>
+              <div style="display:flex;gap:6px;align-items:center;">
+                <span class="vc-live">LIVE</span>
+                <span class="vc-duration">24:37</span>
+              </div>
+            </div>
+            <div class="vc-videos">
+              <div class="vc-tile vc-tile-coach">
+                <div class="vc-tile-avatar">CB</div>
+                <div class="vc-tile-name">Coach Bertrand</div>
+                <div class="vc-tile-mic">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 1a3 3 0 00-3 3v8a3 3 0 006 0V4a3 3 0 00-3-3z"/><path d="M19 10v2a7 7 0 01-14 0v-2"/><line x1="12" y1="19" x2="12" y2="23"/><line x1="8" y1="23" x2="16" y2="23"/></svg>
+                </div>
+              </div>
+              <div class="vc-tile vc-tile-client">
+                <div class="vc-tile-avatar">TL</div>
+                <div class="vc-tile-name">Thomas L.</div>
+                <div class="vc-tile-mic">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 1a3 3 0 00-3 3v8a3 3 0 006 0V4a3 3 0 00-3-3z"/><path d="M19 10v2a7 7 0 01-14 0v-2"/><line x1="12" y1="19" x2="12" y2="23"/><line x1="8" y1="23" x2="16" y2="23"/></svg>
+                </div>
+              </div>
+            </div>
+            <div class="vc-agenda">
+              <div class="vc-agenda-title">Programme de séance</div>
+              <div class="vc-agenda-item">
+                <div class="vc-agenda-check">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                </div>
+                Présentation &amp; pitch personnel
+              </div>
+              <div class="vc-agenda-item active">
+                <div class="vc-agenda-dot"></div>
+                Questions comportementales (STAR)
+              </div>
+              <div class="vc-agenda-item">
+                <div class="vc-agenda-dot" style="background:rgba(255,255,255,.15)"></div>
+                Gestion du stress &amp; mises en situation
+              </div>
+            </div>
+            <div class="vc-controls">
+              <div class="vc-ctrl vc-ctrl-gray">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 1a3 3 0 00-3 3v8a3 3 0 006 0V4a3 3 0 00-3-3z"/><path d="M19 10v2a7 7 0 01-14 0v-2"/></svg>
+              </div>
+              <div class="vc-ctrl vc-ctrl-gray">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2"/></svg>
+              </div>
+              <div class="vc-ctrl vc-ctrl-red">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.68 13.31a16 16 0 003.41 2.6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7 2 2 0 011.72 2v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07C9.44 16.29 7.76 14.58 6.7 12.5A19.79 19.79 0 013.63 3.87 2 2 0 015.6 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L9.68 9.91a16 16 0 002.6 3.4z"/><line x1="23" y1="1" x2="1" y2="23"/></svg>
+              </div>
+              <div class="vc-ctrl vc-ctrl-gray">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.07 4.93a10 10 0 010 14.14M4.93 4.93a10 10 0 000 14.14"/></svg>
+              </div>
+            </div>
+          </div>
+
+          <!-- Floating score card -->
+          <div class="vc-score-card">
+            <div class="vc-score-title">Score en direct</div>
+            <div class="vc-score-row">
+              <div class="vc-score-label"><span>Communication</span><span>87%</span></div>
+              <div class="vc-progress-bar"><div class="vc-progress-fill" style="width:87%"></div></div>
+            </div>
+            <div class="vc-score-row">
+              <div class="vc-score-label"><span>Structure STAR</span><span>74%</span></div>
+              <div class="vc-progress-bar"><div class="vc-progress-fill" style="width:74%"></div></div>
+            </div>
+            <div class="vc-score-row">
+              <div class="vc-score-label"><span>Confiance</span><span>81%</span></div>
+              <div class="vc-progress-bar"><div class="vc-progress-fill" style="width:81%"></div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ───────── FEATURES SECTION ───────── -->
+<section class="features-section">
+  <div class="container">
+    <div class="reveal" style="text-align:center;">
+      <h2 class="section-title">Un coaching complet pour <span class="underline-blue">réussir vos entretiens</span></h2>
+      <p class="section-subtitle" style="margin-top:16px;">
+        Nous vous préparons sur tous les aspects de l'entretien pour que vous vous présentiez avec assurance et un discours percutant.
+      </p>
+    </div>
+
+    <div class="features-grid">
+
+      <div class="feature-card reveal">
+        <div class="feature-card-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2"/>
+          </svg>
+        </div>
+        <h3>Simulation<br>d'entretien</h3>
+        <p>Mise en situation réelle avec un coach expérimenté pour vous entraîner dans les conditions du jour J.</p>
+      </div>
+
+      <div class="feature-card reveal reveal-delay-1">
+        <div class="feature-card-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/>
+          </svg>
+        </div>
+        <h3>Méthode STAR &amp;<br>réponses structurées</h3>
+        <p>Apprenez à structurer vos réponses aux questions comportementales de façon claire et mémorable.</p>
+      </div>
+
+      <div class="feature-card reveal reveal-delay-2">
+        <div class="feature-card-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/>
+            <path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/>
+          </svg>
+        </div>
+        <h3>Communication<br>verbale &amp; non-verbale</h3>
+        <p>Maîtrisez votre posture, votre gestuelle et votre intonation pour donner une image forte et assurée.</p>
+      </div>
+
+      <div class="feature-card reveal reveal-delay-3">
+        <div class="feature-card-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+          </svg>
+        </div>
+        <h3>Gestion du stress<br>&amp; confiance en soi</h3>
+        <p>Techniques concrètes pour neutraliser le trac et aborder chaque entretien avec sérénité et conviction.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ───────── DELIVERABLES SECTION ───────── -->
+<section class="deliverables-section">
+  <div class="container">
+    <div class="deliverables-inner">
+
+      <!-- Visual (left) — coaching rapport card -->
+      <div class="deliverables-visual reveal">
+        <div class="blob-deco blob-1"></div>
+        <div class="blob-deco blob-2"></div>
+        <div class="coaching-visual-wrap">
+
+          <!-- Session badge -->
+          <div class="coaching-session-badge">
+            <div class="session-badge-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+            </div>
+            <div>
+              <div class="session-badge-text">Prochaine séance</div>
+              <div class="session-badge-value">Demain, 14h00</div>
+            </div>
+          </div>
+
+          <!-- Main rapport card -->
+          <div class="coaching-rapport-card">
+            <div class="rapport-header">
+              <div class="rapport-header-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+              </div>
+              <div>
+                <div class="rapport-header-title">Rapport de coaching</div>
+                <div class="rapport-header-sub">Thomas L. · Séance du 12 mai 2025</div>
+              </div>
+            </div>
+            <div class="rapport-body">
+              <div class="rapport-section-title">Évaluation par critère</div>
+              <div class="rapport-criteria">
+                <div class="rapport-criterion">
+                  <span class="rc-label">Présentation personnelle</span>
+                  <div class="rc-bar-wrap"><div class="rc-bar rc-bar-green" style="width:90%"></div></div>
+                  <span class="rc-score">9/10</span>
+                </div>
+                <div class="rapport-criterion">
+                  <span class="rc-label">Réponses structurées (STAR)</span>
+                  <div class="rc-bar-wrap"><div class="rc-bar rc-bar-blue" style="width:80%"></div></div>
+                  <span class="rc-score">8/10</span>
+                </div>
+                <div class="rapport-criterion">
+                  <span class="rc-label">Communication non-verbale</span>
+                  <div class="rc-bar-wrap"><div class="rc-bar rc-bar-blue" style="width:75%"></div></div>
+                  <span class="rc-score">7,5/10</span>
+                </div>
+                <div class="rapport-criterion">
+                  <span class="rc-label">Gestion du stress</span>
+                  <div class="rc-bar-wrap"><div class="rc-bar rc-bar-yellow" style="width:70%"></div></div>
+                  <span class="rc-score">7/10</span>
+                </div>
+                <div class="rapport-criterion">
+                  <span class="rc-label">Questions au recruteur</span>
+                  <div class="rc-bar-wrap"><div class="rc-bar rc-bar-green" style="width:85%"></div></div>
+                  <span class="rc-score">8,5/10</span>
+                </div>
+              </div>
+              <div class="rapport-divider"></div>
+              <div class="rapport-section-title">Points forts identifiés</div>
+              <div class="rapport-points">
+                <div class="rapport-point">
+                  <div class="rapport-point-dot"></div>
+                  Écoute active et capacité de reformulation excellente
+                </div>
+                <div class="rapport-point">
+                  <div class="rapport-point-dot"></div>
+                  Maîtrise solide des questions sur les réalisations passées
+                </div>
+                <div class="rapport-point">
+                  <div class="rapport-point-dot"></div>
+                  Pitch de présentation convaincant et bien rythmé
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Axes d'amélioration panel -->
+          <div class="coaching-axes-card">
+            <div class="axes-title">Axes d'amélioration</div>
+            <div class="axes-item">
+              <div class="axes-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg>
+              </div>
+              Réduire les silences prolongés
+            </div>
+            <div class="axes-item">
+              <div class="axes-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg>
+              </div>
+              Renforcer le contact visuel caméra
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Content (right) -->
+      <div class="deliverables-content reveal reveal-delay-1">
+        <p class="deliverables-label">Ce que vous recevez</p>
+        <h2 class="deliverables-title">Tout pour décrocher<br>votre prochain poste</h2>
+        <ul class="deliverables-list">
+          <li>
+            <div class="check-circle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+            Séance de coaching personnalisée (visio ou présentiel)
+          </li>
+          <li>
+            <div class="check-circle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+            Rapport détaillé avec évaluation et axes d'amélioration
+          </li>
+          <li>
+            <div class="check-circle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+            Fiches de réponses aux questions clés du poste visé
+          </li>
+          <li>
+            <div class="check-circle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+            Guide de préparation et check-list pré-entretien
+          </li>
+          <li>
+            <div class="check-circle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+            Techniques de gestion du stress actionnables immédiatement
+          </li>
+          <li>
+            <div class="check-circle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+            Suivi post-coaching pour ajustements avant l'entretien réel
+          </li>
+        </ul>
+        <div class="formats-box">
+          <p class="formats-box-title">Formats disponibles</p>
+          <div class="formats-list">
+            <span class="format-item visio">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2"/></svg>
+              Visioconférence
+            </span>
+            <span class="format-item presentiel">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>
+              Présentiel
+            </span>
+            <span class="format-item pdf">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+              Rapport PDF
+            </span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ───────── PROCESS SECTION ───────── -->
+<section class="process-section">
+  <div class="container">
+    <div class="reveal" style="text-align:center;">
+      <h2 class="section-title">Notre processus en <span class="underline-blue">4 étapes</span></h2>
+      <p class="section-subtitle" style="margin-top:12px;">Simple, rapide et efficace.</p>
+    </div>
+
+    <div class="process-steps">
+
+      <div class="process-step reveal">
+        <div class="process-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/>
+          </svg>
+        </div>
+        <div class="process-step-header">
+          <div class="process-num">1</div>
+          <h3 class="process-step-title">Échange &amp; diagnostic</h3>
+        </div>
+        <p class="process-step-desc">Nous identifions vos besoins, le poste ciblé et les points à renforcer.</p>
+      </div>
+
+      <div class="process-step reveal reveal-delay-1">
+        <div class="process-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2"/>
+          </svg>
+        </div>
+        <div class="process-step-header">
+          <div class="process-num">2</div>
+          <h3 class="process-step-title">Simulation d'entretien</h3>
+        </div>
+        <p class="process-step-desc">Mise en situation en conditions réelles avec votre coach expert.</p>
+      </div>
+
+      <div class="process-step reveal reveal-delay-2">
+        <div class="process-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/>
+            <line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/>
+          </svg>
+        </div>
+        <div class="process-step-header">
+          <div class="process-num">3</div>
+          <h3 class="process-step-title">Débriefing &amp; rapport</h3>
+        </div>
+        <p class="process-step-desc">Analyse détaillée de vos forces et axes d'amélioration concrets.</p>
+      </div>
+
+      <div class="process-step reveal reveal-delay-3">
+        <div class="process-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/>
+          </svg>
+        </div>
+        <div class="process-step-header">
+          <div class="process-num">4</div>
+          <h3 class="process-step-title">Entraînement ciblé</h3>
+        </div>
+        <p class="process-step-desc">Travail sur les points spécifiques jusqu'à maîtriser totalement votre discours.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ───────── WHY SECTION ───────── -->
+<section class="why-section">
+  <div class="container">
+    <div class="reveal" style="text-align:center;">
+      <h2 class="section-title">Pourquoi choisir <span class="underline-blue">ProfilBoost</span> ?</h2>
+    </div>
+    <div class="stats-grid">
+
+      <div class="stat-card reveal">
+        <div class="stat-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="8" r="6"/><path d="M15.477 12.89L17 22l-5-3-5 3 1.523-9.11"/>
+          </svg>
+        </div>
+        <div class="stat-text">
+          <p class="stat-value">Coachs<br>certifiés</p>
+          <p class="stat-label">Experts en recrutement, RH et développement personnel</p>
+        </div>
+      </div>
+
+      <div class="stat-card reveal reveal-delay-1">
+        <div class="stat-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/>
+          </svg>
+        </div>
+        <div class="stat-text">
+          <p class="stat-value">×3 plus<br>de succès</p>
+          <p class="stat-label">Nos clients décrochent 3x plus d'offres après coaching</p>
+        </div>
+      </div>
+
+      <div class="stat-card reveal reveal-delay-2">
+        <div class="stat-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/>
+          </svg>
+        </div>
+        <div class="stat-text">
+          <p class="stat-value">Flexibilité<br>totale</p>
+          <p class="stat-label">Séances en visio ou présentiel, aux horaires qui vous conviennent</p>
+        </div>
+      </div>
+
+      <div class="stat-card reveal reveal-delay-3">
+        <div class="stat-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
+          </svg>
+        </div>
+        <div class="stat-text">
+          <p class="stat-value">Résultats<br>dès J+1</p>
+          <p class="stat-label">Des progrès visibles et actionnables dès la première séance</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ───────── CTA BANNER ───────── -->
+<section class="cta-banner">
+  <div class="container">
+    <div class="cta-inner-card reveal">
+      <div class="cta-inner">
+        <div class="cta-logo-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2"/>
+          </svg>
+        </div>
+        <div class="cta-text">
+          <h2>Prêt à décrocher votre prochain poste ?</h2>
+          <p>Entraînez-vous avec nos coachs experts et présentez-vous à vos entretiens avec la confiance et les techniques qui font la différence.</p>
+        </div>
+        <a href="#" class="btn btn-white">
+          Réserver mon coaching
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ───────── FOOTER ───────── -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-top">
+
+      <div class="footer-brand">
+        <a href="index.html" class="footer-logo">
+          <img src="images/profilboost_logo_sombre.svg" alt="ProfilBoost" class="footer-logo-img" />
+        </a>
+        <p class="footer-brand-desc">
+          Nous aidons les professionnels à valoriser leur profil et à atteindre leurs objectifs de carrière.
+        </p>
+        <div class="footer-socials">
+          <a href="#" class="social-link" aria-label="LinkedIn">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
+          </a>
+          <a href="#" class="social-link" aria-label="Instagram">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+          </a>
+          <a href="#" class="social-link" aria-label="YouTube">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22.54 6.42a2.78 2.78 0 00-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46A2.78 2.78 0 001.46 6.42 29 29 0 001 12a29 29 0 00.46 5.58 2.78 2.78 0 001.95 1.95C5.12 20 12 20 12 20s6.88 0 8.59-.46a2.78 2.78 0 001.95-1.95A29 29 0 0023 12a29 29 0 00-.46-5.58z"/><polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <div>
+        <h4 class="footer-col-title">Navigation</h4>
+        <ul class="footer-col-links">
+          <li><a href="index.html">Accueil</a></li>
+          <li><a href="services.html">Nos services</a></li>
+          <li><a href="#">À propos</a></li>
+          <li><a href="#">Ressources</a></li>
+          <li><a href="#">Contact</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4 class="footer-col-title">Nos services</h4>
+        <ul class="footer-col-links">
+          <li><a href="service-cv-lm.html">Création de CV &amp; LM</a></li>
+          <li><a href="service-linkedin.html">Optimisation LinkedIn</a></li>
+          <li><a href="service-coaching.html">Coaching entretien</a></li>
+          <li><a href="#">Autres services</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4 class="footer-col-title">Ressources</h4>
+        <ul class="footer-col-links">
+          <li><a href="#">Conseils carrière</a></li>
+          <li><a href="#">Guides gratuits</a></li>
+          <li><a href="#">Blog</a></li>
+          <li><a href="#">FAQ</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4 class="footer-col-title">Newsletter</h4>
+        <p class="footer-newsletter-desc">Recevez nos conseils carrière et nos offres exclusives.</p>
+        <div class="footer-newsletter-form">
+          <input type="email" class="footer-newsletter-input" placeholder="Votre email" />
+          <button class="footer-newsletter-btn">S'inscrire</button>
+        </div>
+      </div>
+
+    </div>
+
+    <hr class="footer-divider" />
+    <div class="footer-bottom">
+      <p class="footer-copy">© 2024 ProfilBoost. Tous droits réservés.</p>
+      <div class="footer-legal">
+        <a href="#">Mentions légales</a>
+        <a href="#">Politique de confidentialité</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  const revealEls = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+  revealEls.forEach(el => io.observe(el));
+
+  const hamburger = document.getElementById('hamburger');
+  const mobileMenu = document.getElementById('mobileMenu');
+  hamburger.addEventListener('click', () => {
+    hamburger.classList.toggle('open');
+    mobileMenu.classList.toggle('open');
+    document.body.style.overflow = mobileMenu.classList.contains('open') ? 'hidden' : '';
+  });
+  function closeMenu() {
+    hamburger.classList.remove('open');
+    mobileMenu.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  const navbar = document.querySelector('.navbar');
+  window.addEventListener('scroll', () => {
+    navbar.style.boxShadow = window.scrollY > 20 ? '0 4px 24px rgba(0,0,0,.25)' : 'none';
+  });
+</script>
+</body>
+</html>
