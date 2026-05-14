@@ -1,0 +1,706 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Nous contacter — ProfilBoost</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --navy: #0d1b3e;
+      --navy-mid: #112354;
+      --blue: #2563eb;
+      --blue-light: #3b82f6;
+      --blue-pale: #dbeafe;
+      --white: #ffffff;
+      --gray-50: #f8fafc;
+      --gray-100: #f1f5f9;
+      --gray-300: #cbd5e1;
+      --gray-500: #64748b;
+      --gray-700: #334155;
+      --gray-900: #0f172a;
+      --radius: 12px;
+      --radius-lg: 20px;
+      --shadow: 0 4px 24px rgba(13,27,62,.08);
+      --shadow-md: 0 8px 40px rgba(13,27,62,.14);
+      --shadow-lg: 0 20px 60px rgba(13,27,62,.20);
+    }
+
+    html { scroll-behavior: smooth; overflow-x: hidden; }
+    body { font-family: 'Poppins', sans-serif; color: var(--gray-900); background: var(--white); -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+
+    /* ─── UTILITIES ─── */
+    .container { max-width: 1140px; margin: 0 auto; padding: 0 24px; }
+    .btn { display: inline-flex; align-items: center; gap: 8px; padding: 13px 26px; border-radius: 50px; font-size: 15px; font-weight: 600; cursor: pointer; border: none; text-decoration: none; transition: all .22s ease; white-space: nowrap; }
+    .btn-primary { background: var(--blue); color: var(--white); box-shadow: 0 4px 20px rgba(37,99,235,.40); }
+    .btn-primary:hover { background: #1d4ed8; transform: translateY(-1px); box-shadow: 0 8px 28px rgba(37,99,235,.50); }
+    .btn-white { background: var(--white); color: var(--blue); box-shadow: 0 4px 20px rgba(0,0,0,.15); }
+    .btn-white:hover { background: #f0f6ff; transform: translateY(-1px); }
+
+    /* ─── NAVBAR ─── */
+    .navbar { position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: var(--navy); border-bottom: 1px solid rgba(255,255,255,.07); backdrop-filter: blur(12px); }
+    body { padding-top: 68px; }
+    .navbar-inner { display: flex; align-items: center; justify-content: space-between; height: 68px; }
+    .nav-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; color: var(--white); font-weight: 800; font-size: 20px; letter-spacing: -.3px; }
+    .nav-logo-img { height: 36px; width: auto; display: block; }
+    .footer-logo-img { height: 30px; width: auto; display: block; }
+    .nav-links { display: flex; align-items: center; gap: 36px; list-style: none; }
+    .nav-links a { color: rgba(255,255,255,.80); text-decoration: none; font-size: 12.5px; font-weight: 600; letter-spacing: .8px; text-transform: uppercase; transition: color .18s; }
+    .nav-links a:hover, .nav-links a.active { color: var(--white); }
+    .nav-links a.active { border-bottom: 2px solid var(--blue); padding-bottom: 2px; }
+    .nav-cta { display: flex; align-items: center; gap: 12px; }
+
+    /* ─── HERO ─── */
+    .hero {
+      background: linear-gradient(160deg, #08122a 0%, #0b1a3e 35%, #0d2055 65%, #0e2460 100%);
+      padding: 48px 0 56px; overflow: hidden; position: relative;
+    }
+    .hero::before {
+      content: ''; position: absolute; inset: 0;
+      background:
+        radial-gradient(ellipse 55% 70% at 75% 40%, rgba(37,99,235,.16) 0%, transparent 65%),
+        radial-gradient(ellipse 30% 40% at 10% 80%, rgba(14,36,96,.5) 0%, transparent 60%);
+      pointer-events: none;
+    }
+    .hero-inner { position: relative; z-index: 1; text-align: center; }
+    .breadcrumb { display: flex; align-items: center; gap: 8px; font-size: 13px; font-weight: 500; margin-bottom: 28px; justify-content: center; }
+    .breadcrumb a { color: var(--blue-light); text-decoration: none; }
+    .breadcrumb a:hover { text-decoration: underline; }
+    .breadcrumb-sep { color: rgba(255,255,255,.4); font-size: 11px; }
+    .breadcrumb-current { color: rgba(255,255,255,.6); }
+    .hero-title { font-size: clamp(34px, 4.5vw, 56px); font-weight: 900; line-height: 1.1; color: var(--white); margin-bottom: 20px; letter-spacing: -.5px; }
+    .hero-subtitle { color: rgba(255,255,255,.65); font-size: 16px; line-height: 1.7; max-width: 520px; margin: 0 auto 40px; }
+
+    .hero-badges {
+      display: flex; justify-content: center; gap: 12px; flex-wrap: wrap;
+    }
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: rgba(255,255,255,.1); border: 1px solid rgba(255,255,255,.18);
+      border-radius: 50px; padding: 8px 16px;
+      font-size: 13px; font-weight: 500; color: rgba(255,255,255,.85);
+    }
+    .hero-badge svg { width: 15px; height: 15px; color: #60a5fa; flex-shrink: 0; }
+
+    /* ─── SECTION COMMONS ─── */
+    .section-label { font-size: 11px; font-weight: 700; letter-spacing: 2.5px; text-transform: uppercase; color: var(--blue); margin-bottom: 12px; }
+    .section-title { font-size: clamp(22px, 2.6vw, 32px); font-weight: 800; color: var(--gray-900); letter-spacing: -.4px; margin-bottom: 12px; }
+    .underline-blue { position: relative; display: inline-block; }
+    .underline-blue::after { content: ''; position: absolute; bottom: -4px; left: 0; right: 0; height: 3px; border-radius: 2px; background: var(--blue); }
+
+    /* ─── MAIN CONTACT SECTION ─── */
+    .contact-section { padding: 80px 0; background: var(--white); }
+    .contact-grid { display: grid; grid-template-columns: 1fr 420px; gap: 56px; align-items: start; }
+
+    /* ─── FORM ─── */
+    .form-card {
+      background: var(--white); border: 1px solid var(--gray-100);
+      border-radius: 24px; padding: 44px 40px;
+      box-shadow: var(--shadow);
+    }
+    .form-header { margin-bottom: 32px; }
+    .form-header .section-label { text-align: left; }
+    .form-header .section-title { text-align: left; font-size: clamp(20px, 2.2vw, 26px); }
+    .form-header p { font-size: 14px; color: var(--gray-500); line-height: 1.65; }
+
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .form-group { display: flex; flex-direction: column; gap: 6px; margin-bottom: 18px; }
+    .form-group label { font-size: 13px; font-weight: 600; color: var(--gray-700); }
+    .form-group .optional { font-size: 11px; color: var(--gray-300); font-weight: 400; margin-left: 4px; }
+    .form-input {
+      padding: 12px 16px; border-radius: var(--radius);
+      border: 1.5px solid var(--gray-100); background: var(--gray-50);
+      font-size: 14px; font-family: 'Poppins', sans-serif; color: var(--gray-900);
+      outline: none; transition: border-color .18s, box-shadow .18s;
+      width: 100%;
+    }
+    .form-input:focus { border-color: var(--blue); box-shadow: 0 0 0 3px rgba(37,99,235,.08); background: white; }
+    .form-input::placeholder { color: var(--gray-300); }
+    select.form-input { cursor: pointer; appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%2394a3b8' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 14px center; padding-right: 40px; }
+    textarea.form-input { resize: vertical; min-height: 130px; }
+
+    .form-consent { display: flex; align-items: flex-start; gap: 10px; margin-bottom: 24px; }
+    .form-consent input[type="checkbox"] { width: 16px; height: 16px; margin-top: 2px; flex-shrink: 0; accent-color: var(--blue); cursor: pointer; }
+    .form-consent label { font-size: 12.5px; color: var(--gray-500); line-height: 1.55; cursor: pointer; }
+    .form-consent label a { color: var(--blue); text-decoration: none; }
+    .form-consent label a:hover { text-decoration: underline; }
+
+    .form-submit {
+      width: 100%; padding: 15px; border-radius: 50px; border: none;
+      background: var(--blue); color: white; font-size: 15px; font-weight: 700;
+      font-family: 'Poppins', sans-serif; cursor: pointer;
+      display: flex; align-items: center; justify-content: center; gap: 10px;
+      box-shadow: 0 4px 20px rgba(37,99,235,.40);
+      transition: all .22s;
+    }
+    .form-submit:hover { background: #1d4ed8; transform: translateY(-1px); box-shadow: 0 8px 28px rgba(37,99,235,.50); }
+    .form-submit svg { width: 18px; height: 18px; }
+    .form-note { text-align: center; font-size: 12px; color: var(--gray-300); margin-top: 12px; }
+
+    /* ─── CONTACT INFO SIDEBAR ─── */
+    .contact-info { display: flex; flex-direction: column; gap: 16px; }
+
+    .info-card {
+      background: var(--white); border: 1px solid var(--gray-100);
+      border-radius: var(--radius-lg); padding: 24px;
+      box-shadow: var(--shadow); transition: all .22s;
+    }
+    .info-card:hover { border-color: var(--blue-pale); box-shadow: var(--shadow-md); }
+
+    .info-card-head { display: flex; align-items: center; gap: 14px; margin-bottom: 14px; }
+    .info-icon { width: 44px; height: 44px; border-radius: 12px; background: var(--blue-pale); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .info-icon svg { width: 22px; height: 22px; color: var(--blue); }
+    .info-card-title { font-size: 14px; font-weight: 700; color: var(--gray-900); }
+    .info-card-sub { font-size: 12px; color: var(--gray-500); margin-top: 2px; }
+
+    .info-value { font-size: 15px; font-weight: 600; color: var(--blue); text-decoration: none; transition: color .18s; }
+    .info-value:hover { color: #1d4ed8; }
+    .info-value-text { font-size: 14px; color: var(--gray-700); line-height: 1.6; }
+
+    .response-badge {
+      display: flex; align-items: center; gap: 10px;
+      background: linear-gradient(135deg, #f0fdf4, #dcfce7);
+      border: 1px solid #bbf7d0; border-radius: var(--radius-lg);
+      padding: 16px 20px;
+    }
+    .response-dot { width: 10px; height: 10px; border-radius: 50%; background: #16a34a; flex-shrink: 0; box-shadow: 0 0 0 3px rgba(22,163,74,.2); }
+    .response-text { font-size: 13px; font-weight: 600; color: #15803d; }
+    .response-text span { font-weight: 400; color: #166534; opacity: .8; display: block; font-size: 12px; margin-top: 1px; }
+
+    .social-row { display: flex; gap: 10px; margin-top: 6px; }
+    .social-btn {
+      display: flex; align-items: center; gap: 8px;
+      padding: 9px 16px; border-radius: 50px;
+      border: 1.5px solid var(--gray-100); background: var(--gray-50);
+      text-decoration: none; font-size: 12.5px; font-weight: 600; color: var(--gray-700);
+      transition: all .18s;
+    }
+    .social-btn:hover { border-color: var(--blue-pale); background: var(--blue-pale); color: var(--blue); }
+    .social-btn svg { width: 15px; height: 15px; }
+
+    /* ─── ENGAGEMENTS SECTION ─── */
+    .engagements-section { padding: 80px 0; background: var(--gray-50); }
+    .engagements-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; margin-top: 48px; }
+    .engagement-card {
+      background: white; border-radius: var(--radius-lg); padding: 28px 24px;
+      border: 1px solid var(--gray-100); box-shadow: var(--shadow);
+      text-align: center; transition: all .22s;
+    }
+    .engagement-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); border-color: var(--blue-pale); }
+    .engagement-icon {
+      width: 56px; height: 56px; border-radius: 16px; background: var(--blue-pale);
+      display: flex; align-items: center; justify-content: center;
+      margin: 0 auto 16px;
+    }
+    .engagement-icon svg { width: 26px; height: 26px; color: var(--blue); }
+    .engagement-title { font-size: 14.5px; font-weight: 700; color: var(--gray-900); margin-bottom: 8px; }
+    .engagement-desc { font-size: 13px; color: var(--gray-500); line-height: 1.6; }
+
+    /* ─── SUCCESS STATE ─── */
+    .form-success {
+      display: none; flex-direction: column; align-items: center; justify-content: center;
+      text-align: center; padding: 48px 32px; gap: 16px;
+    }
+    .form-success.visible { display: flex; }
+    .success-icon { width: 72px; height: 72px; border-radius: 50%; background: #dcfce7; display: flex; align-items: center; justify-content: center; margin-bottom: 8px; }
+    .success-icon svg { width: 36px; height: 36px; color: #16a34a; }
+    .success-title { font-size: 22px; font-weight: 800; color: var(--gray-900); }
+    .success-text { font-size: 14.5px; color: var(--gray-500); line-height: 1.65; max-width: 360px; }
+
+    /* ─── CTA BANNER ─── */
+    .cta-banner { padding: 0 0 80px; }
+    .cta-inner-card { background: linear-gradient(140deg, #0a1628 0%, #0d1e44 60%, #0e2050 100%); border-radius: 24px; padding: 52px 56px; position: relative; overflow: hidden; }
+    .cta-inner-card::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse 50% 80% at 20% 50%, rgba(37,99,235,.12) 0%, transparent 70%); }
+    .cta-inner { display: flex; align-items: center; justify-content: space-between; gap: 40px; position: relative; z-index: 1; }
+    .cta-logo-icon { width: 64px; height: 64px; border-radius: 16px; background: rgba(37,99,235,.25); border: 1.5px solid rgba(37,99,235,.4); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .cta-logo-icon svg { width: 32px; height: 32px; color: white; }
+    .cta-text h2 { font-size: clamp(20px, 2.2vw, 28px); font-weight: 800; color: white; margin-bottom: 8px; letter-spacing: -.3px; }
+    .cta-text p { color: rgba(255,255,255,.65); font-size: 14.5px; max-width: 380px; line-height: 1.65; }
+
+    /* ─── FOOTER ─── */
+    .footer { background: var(--navy); padding: 56px 0 24px; }
+    .footer-top { display: grid; grid-template-columns: 1.5fr 1fr 1fr 1fr 1.4fr; gap: 40px; margin-bottom: 48px; }
+    .footer-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; color: white; font-weight: 800; font-size: 18px; margin-bottom: 16px; }
+    .footer-brand-desc { font-size: 13px; color: rgba(255,255,255,.45); line-height: 1.65; margin-bottom: 20px; max-width: 220px; }
+    .footer-socials { display: flex; gap: 10px; }
+    .footer-social-link { width: 34px; height: 34px; border-radius: 8px; border: 1px solid rgba(255,255,255,.18); display: flex; align-items: center; justify-content: center; color: rgba(255,255,255,.6); text-decoration: none; transition: all .18s; }
+    .footer-social-link:hover { background: rgba(255,255,255,.1); color: white; border-color: rgba(255,255,255,.35); }
+    .footer-social-link svg { width: 15px; height: 15px; }
+    .footer-col-title { font-size: 13px; font-weight: 700; color: var(--white); margin-bottom: 18px; letter-spacing: .3px; }
+    .footer-col-links { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+    .footer-col-links a { color: rgba(255,255,255,.48); text-decoration: none; font-size: 13px; transition: color .18s; }
+    .footer-col-links a:hover { color: rgba(255,255,255,.85); }
+    .footer-newsletter-form { display: flex; gap: 8px; margin-top: 4px; }
+    .footer-newsletter-input { flex: 1; padding: 10px 14px; border-radius: 8px; background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.14); color: white; font-size: 13px; font-family: 'Poppins', sans-serif; outline: none; transition: border-color .18s; }
+    .footer-newsletter-input::placeholder { color: rgba(255,255,255,.35); }
+    .footer-newsletter-input:focus { border-color: var(--blue); }
+    .footer-newsletter-btn { padding: 10px 16px; border-radius: 8px; border: none; background: var(--blue); color: white; font-size: 13px; font-weight: 600; cursor: pointer; transition: background .18s; font-family: 'Poppins', sans-serif; white-space: nowrap; }
+    .footer-newsletter-btn:hover { background: #1d4ed8; }
+    .footer-newsletter-desc { font-size: 12px; color: rgba(255,255,255,.35); margin-bottom: 14px; line-height: 1.5; }
+    .footer-divider { border: none; border-top: 1px solid rgba(255,255,255,.08); margin-bottom: 20px; }
+    .footer-bottom { display: flex; align-items: center; justify-content: space-between; }
+    .footer-copy { color: rgba(255,255,255,.32); font-size: 13px; }
+    .footer-legal { display: flex; gap: 24px; }
+    .footer-legal a { color: rgba(255,255,255,.32); text-decoration: none; font-size: 13px; transition: color .18s; }
+    .footer-legal a:hover { color: rgba(255,255,255,.65); }
+
+    /* ─── ANIMATIONS ─── */
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
+    .fade-up   { animation: fadeUp .65s ease both; }
+    .fade-up-2 { animation: fadeUp .65s .12s ease both; }
+    .fade-up-3 { animation: fadeUp .65s .24s ease both; }
+    .fade-up-4 { animation: fadeUp .65s .36s ease both; }
+    .reveal { opacity: 0; transform: translateY(28px); transition: opacity .6s ease, transform .6s ease; }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    .reveal-delay-1 { transition-delay: .1s; }
+    .reveal-delay-2 { transition-delay: .2s; }
+    .reveal-delay-3 { transition-delay: .3s; }
+
+    /* ─── HAMBURGER ─── */
+    .hamburger { display: none; flex-direction: column; justify-content: center; gap: 5px; width: 36px; height: 36px; cursor: pointer; background: none; border: none; padding: 4px; }
+    .hamburger span { display: block; height: 2px; background: white; border-radius: 2px; transition: all .3s ease; transform-origin: center; }
+    .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .hamburger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+    .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+    .mobile-menu { display: none; position: fixed; inset: 0; top: 68px; background: var(--navy); z-index: 99; flex-direction: column; align-items: center; justify-content: center; gap: 8px; opacity: 0; transform: translateY(-12px); transition: opacity .3s ease, transform .3s ease; pointer-events: none; }
+    .mobile-menu.open { opacity: 1; transform: translateY(0); pointer-events: all; }
+    .mobile-menu a { color: white; text-decoration: none; font-size: 22px; font-weight: 700; padding: 14px 32px; letter-spacing: .5px; width: 100%; text-align: center; transition: background .18s; }
+    .mobile-menu a:hover { background: rgba(255,255,255,.07); }
+    .mobile-menu .mobile-cta { margin-top: 16px; }
+
+    /* ─── RESPONSIVE ─── */
+    @media (max-width: 1024px) {
+      .contact-grid { grid-template-columns: 1fr; }
+      .contact-info { display: grid; grid-template-columns: 1fr 1fr; }
+      .footer-top { grid-template-columns: 1fr 1fr 1fr; }
+      .footer-brand { grid-column: 1 / -1; }
+      .engagements-grid { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 900px) {
+      .nav-links { display: none; }
+      .hamburger { display: flex; }
+      .mobile-menu { display: flex; }
+      .nav-cta .btn-primary { display: none; }
+      .form-row { grid-template-columns: 1fr; }
+      .cta-inner { flex-direction: column; text-align: center; }
+      .cta-inner-card { padding: 40px 24px; border-radius: 16px; }
+      .footer-top { grid-template-columns: 1fr 1fr; }
+      .footer-brand { grid-column: 1 / -1; }
+      .footer-bottom { flex-direction: column; gap: 12px; text-align: center; }
+      .hero-badges { flex-direction: column; align-items: center; }
+    }
+    @media (max-width: 600px) {
+      .contact-info { grid-template-columns: 1fr; }
+      .form-card { padding: 28px 20px; }
+      .engagements-grid { grid-template-columns: 1fr; }
+      .footer-top { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ───────── NAVBAR ───────── -->
+<header class="navbar">
+  <div class="container navbar-inner">
+    <a href="index.html" class="nav-logo">
+      <img src="images/profilboost_logo_sombre.svg" alt="ProfilBoost" class="nav-logo-img" />
+    </a>
+    <ul class="nav-links">
+      <li><a href="index.html">Accueil</a></li>
+      <li><a href="services.html">Formules</a></li>
+      <li><a href="about.html">Qui sommes-nous</a></li>
+      <li><a href="resources.html">Ressources</a></li>
+    </ul>
+    <div class="nav-cta">
+      <a href="contact.html" class="btn btn-primary active">Nous contacter</a>
+      <button class="hamburger" id="hamburger" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- ───────── MOBILE MENU ───────── -->
+<nav class="mobile-menu" id="mobileMenu">
+  <a href="index.html" onclick="closeMenu()">Accueil</a>
+  <a href="services.html" onclick="closeMenu()">Formules</a>
+  <a href="about.html" onclick="closeMenu()">Qui sommes-nous</a>
+  <a href="resources.html" onclick="closeMenu()">Ressources</a>
+  <a href="contact.html" class="btn btn-primary mobile-cta" onclick="closeMenu()">Nous contacter</a>
+</nav>
+
+<!-- ───────── HERO ───────── -->
+<section class="hero">
+  <div class="container">
+    <div class="hero-inner">
+      <div class="breadcrumb fade-up">
+        <a href="index.html">Accueil</a>
+        <span class="breadcrumb-sep">›</span>
+        <span class="breadcrumb-current">Nous contacter</span>
+      </div>
+      <h1 class="hero-title fade-up-2">Parlons de <span style="color:#60a5fa;">votre projet</span></h1>
+      <p class="hero-subtitle fade-up-3">
+        Une question, un devis ou simplement envie d'en savoir plus ?
+        Notre équipe vous répond sous 24h, du lundi au vendredi.
+      </p>
+      <div class="hero-badges fade-up-4">
+        <div class="hero-badge">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          contact@profilboost.fr
+        </div>
+        <div class="hero-badge">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81a19.79 19.79 0 01-3.07-8.63A2 2 0 012 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.91 9.91a16 16 0 006.18 6.18l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+          +33 1 23 45 67 89
+        </div>
+        <div class="hero-badge">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          Réponse sous 24h
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ───────── CONTACT MAIN ───────── -->
+<section class="contact-section">
+  <div class="container">
+    <div class="contact-grid">
+
+      <!-- FORM -->
+      <div class="form-card reveal" id="formCard">
+        <div class="form-header">
+          <p class="section-label">Formulaire de contact</p>
+          <h2 class="section-title">Envoyez-nous un <span class="underline-blue">message</span></h2>
+          <p style="margin-top:14px;">Remplissez le formulaire ci-dessous et nous vous recontactons dans les plus brefs délais.</p>
+        </div>
+
+        <form id="contactForm" novalidate>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="prenom">Prénom</label>
+              <input type="text" id="prenom" class="form-input" placeholder="Jean" required />
+            </div>
+            <div class="form-group">
+              <label for="nom">Nom</label>
+              <input type="text" id="nom" class="form-input" placeholder="Dupont" required />
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="email">Adresse email</label>
+            <input type="email" id="email" class="form-input" placeholder="jean.dupont@email.com" required />
+          </div>
+
+          <div class="form-group">
+            <label for="phone">Téléphone <span class="optional">(facultatif)</span></label>
+            <input type="tel" id="phone" class="form-input" placeholder="+33 6 12 34 56 78" />
+          </div>
+
+          <div class="form-group">
+            <label for="service">Service concerné</label>
+            <select id="service" class="form-input" required>
+              <option value="" disabled selected>Sélectionnez un service…</option>
+              <option value="cv-lm">Création de CV &amp; Lettre de Motivation</option>
+              <option value="linkedin">Optimisation du Profil LinkedIn</option>
+              <option value="coaching">Coaching &amp; Préparation entretien</option>
+              <option value="pack">Pack combiné (plusieurs services)</option>
+              <option value="autre">Autre / Renseignement général</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="message">Votre message</label>
+            <textarea id="message" class="form-input" placeholder="Décrivez brièvement votre situation, vos objectifs ou vos questions…" required></textarea>
+          </div>
+
+          <div class="form-consent">
+            <input type="checkbox" id="consent" required />
+            <label for="consent">
+              J'accepte que mes données soient utilisées pour traiter ma demande, conformément à la <a href="#">politique de confidentialité</a> de ProfilBoost.
+            </label>
+          </div>
+
+          <button type="submit" class="form-submit">
+            Envoyer ma demande
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+          </button>
+          <p class="form-note">Vos données sont sécurisées et ne seront jamais revendues.</p>
+        </form>
+
+        <!-- SUCCESS STATE -->
+        <div class="form-success" id="formSuccess">
+          <div class="success-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+          </div>
+          <h3 class="success-title">Message envoyé !</h3>
+          <p class="success-text">Merci pour votre message. Notre équipe vous répondra dans les 24h ouvrées. À très bientôt !</p>
+        </div>
+      </div>
+
+      <!-- INFO SIDEBAR -->
+      <div class="contact-info">
+
+        <div class="response-badge reveal">
+          <div class="response-dot"></div>
+          <div class="response-text">
+            Équipe disponible
+            <span>Lun – Ven · 9h00 – 18h00</span>
+          </div>
+        </div>
+
+        <div class="info-card reveal">
+          <div class="info-card-head">
+            <div class="info-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            </div>
+            <div>
+              <div class="info-card-title">Email</div>
+              <div class="info-card-sub">Réponse garantie sous 24h</div>
+            </div>
+          </div>
+          <a href="mailto:contact@profilboost.fr" class="info-value">contact@profilboost.fr</a>
+        </div>
+
+        <div class="info-card reveal">
+          <div class="info-card-head">
+            <div class="info-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81a19.79 19.79 0 01-3.07-8.63A2 2 0 012 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.91 9.91a16 16 0 006.18 6.18l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+            </div>
+            <div>
+              <div class="info-card-title">Téléphone</div>
+              <div class="info-card-sub">Disponible en semaine</div>
+            </div>
+          </div>
+          <a href="tel:+33123456789" class="info-value">+33 1 23 45 67 89</a>
+        </div>
+
+        <div class="info-card reveal">
+          <div class="info-card-head">
+            <div class="info-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            </div>
+            <div>
+              <div class="info-card-title">Localisation</div>
+              <div class="info-card-sub">Prestations 100% en ligne</div>
+            </div>
+          </div>
+          <p class="info-value-text">Paris, France<br>Clients partout en France et à l'international</p>
+        </div>
+
+        <div class="info-card reveal">
+          <div class="info-card-head">
+            <div class="info-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/>
+              </svg>
+            </div>
+            <div>
+              <div class="info-card-title">Réseaux sociaux</div>
+              <div class="info-card-sub">Suivez-nous</div>
+            </div>
+          </div>
+          <div class="social-row">
+            <a href="#" class="social-btn">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
+              LinkedIn
+            </a>
+            <a href="#" class="social-btn">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+              Instagram
+            </a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ───────── ENGAGEMENTS ───────── -->
+<section class="engagements-section">
+  <div class="container">
+    <div class="reveal" style="text-align:center;">
+      <p class="section-label" style="text-align:center;">Nos engagements</p>
+      <h2 class="section-title" style="text-align:center;">Pourquoi nous <span class="underline-blue">faire confiance ?</span></h2>
+    </div>
+    <div class="engagements-grid">
+
+      <div class="engagement-card reveal">
+        <div class="engagement-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        </div>
+        <h4 class="engagement-title">Réponse sous 24h</h4>
+        <p class="engagement-desc">Nous nous engageons à répondre à toutes les demandes en moins de 24h ouvrées.</p>
+      </div>
+
+      <div class="engagement-card reveal reveal-delay-1">
+        <div class="engagement-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg>
+        </div>
+        <h4 class="engagement-title">Devis gratuit</h4>
+        <p class="engagement-desc">Chaque devis est gratuit, personnalisé et sans engagement de votre part.</p>
+      </div>
+
+      <div class="engagement-card reveal reveal-delay-2">
+        <div class="engagement-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        </div>
+        <h4 class="engagement-title">Confidentialité totale</h4>
+        <p class="engagement-desc">Vos informations personnelles restent strictement confidentielles et sécurisées.</p>
+      </div>
+
+      <div class="engagement-card reveal reveal-delay-3">
+        <div class="engagement-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+        </div>
+        <h4 class="engagement-title">Satisfaction garantie</h4>
+        <p class="engagement-desc">Si vous n'êtes pas satisfait après toutes les révisions, nous vous remboursons.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ───────── CTA BANNER ───────── -->
+<section class="cta-banner">
+  <div class="container">
+    <div class="cta-inner-card reveal">
+      <div class="cta-inner">
+        <div class="cta-logo-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 00-2.91-.09z"/>
+            <path d="M12 15l-3-3a22 22 0 012-3.95A12.88 12.88 0 0122 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 01-4 2z"/>
+          </svg>
+        </div>
+        <div class="cta-text">
+          <h2>Prêt à passer à l'action ?</h2>
+          <p>Découvrez nos formules et choisissez le service adapté à votre situation.</p>
+        </div>
+        <a href="services.html" class="btn btn-white">
+          Voir les formules
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ───────── FOOTER ───────── -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <a href="index.html" class="footer-logo">
+          <img src="images/profilboost_logo_sombre.svg" alt="ProfilBoost" class="footer-logo-img" />
+        </a>
+        <p class="footer-brand-desc">Nous aidons les professionnels à valoriser leur profil et à atteindre leurs objectifs de carrière.</p>
+        <div class="footer-socials">
+          <a href="#" class="footer-social-link" aria-label="LinkedIn">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
+          </a>
+          <a href="#" class="footer-social-link" aria-label="Instagram">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+          </a>
+          <a href="#" class="footer-social-link" aria-label="YouTube">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22.54 6.42a2.78 2.78 0 00-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46A2.78 2.78 0 001.46 6.42 29 29 0 001 12a29 29 0 00.46 5.58 2.78 2.78 0 001.95 1.95C5.12 20 12 20 12 20s6.88 0 8.59-.46a2.78 2.78 0 001.95-1.95A29 29 0 0023 12a29 29 0 00-.46-5.58z"/><polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02"/></svg>
+          </a>
+        </div>
+      </div>
+      <div>
+        <h4 class="footer-col-title">Navigation</h4>
+        <ul class="footer-col-links">
+          <li><a href="index.html">Accueil</a></li>
+          <li><a href="services.html">Formules</a></li>
+          <li><a href="about.html">Qui sommes-nous</a></li>
+          <li><a href="resources.html">Ressources</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="footer-col-title">Nos services</h4>
+        <ul class="footer-col-links">
+          <li><a href="service-cv-lm.html">Création de CV &amp; LM</a></li>
+          <li><a href="service-linkedin.html">Optimisation LinkedIn</a></li>
+          <li><a href="service-coaching.html">Coaching entretien</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="footer-col-title">Ressources</h4>
+        <ul class="footer-col-links">
+          <li><a href="#">Conseils carrière</a></li>
+          <li><a href="#">Guides gratuits</a></li>
+          <li><a href="#">Blog</a></li>
+          <li><a href="#">FAQ</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="footer-col-title">Newsletter</h4>
+        <p class="footer-newsletter-desc">Recevez nos conseils carrière et nos offres exclusives.</p>
+        <div class="footer-newsletter-form">
+          <input type="email" class="footer-newsletter-input" placeholder="Votre email" />
+          <button class="footer-newsletter-btn">S'inscrire</button>
+        </div>
+      </div>
+    </div>
+    <hr class="footer-divider" />
+    <div class="footer-bottom">
+      <p class="footer-copy">© 2024 ProfilBoost. Tous droits réservés.</p>
+      <div class="footer-legal">
+        <a href="#">Mentions légales</a>
+        <a href="#">Politique de confidentialité</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  /* Scroll reveal */
+  const revealEls = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); }
+    });
+  }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+  revealEls.forEach(el => io.observe(el));
+
+  /* Hamburger */
+  const hamburger = document.getElementById('hamburger');
+  const mobileMenu = document.getElementById('mobileMenu');
+  hamburger.addEventListener('click', () => {
+    hamburger.classList.toggle('open');
+    mobileMenu.classList.toggle('open');
+    document.body.style.overflow = mobileMenu.classList.contains('open') ? 'hidden' : '';
+  });
+  function closeMenu() {
+    hamburger.classList.remove('open');
+    mobileMenu.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  /* Navbar shadow */
+  const navbar = document.querySelector('.navbar');
+  window.addEventListener('scroll', () => {
+    navbar.style.boxShadow = window.scrollY > 20 ? '0 4px 24px rgba(0,0,0,.25)' : 'none';
+  });
+
+  /* Form submission */
+  document.getElementById('contactForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    const form = this;
+    const btn = form.querySelector('.form-submit');
+
+    btn.textContent = 'Envoi en cours…';
+    btn.disabled = true;
+
+    setTimeout(() => {
+      form.style.display = 'none';
+      document.getElementById('formSuccess').classList.add('visible');
+    }, 1200);
+  });
+</script>
+</body>
+</html>
