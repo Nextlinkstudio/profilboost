@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="fr">
 <head>
   <meta charset="UTF-8" />
@@ -81,7 +81,7 @@
 
     /* Hero visual — abstract grid of people */
     .hero-visual { display: flex; align-items: center; justify-content: center; position: relative; height: 340px; }
-    .team-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; width: 340px; }
+    .team-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; width: 300px; }
     .team-tile { border-radius: 16px; overflow: hidden; position: relative; }
     .team-tile-inner { width: 100%; aspect-ratio: 3/4; border-radius: 16px; display: flex; align-items: flex-end; padding: 14px; position: relative; overflow: hidden; }
     .team-tile-inner::before { content: ''; position: absolute; inset: 0; border-radius: 16px; }
@@ -93,6 +93,8 @@
     .t6 .team-tile-inner::before { background: linear-gradient(155deg, #0f2d1a 0%, #059669 100%); }
     .tile-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(0,0,0,.5) 0%, transparent 60%); border-radius: 16px; }
     .tile-initials { position: relative; z-index: 1; font-size: 22px; font-weight: 900; color: rgba(255,255,255,.9); letter-spacing: -1px; }
+    .team-tile-photo { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: top; z-index: 0; }
+    .team-tile.has-photo .team-tile-inner::before { background: linear-gradient(to top, rgba(0,0,0,.55) 0%, rgba(0,0,0,.15) 100%); }
     .tile-dots { position: absolute; top: 12px; right: 12px; z-index: 1; display: flex; flex-direction: column; gap: 3px; }
     .tile-dots span { display: block; width: 4px; height: 4px; border-radius: 50%; background: rgba(255,255,255,.4); }
     .hero-founded-badge {
@@ -191,6 +193,7 @@
     .ta-4 { background: linear-gradient(155deg, #1a0a2a, #6d28d9); }
     .team-avatar-wrap::after { content:''; position:absolute; bottom:-40px; right:-40px; width:120px; height:120px; border-radius:50%; background:rgba(255,255,255,.06); }
     .team-avatar-wrap::before { content:''; position:absolute; top:-25px; left:-25px; width:80px; height:80px; border-radius:50%; background:rgba(255,255,255,.05); }
+    .team-avatar-photo { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:top; z-index:1; }
     .team-initials-circle {
       width: 80px; height: 80px; border-radius: 50%;
       background: rgba(255,255,255,.2); border: 3px solid rgba(255,255,255,.35);
@@ -330,7 +333,7 @@
     </a>
     <ul class="nav-links">
       <li><a href="index.html">Accueil</a></li>
-      <li><a href="services.html">Formules</a></li>
+      <li><a href="formules.html">Formules</a></li>
       <li><a href="about.html" class="active">Qui sommes-nous</a></li>
       <li><a href="resources.html">Ressources</a></li>
     </ul>
@@ -346,7 +349,7 @@
 <!-- ───────── MOBILE MENU ───────── -->
 <nav class="mobile-menu" id="mobileMenu">
   <a href="index.html" onclick="closeMenu()">Accueil</a>
-  <a href="services.html" onclick="closeMenu()">Formules</a>
+  <a href="formules.html" onclick="closeMenu()">Formules</a>
   <a href="about.html" onclick="closeMenu()">Qui sommes-nous</a>
   <a href="resources.html" onclick="closeMenu()">Ressources</a>
   <a href="contact.html" class="btn btn-primary mobile-cta" onclick="closeMenu()">Nous contacter</a>
@@ -358,11 +361,6 @@
     <div class="hero-inner">
 
       <div class="hero-content">
-        <div class="breadcrumb fade-up">
-          <a href="index.html">Accueil</a>
-          <span class="breadcrumb-sep">›</span>
-          <span class="breadcrumb-current">Qui sommes-nous</span>
-        </div>
         <p class="hero-label fade-up">Notre équipe</p>
         <h1 class="hero-title fade-up-2">Des experts passionnés<br>à votre service</h1>
         <p class="hero-subtitle fade-up-3">
@@ -373,55 +371,42 @@
             Nous contacter
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
           </a>
-          <a href="services.html" class="btn-outline-blue">Voir nos formules</a>
+          <a href="formules.html" class="btn-outline-blue">Voir nos formules</a>
         </div>
       </div>
 
       <div class="hero-visual fade-up-3">
         <div class="team-grid">
-          <div class="team-tile t1">
+          <div class="team-tile t1 has-photo">
             <div class="team-tile-inner">
+              <img src="images/sophie_renard.jpg" alt="Sophie Renard" class="team-tile-photo" />
               <div class="tile-dots"><span></span><span></span><span></span></div>
               <div class="tile-overlay"></div>
               <span class="tile-initials">SR</span>
             </div>
           </div>
-          <div class="team-tile t2">
+          <div class="team-tile t2 has-photo">
             <div class="team-tile-inner">
+              <img src="images/marc_lefebvre.jpg" alt="Marc Lefebvre" class="team-tile-photo" />
               <div class="tile-overlay"></div>
               <span class="tile-initials">ML</span>
             </div>
           </div>
-          <div class="team-tile t3">
+          <div class="team-tile t3 has-photo">
             <div class="team-tile-inner">
+              <img src="images/amelia_chen.jpg" alt="Amelia Chen" class="team-tile-photo" />
               <div class="tile-dots"><span></span><span></span><span></span></div>
               <div class="tile-overlay"></div>
               <span class="tile-initials">AC</span>
             </div>
           </div>
-          <div class="team-tile t4">
+          <div class="team-tile t4 has-photo">
             <div class="team-tile-inner">
+              <img src="images/bertrand_moreau.jpg" alt="Bertrand Moreau" class="team-tile-photo" style="object-position: center 35%;" />
               <div class="tile-overlay"></div>
               <span class="tile-initials">BM</span>
             </div>
           </div>
-          <div class="team-tile t5">
-            <div class="team-tile-inner">
-              <div class="tile-dots"><span></span><span></span><span></span></div>
-              <div class="tile-overlay"></div>
-              <span class="tile-initials">LV</span>
-            </div>
-          </div>
-          <div class="team-tile t6">
-            <div class="team-tile-inner">
-              <div class="tile-overlay"></div>
-              <span class="tile-initials">JD</span>
-            </div>
-          </div>
-        </div>
-        <div class="hero-founded-badge">
-          <div class="founded-dot"></div>
-          Fondé en 2018 · Paris
         </div>
       </div>
 
@@ -551,7 +536,7 @@
 
       <div class="team-card reveal">
         <div class="team-avatar-wrap ta-1">
-          <div class="team-initials-circle">SR</div>
+          <img src="images/sophie_renard.jpg" alt="Sophie Renard" class="team-avatar-photo" />
         </div>
         <div class="team-body">
           <div class="team-name">Sophie Renard</div>
@@ -567,7 +552,7 @@
 
       <div class="team-card reveal reveal-delay-1">
         <div class="team-avatar-wrap ta-2">
-          <div class="team-initials-circle">ML</div>
+          <img src="images/marc_lefebvre.jpg" alt="Marc Lefebvre" class="team-avatar-photo" />
         </div>
         <div class="team-body">
           <div class="team-name">Marc Lefebvre</div>
@@ -583,7 +568,7 @@
 
       <div class="team-card reveal reveal-delay-2">
         <div class="team-avatar-wrap ta-3">
-          <div class="team-initials-circle">AC</div>
+          <img src="images/amelia_chen.jpg" alt="Amelia Chen" class="team-avatar-photo" />
         </div>
         <div class="team-body">
           <div class="team-name">Amelia Chen</div>
@@ -599,7 +584,7 @@
 
       <div class="team-card reveal reveal-delay-3">
         <div class="team-avatar-wrap ta-4">
-          <div class="team-initials-circle">BM</div>
+          <img src="images/bertrand_moreau.jpg" alt="Bertrand Moreau" class="team-avatar-photo" style="object-position: center 35%;" />
         </div>
         <div class="team-body">
           <div class="team-name">Bertrand Moreau</div>
@@ -735,7 +720,7 @@
         <h4 class="footer-col-title">Navigation</h4>
         <ul class="footer-col-links">
           <li><a href="index.html">Accueil</a></li>
-          <li><a href="services.html">Formules</a></li>
+          <li><a href="formules.html">Formules</a></li>
           <li><a href="about.html">Qui sommes-nous</a></li>
           <li><a href="resources.html">Ressources</a></li>
           <li><a href="contact.html">Contact</a></li>
