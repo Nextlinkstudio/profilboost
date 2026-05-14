@@ -1,0 +1,913 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ressources — ProfilBoost</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --navy: #0d1b3e;
+      --blue: #2563eb;
+      --blue-light: #3b82f6;
+      --blue-pale: #dbeafe;
+      --white: #ffffff;
+      --gray-50: #f8fafc;
+      --gray-100: #f1f5f9;
+      --gray-300: #cbd5e1;
+      --gray-500: #64748b;
+      --gray-700: #334155;
+      --gray-900: #0f172a;
+      --radius: 12px;
+      --radius-lg: 20px;
+      --shadow: 0 4px 24px rgba(13,27,62,.08);
+      --shadow-md: 0 8px 40px rgba(13,27,62,.14);
+      --shadow-lg: 0 20px 60px rgba(13,27,62,.20);
+    }
+
+    html { scroll-behavior: smooth; overflow-x: hidden; }
+    body { font-family: 'Poppins', sans-serif; color: var(--gray-900); background: var(--white); -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+
+    /* ─── UTILITIES ─── */
+    .container { max-width: 1140px; margin: 0 auto; padding: 0 24px; }
+    .btn { display: inline-flex; align-items: center; gap: 8px; padding: 13px 26px; border-radius: 50px; font-size: 15px; font-weight: 600; cursor: pointer; border: none; text-decoration: none; transition: all .22s ease; white-space: nowrap; }
+    .btn-primary { background: var(--blue); color: var(--white); box-shadow: 0 4px 20px rgba(37,99,235,.40); }
+    .btn-primary:hover { background: #1d4ed8; transform: translateY(-1px); }
+    .btn-white { background: var(--white); color: var(--blue); box-shadow: 0 4px 20px rgba(0,0,0,.15); }
+    .btn-white:hover { background: #f0f6ff; transform: translateY(-1px); }
+
+    /* ─── NAVBAR ─── */
+    .navbar { position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: var(--navy); border-bottom: 1px solid rgba(255,255,255,.07); backdrop-filter: blur(12px); }
+    body { padding-top: 68px; }
+    .navbar-inner { display: flex; align-items: center; justify-content: space-between; height: 68px; }
+    .nav-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; color: var(--white); font-weight: 800; font-size: 20px; letter-spacing: -.3px; }
+    .nav-logo-img { height: 36px; width: auto; display: block; }
+    .footer-logo-img { height: 30px; width: auto; display: block; }
+    .nav-links { display: flex; align-items: center; gap: 36px; list-style: none; }
+    .nav-links a { color: rgba(255,255,255,.80); text-decoration: none; font-size: 12.5px; font-weight: 600; letter-spacing: .8px; text-transform: uppercase; transition: color .18s; }
+    .nav-links a:hover, .nav-links a.active { color: var(--white); }
+    .nav-links a.active { border-bottom: 2px solid var(--blue); padding-bottom: 2px; }
+    .nav-cta { display: flex; align-items: center; gap: 12px; }
+
+    /* ─── HERO ─── */
+    .hero {
+      background: linear-gradient(160deg, #08122a 0%, #0b1a3e 35%, #0d2055 65%, #0e2460 100%);
+      padding: 48px 0 56px; overflow: hidden; position: relative;
+    }
+    .hero::before {
+      content: ''; position: absolute; inset: 0;
+      background:
+        radial-gradient(ellipse 55% 70% at 75% 40%, rgba(37,99,235,.16) 0%, transparent 65%),
+        radial-gradient(ellipse 30% 40% at 10% 80%, rgba(14,36,96,.5) 0%, transparent 60%);
+      pointer-events: none;
+    }
+    .hero-inner { position: relative; z-index: 1; text-align: center; }
+    .breadcrumb { display: flex; align-items: center; gap: 8px; font-size: 13px; font-weight: 500; margin-bottom: 28px; justify-content: center; }
+    .breadcrumb a { color: var(--blue-light); text-decoration: none; }
+    .breadcrumb a:hover { text-decoration: underline; }
+    .breadcrumb-sep { color: rgba(255,255,255,.4); font-size: 11px; }
+    .breadcrumb-current { color: rgba(255,255,255,.6); }
+    .hero-title { font-size: clamp(34px, 4.5vw, 56px); font-weight: 900; line-height: 1.1; color: var(--white); margin-bottom: 20px; letter-spacing: -.5px; }
+    .hero-subtitle { color: rgba(255,255,255,.65); font-size: 16px; line-height: 1.7; max-width: 520px; margin: 0 auto 40px; }
+
+    /* Search bar */
+    .hero-search {
+      max-width: 520px; margin: 0 auto;
+      display: flex; gap: 0;
+      background: rgba(255,255,255,.1); border: 1px solid rgba(255,255,255,.2);
+      border-radius: 50px; padding: 6px 6px 6px 22px;
+    }
+    .hero-search input {
+      flex: 1; background: transparent; border: none; outline: none;
+      color: white; font-size: 14px; font-family: 'Poppins', sans-serif;
+    }
+    .hero-search input::placeholder { color: rgba(255,255,255,.45); }
+    .hero-search button {
+      padding: 10px 20px; border-radius: 50px; border: none;
+      background: var(--blue); color: white; font-size: 13px; font-weight: 600;
+      font-family: 'Poppins', sans-serif; cursor: pointer; transition: background .18s;
+      white-space: nowrap; display: flex; align-items: center; gap: 6px;
+    }
+    .hero-search button:hover { background: #1d4ed8; }
+    .hero-search button svg { width: 14px; height: 14px; }
+    .hero-topics { display: flex; justify-content: center; gap: 8px; flex-wrap: wrap; margin-top: 16px; }
+    .hero-topic { font-size: 12px; color: rgba(255,255,255,.55); font-weight: 500; cursor: pointer; transition: color .15s; }
+    .hero-topic:hover { color: rgba(255,255,255,.85); }
+    .hero-topic::before { content: '#'; }
+
+    /* ─── SECTION COMMONS ─── */
+    .section-label { font-size: 11px; font-weight: 700; letter-spacing: 2.5px; text-transform: uppercase; color: var(--blue); margin-bottom: 12px; }
+    .section-title { font-size: clamp(22px, 2.6vw, 32px); font-weight: 800; color: var(--gray-900); letter-spacing: -.4px; margin-bottom: 14px; }
+    .underline-blue { position: relative; display: inline-block; }
+    .underline-blue::after { content: ''; position: absolute; bottom: -4px; left: 0; right: 0; height: 3px; border-radius: 2px; background: var(--blue); }
+
+    /* ─── CATEGORY BADGES ─── */
+    .cat-cv      { background: #dbeafe; color: #1d4ed8; }
+    .cat-li      { background: #e0f2fe; color: #0369a1; }
+    .cat-coach   { background: #ede9fe; color: #6d28d9; }
+    .cat-carriere{ background: #dcfce7; color: #15803d; }
+    .cat-badge {
+      display: inline-flex; align-items: center; gap: 5px;
+      font-size: 10.5px; font-weight: 700; letter-spacing: .8px; text-transform: uppercase;
+      padding: 4px 10px; border-radius: 20px;
+    }
+
+    /* ─── FEATURED ARTICLE ─── */
+    .featured-section { padding: 72px 0 0; background: var(--white); }
+    .featured-card {
+      display: grid; grid-template-columns: 1fr 440px; border-radius: 24px;
+      overflow: hidden; box-shadow: var(--shadow-md); border: 1px solid var(--gray-100);
+      transition: box-shadow .25s;
+    }
+    .featured-card:hover { box-shadow: var(--shadow-lg); }
+    .featured-cover {
+      background: linear-gradient(145deg, #0a1628 0%, #1e3a8a 40%, #2563eb 100%);
+      position: relative; overflow: hidden; min-height: 340px;
+      display: flex; align-items: flex-end; padding: 32px;
+    }
+    .featured-cover::before { content:''; position:absolute; top:-40px; right:-40px; width:200px; height:200px; border-radius:50%; background:rgba(255,255,255,.05); }
+    .featured-cover::after  { content:''; position:absolute; bottom:-60px; left:-40px; width:240px; height:240px; border-radius:50%; background:rgba(255,255,255,.04); }
+    .featured-cover-label {
+      position: absolute; top: 24px; left: 24px;
+      background: rgba(255,255,255,.15); border: 1px solid rgba(255,255,255,.25);
+      border-radius: 50px; padding: 5px 14px;
+      font-size: 11px; font-weight: 700; color: white; letter-spacing: 1px; text-transform: uppercase;
+    }
+    .featured-cover-icon {
+      position: relative; z-index: 1; width: 100%; display: flex; align-items: center; justify-content: center;
+    }
+    .cover-big-icon { width: 100px; height: 100px; border-radius: 24px; background: rgba(255,255,255,.15); border: 2px solid rgba(255,255,255,.25); display: flex; align-items: center; justify-content: center; }
+    .cover-big-icon svg { width: 52px; height: 52px; color: white; }
+    .featured-body { padding: 36px 36px 36px; display: flex; flex-direction: column; justify-content: center; }
+    .featured-meta { display: flex; align-items: center; gap: 12px; margin-bottom: 16px; flex-wrap: wrap; }
+    .featured-tag { background: var(--blue); color: white; font-size: 10px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; padding: 4px 12px; border-radius: 20px; }
+    .featured-read { font-size: 12px; color: var(--gray-300); font-weight: 500; }
+    .featured-title { font-size: clamp(18px, 2vw, 24px); font-weight: 800; color: var(--gray-900); line-height: 1.3; margin-bottom: 14px; letter-spacing: -.3px; }
+    .featured-excerpt { font-size: 14px; color: var(--gray-500); line-height: 1.7; margin-bottom: 24px; }
+    .featured-author { display: flex; align-items: center; gap: 10px; margin-bottom: 28px; }
+    .author-avatar { width: 36px; height: 36px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 700; color: white; flex-shrink: 0; }
+    .author-name { font-size: 13px; font-weight: 600; color: var(--gray-700); }
+    .author-date { font-size: 12px; color: var(--gray-300); margin-top: 1px; }
+    .featured-link { display: inline-flex; align-items: center; gap: 8px; color: var(--blue); font-size: 14px; font-weight: 700; text-decoration: none; padding: 12px 22px; border-radius: 50px; border: 2px solid var(--blue-pale); background: var(--blue-pale); transition: all .22s; align-self: flex-start; }
+    .featured-link:hover { background: var(--blue); color: white; border-color: var(--blue); }
+    .featured-link svg { width: 14px; height: 14px; transition: transform .2s; }
+    .featured-link:hover svg { transform: translateX(3px); }
+
+    /* ─── ARTICLES SECTION ─── */
+    .articles-section { padding: 80px 0; background: var(--white); }
+    .articles-header { display: flex; align-items: flex-end; justify-content: space-between; margin-bottom: 36px; flex-wrap: wrap; gap: 16px; }
+    .articles-header-left .section-label { text-align: left; }
+    .articles-header-left .section-title { text-align: left; margin-bottom: 0; }
+
+    /* Filter tabs */
+    .filter-tabs { display: flex; gap: 8px; flex-wrap: wrap; }
+    .filter-tab {
+      padding: 7px 16px; border-radius: 50px; border: 1.5px solid var(--gray-100);
+      background: var(--gray-50); font-size: 12.5px; font-weight: 600; color: var(--gray-500);
+      cursor: pointer; transition: all .18s; user-select: none;
+    }
+    .filter-tab:hover { border-color: var(--blue-pale); color: var(--blue); background: var(--blue-pale); }
+    .filter-tab.active { background: var(--blue); color: white; border-color: var(--blue); }
+
+    .articles-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; }
+    .article-card {
+      border-radius: var(--radius-lg); overflow: hidden;
+      border: 1px solid var(--gray-100); box-shadow: var(--shadow);
+      display: flex; flex-direction: column;
+      transition: all .25s; text-decoration: none; color: inherit;
+    }
+    .article-card:hover { transform: translateY(-5px); box-shadow: var(--shadow-md); border-color: var(--blue-pale); }
+    .article-card[data-cat="cv"]      { --accent: #2563eb; --accent-bg: #dbeafe; }
+    .article-card[data-cat="li"]      { --accent: #0369a1; --accent-bg: #e0f2fe; }
+    .article-card[data-cat="coach"]   { --accent: #6d28d9; --accent-bg: #ede9fe; }
+    .article-card[data-cat="carriere"]{ --accent: #15803d; --accent-bg: #dcfce7; }
+
+    .article-cover {
+      height: 180px; position: relative; overflow: hidden;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .ac-cv      { background: linear-gradient(145deg, #0a1628, #1e40af); }
+    .ac-li      { background: linear-gradient(145deg, #002855, #0a66c2); }
+    .ac-coach   { background: linear-gradient(145deg, #1a0a2a, #6d28d9); }
+    .ac-carriere{ background: linear-gradient(145deg, #0f2d1a, #059669); }
+    .article-cover::after { content:''; position:absolute; bottom:-30px; right:-30px; width:100px; height:100px; border-radius:50%; background:rgba(255,255,255,.06); }
+    .cover-icon { width: 64px; height: 64px; border-radius: 18px; background: rgba(255,255,255,.15); border: 2px solid rgba(255,255,255,.2); display: flex; align-items: center; justify-content: center; position: relative; z-index: 1; }
+    .cover-icon svg { width: 30px; height: 30px; color: white; }
+    .article-read-time {
+      position: absolute; top: 14px; right: 14px; z-index: 1;
+      background: rgba(0,0,0,.35); border-radius: 20px; padding: 4px 10px;
+      font-size: 11px; font-weight: 600; color: rgba(255,255,255,.85);
+    }
+
+    .article-body { padding: 22px 22px 24px; display: flex; flex-direction: column; flex: 1; background: white; }
+    .article-cat { margin-bottom: 12px; }
+    .article-title { font-size: 15px; font-weight: 700; color: var(--gray-900); line-height: 1.4; margin-bottom: 10px; letter-spacing: -.2px; }
+    .article-excerpt { font-size: 13px; color: var(--gray-500); line-height: 1.6; margin-bottom: 18px; flex: 1; }
+    .article-footer { display: flex; align-items: center; justify-content: space-between; }
+    .article-author { display: flex; align-items: center; gap: 8px; }
+    .article-author-avatar { width: 28px; height: 28px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 10px; font-weight: 700; color: white; flex-shrink: 0; }
+    .article-author-name { font-size: 12px; font-weight: 600; color: var(--gray-500); }
+    .article-date { font-size: 11.5px; color: var(--gray-300); }
+
+    /* hidden filter */
+    .article-card.hidden { display: none; }
+
+    /* ─── GUIDES SECTION ─── */
+    .guides-section { padding: 80px 0; background: var(--gray-50); }
+    .guides-header { text-align: center; margin-bottom: 52px; }
+    .guides-header .section-label { text-align: center; }
+    .guides-header .section-title { text-align: center; }
+    .guides-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; }
+    .guide-card {
+      background: white; border-radius: 24px; overflow: hidden;
+      box-shadow: var(--shadow); border: 1px solid var(--gray-100);
+      transition: all .25s; display: flex; flex-direction: column;
+    }
+    .guide-card:hover { transform: translateY(-5px); box-shadow: var(--shadow-md); }
+    .guide-cover {
+      height: 160px; position: relative; overflow: hidden;
+      display: flex; align-items: center; justify-content: center; gap: 16px;
+    }
+    .gc-blue   { background: linear-gradient(145deg, #0a1628, #2563eb); }
+    .gc-li     { background: linear-gradient(145deg, #002855, #0a66c2); }
+    .gc-purple { background: linear-gradient(145deg, #1a0a2a, #6d28d9); }
+    .guide-cover::after { content:''; position:absolute; bottom:-30px; right:-30px; width:100px; height:100px; border-radius:50%; background:rgba(255,255,255,.06); }
+    .guide-mock-pages {
+      display: flex; align-items: flex-end; gap: 6px; position: relative; z-index: 1;
+    }
+    .guide-page {
+      width: 48px; border-radius: 6px; background: rgba(255,255,255,.9);
+      box-shadow: 0 4px 16px rgba(0,0,0,.3);
+    }
+    .guide-page:nth-child(1) { height: 68px; transform: rotate(-8deg) translateY(6px); opacity: .8; }
+    .guide-page:nth-child(2) { height: 80px; transform: rotate(-2deg); }
+    .guide-page:nth-child(3) { height: 68px; transform: rotate(8deg) translateY(6px); opacity: .8; }
+    .guide-page-lines { padding: 8px 6px; display: flex; flex-direction: column; gap: 4px; }
+    .guide-page-line { height: 3px; border-radius: 2px; background: var(--gray-100); }
+    .guide-page-line.accent { background: var(--blue-pale); width: 70%; }
+    .guide-badge {
+      position: absolute; top: 12px; right: 12px; z-index: 1;
+      background: rgba(255,255,255,.15); border: 1px solid rgba(255,255,255,.3);
+      border-radius: 20px; padding: 4px 10px;
+      font-size: 11px; font-weight: 700; color: white; letter-spacing: .5px;
+    }
+    .guide-body { padding: 24px 24px 28px; display: flex; flex-direction: column; flex: 1; }
+    .guide-tag { display: inline-flex; align-items: center; gap: 5px; margin-bottom: 12px; }
+    .guide-title { font-size: 16px; font-weight: 800; color: var(--gray-900); line-height: 1.3; margin-bottom: 10px; }
+    .guide-desc { font-size: 13px; color: var(--gray-500); line-height: 1.6; margin-bottom: 20px; flex: 1; }
+    .guide-includes { display: flex; gap: 16px; margin-bottom: 24px; flex-wrap: wrap; }
+    .guide-stat { display: flex; flex-direction: column; }
+    .guide-stat-num { font-size: 18px; font-weight: 900; color: var(--blue); line-height: 1; }
+    .guide-stat-label { font-size: 11px; color: var(--gray-300); font-weight: 500; margin-top: 2px; }
+
+    .guide-cta { display: flex; flex-direction: column; gap: 0; }
+    .guide-form { display: flex; gap: 8px; }
+    .guide-input { flex: 1; padding: 11px 14px; border-radius: var(--radius); border: 1.5px solid var(--gray-100); background: var(--gray-50); font-size: 13px; font-family: 'Poppins', sans-serif; color: var(--gray-900); outline: none; transition: border-color .18s; }
+    .guide-input:focus { border-color: var(--blue); background: white; }
+    .guide-input::placeholder { color: var(--gray-300); }
+    .guide-btn { padding: 11px 16px; border-radius: var(--radius); border: none; background: var(--blue); color: white; font-size: 12.5px; font-weight: 700; font-family: 'Poppins', sans-serif; cursor: pointer; display: flex; align-items: center; gap: 6px; transition: background .18s; white-space: nowrap; }
+    .guide-btn:hover { background: #1d4ed8; }
+    .guide-btn svg { width: 14px; height: 14px; }
+    .guide-note { font-size: 11px; color: var(--gray-300); margin-top: 8px; }
+
+    /* ─── NEWSLETTER BANNER ─── */
+    .newsletter-section { padding: 80px 0 0; }
+    .newsletter-card {
+      background: linear-gradient(140deg, #0a1628 0%, #0d1e44 60%, #0e2050 100%);
+      border-radius: 24px; padding: 56px; position: relative; overflow: hidden;
+      display: grid; grid-template-columns: 1fr 400px; gap: 48px; align-items: center;
+    }
+    .newsletter-card::before { content:''; position:absolute; inset:0; background: radial-gradient(ellipse 50% 80% at 15% 50%, rgba(37,99,235,.14) 0%, transparent 70%); }
+    .newsletter-card::after { content:''; position:absolute; top:-60px; right:-60px; width:220px; height:220px; border-radius:50%; background:rgba(255,255,255,.03); }
+    .newsletter-text { position: relative; z-index: 1; }
+    .newsletter-label { font-size: 10.5px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: #93c5fd; margin-bottom: 12px; }
+    .newsletter-title { font-size: clamp(22px, 2.5vw, 30px); font-weight: 900; color: white; line-height: 1.2; margin-bottom: 14px; letter-spacing: -.4px; }
+    .newsletter-subtitle { font-size: 14.5px; color: rgba(255,255,255,.6); line-height: 1.65; }
+    .newsletter-perks { display: flex; flex-direction: column; gap: 10px; margin-top: 20px; }
+    .newsletter-perk { display: flex; align-items: center; gap: 10px; font-size: 13.5px; color: rgba(255,255,255,.75); font-weight: 500; }
+    .perk-dot { width: 6px; height: 6px; border-radius: 50%; background: #60a5fa; flex-shrink: 0; }
+    .newsletter-form-wrap { position: relative; z-index: 1; background: rgba(255,255,255,.07); border: 1px solid rgba(255,255,255,.12); border-radius: var(--radius-lg); padding: 28px; }
+    .newsletter-form-title { font-size: 15px; font-weight: 700; color: white; margin-bottom: 20px; }
+    .newsletter-field { display: flex; flex-direction: column; gap: 6px; margin-bottom: 14px; }
+    .newsletter-field label { font-size: 12px; font-weight: 600; color: rgba(255,255,255,.6); }
+    .newsletter-input { padding: 11px 16px; border-radius: var(--radius); border: 1.5px solid rgba(255,255,255,.15); background: rgba(255,255,255,.08); color: white; font-size: 13.5px; font-family: 'Poppins', sans-serif; outline: none; transition: border-color .18s; width: 100%; }
+    .newsletter-input:focus { border-color: var(--blue); background: rgba(255,255,255,.12); }
+    .newsletter-input::placeholder { color: rgba(255,255,255,.3); }
+    .newsletter-submit { width: 100%; padding: 13px; border-radius: 50px; border: none; background: var(--blue); color: white; font-size: 14px; font-weight: 700; font-family: 'Poppins', sans-serif; cursor: pointer; transition: all .22s; margin-top: 6px; box-shadow: 0 4px 20px rgba(37,99,235,.4); }
+    .newsletter-submit:hover { background: #1d4ed8; transform: translateY(-1px); }
+    .newsletter-privacy { font-size: 11.5px; color: rgba(255,255,255,.35); text-align: center; margin-top: 10px; }
+
+    /* ─── CTA BANNER ─── */
+    .cta-banner { padding: 80px 0; }
+    .cta-inner-card { background: linear-gradient(140deg, #0a1628 0%, #0d1e44 60%, #0e2050 100%); border-radius: 24px; padding: 52px 56px; position: relative; overflow: hidden; }
+    .cta-inner-card::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse 50% 80% at 20% 50%, rgba(37,99,235,.12) 0%, transparent 70%); }
+    .cta-inner { display: flex; align-items: center; justify-content: space-between; gap: 40px; position: relative; z-index: 1; }
+    .cta-logo-icon { width: 64px; height: 64px; border-radius: 16px; background: rgba(37,99,235,.25); border: 1.5px solid rgba(37,99,235,.4); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .cta-logo-icon svg { width: 32px; height: 32px; color: white; }
+    .cta-text h2 { font-size: clamp(20px, 2.2vw, 28px); font-weight: 800; color: white; margin-bottom: 8px; letter-spacing: -.3px; }
+    .cta-text p { color: rgba(255,255,255,.65); font-size: 14.5px; max-width: 380px; line-height: 1.65; }
+
+    /* ─── FOOTER ─── */
+    .footer { background: var(--navy); padding: 56px 0 24px; }
+    .footer-top { display: grid; grid-template-columns: 1.5fr 1fr 1fr 1fr 1.4fr; gap: 40px; margin-bottom: 48px; }
+    .footer-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; color: white; font-weight: 800; font-size: 18px; margin-bottom: 16px; }
+    .footer-brand-desc { font-size: 13px; color: rgba(255,255,255,.45); line-height: 1.65; margin-bottom: 20px; max-width: 220px; }
+    .footer-socials { display: flex; gap: 10px; }
+    .social-link { width: 34px; height: 34px; border-radius: 8px; border: 1px solid rgba(255,255,255,.18); display: flex; align-items: center; justify-content: center; color: rgba(255,255,255,.6); text-decoration: none; transition: all .18s; }
+    .social-link:hover { background: rgba(255,255,255,.1); color: white; border-color: rgba(255,255,255,.35); }
+    .social-link svg { width: 15px; height: 15px; }
+    .footer-col-title { font-size: 13px; font-weight: 700; color: var(--white); margin-bottom: 18px; }
+    .footer-col-links { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+    .footer-col-links a { color: rgba(255,255,255,.48); text-decoration: none; font-size: 13px; transition: color .18s; }
+    .footer-col-links a:hover { color: rgba(255,255,255,.85); }
+    .footer-newsletter-form { display: flex; gap: 8px; margin-top: 4px; }
+    .footer-newsletter-input { flex: 1; padding: 10px 14px; border-radius: 8px; background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.14); color: white; font-size: 13px; font-family: 'Poppins', sans-serif; outline: none; }
+    .footer-newsletter-input::placeholder { color: rgba(255,255,255,.35); }
+    .footer-newsletter-btn { padding: 10px 16px; border-radius: 8px; border: none; background: var(--blue); color: white; font-size: 13px; font-weight: 600; cursor: pointer; font-family: 'Poppins', sans-serif; }
+    .footer-newsletter-desc { font-size: 12px; color: rgba(255,255,255,.35); margin-bottom: 14px; line-height: 1.5; }
+    .footer-divider { border: none; border-top: 1px solid rgba(255,255,255,.08); margin-bottom: 20px; }
+    .footer-bottom { display: flex; align-items: center; justify-content: space-between; }
+    .footer-copy { color: rgba(255,255,255,.32); font-size: 13px; }
+    .footer-legal { display: flex; gap: 24px; }
+    .footer-legal a { color: rgba(255,255,255,.32); text-decoration: none; font-size: 13px; transition: color .18s; }
+    .footer-legal a:hover { color: rgba(255,255,255,.65); }
+
+    /* ─── ANIMATIONS ─── */
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
+    .fade-up   { animation: fadeUp .65s ease both; }
+    .fade-up-2 { animation: fadeUp .65s .12s ease both; }
+    .fade-up-3 { animation: fadeUp .65s .24s ease both; }
+    .reveal { opacity: 0; transform: translateY(28px); transition: opacity .6s ease, transform .6s ease; }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    .reveal-delay-1 { transition-delay: .1s; }
+    .reveal-delay-2 { transition-delay: .2s; }
+    .reveal-delay-3 { transition-delay: .3s; }
+
+    /* ─── HAMBURGER ─── */
+    .hamburger { display: none; flex-direction: column; justify-content: center; gap: 5px; width: 36px; height: 36px; cursor: pointer; background: none; border: none; padding: 4px; }
+    .hamburger span { display: block; height: 2px; background: white; border-radius: 2px; transition: all .3s ease; transform-origin: center; }
+    .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .hamburger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+    .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+    .mobile-menu { display: none; position: fixed; inset: 0; top: 68px; background: var(--navy); z-index: 99; flex-direction: column; align-items: center; justify-content: center; gap: 8px; opacity: 0; transform: translateY(-12px); transition: opacity .3s ease, transform .3s ease; pointer-events: none; }
+    .mobile-menu.open { opacity: 1; transform: translateY(0); pointer-events: all; }
+    .mobile-menu a { color: white; text-decoration: none; font-size: 22px; font-weight: 700; padding: 14px 32px; width: 100%; text-align: center; transition: background .18s; }
+    .mobile-menu a:hover { background: rgba(255,255,255,.07); }
+    .mobile-menu .mobile-cta { margin-top: 16px; }
+
+    /* ─── RESPONSIVE ─── */
+    @media (max-width: 1024px) {
+      .featured-card { grid-template-columns: 1fr; }
+      .featured-cover { min-height: 220px; }
+      .newsletter-card { grid-template-columns: 1fr; }
+      .footer-top { grid-template-columns: 1fr 1fr 1fr; }
+      .footer-brand { grid-column: 1 / -1; }
+    }
+    @media (max-width: 900px) {
+      .nav-links { display: none; }
+      .hamburger { display: flex; }
+      .mobile-menu { display: flex; }
+      .nav-cta .btn-primary { display: none; }
+      .articles-grid { grid-template-columns: 1fr 1fr; }
+      .guides-grid { grid-template-columns: 1fr; max-width: 440px; margin: 0 auto; }
+      .articles-header { flex-direction: column; align-items: flex-start; }
+      .newsletter-card { padding: 36px 24px; border-radius: 16px; }
+      .cta-inner { flex-direction: column; text-align: center; }
+      .cta-inner-card { padding: 40px 24px; border-radius: 16px; }
+      .footer-top { grid-template-columns: 1fr 1fr; }
+      .footer-brand { grid-column: 1 / -1; }
+      .footer-bottom { flex-direction: column; gap: 12px; text-align: center; }
+    }
+    @media (max-width: 600px) {
+      .articles-grid { grid-template-columns: 1fr; }
+      .footer-top { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ───────── NAVBAR ───────── -->
+<header class="navbar">
+  <div class="container navbar-inner">
+    <a href="index.html" class="nav-logo">
+      <img src="images/profilboost_logo_sombre.svg" alt="ProfilBoost" class="nav-logo-img" />
+    </a>
+    <ul class="nav-links">
+      <li><a href="index.html">Accueil</a></li>
+      <li><a href="services.html">Formules</a></li>
+      <li><a href="about.html">Qui sommes-nous</a></li>
+      <li><a href="resources.html" class="active">Ressources</a></li>
+    </ul>
+    <div class="nav-cta">
+      <a href="contact.html" class="btn btn-primary">Nous contacter</a>
+      <button class="hamburger" id="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</header>
+
+<!-- ───────── MOBILE MENU ───────── -->
+<nav class="mobile-menu" id="mobileMenu">
+  <a href="index.html" onclick="closeMenu()">Accueil</a>
+  <a href="services.html" onclick="closeMenu()">Formules</a>
+  <a href="about.html" onclick="closeMenu()">Qui sommes-nous</a>
+  <a href="resources.html" onclick="closeMenu()">Ressources</a>
+  <a href="contact.html" class="btn btn-primary mobile-cta" onclick="closeMenu()">Nous contacter</a>
+</nav>
+
+<!-- ───────── HERO ───────── -->
+<section class="hero">
+  <div class="container">
+    <div class="hero-inner">
+      <div class="breadcrumb fade-up">
+        <a href="index.html">Accueil</a>
+        <span class="breadcrumb-sep">›</span>
+        <span class="breadcrumb-current">Ressources</span>
+      </div>
+      <h1 class="hero-title fade-up-2">Conseils, guides & <span style="color:#60a5fa;">astuces carrière</span></h1>
+      <p class="hero-subtitle fade-up-3">
+        Des articles rédigés par nos experts RH pour vous aider à valoriser votre profil, préparer vos entretiens et booster votre carrière. Gratuitement.
+      </p>
+      <div class="hero-search fade-up-3">
+        <input type="text" placeholder="Rechercher un article, un guide…" id="searchInput" />
+        <button type="button">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+          Rechercher
+        </button>
+      </div>
+      <div class="hero-topics fade-up-3">
+        <span class="hero-topic">CV</span>
+        <span class="hero-topic">LinkedIn</span>
+        <span class="hero-topic">Entretien</span>
+        <span class="hero-topic">Reconversion</span>
+        <span class="hero-topic">Négociation salaire</span>
+        <span class="hero-topic">ATS</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ───────── ARTICLE VEDETTE ───────── -->
+<section class="featured-section">
+  <div class="container">
+    <div class="reveal">
+      <p class="section-label">À la une</p>
+    </div>
+    <div class="featured-card reveal">
+      <div class="featured-cover">
+        <span class="featured-cover-label">Guide complet</span>
+        <div class="featured-cover-icon">
+          <div class="cover-big-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/>
+              <polyline points="14 2 14 8 20 8"/>
+              <line x1="16" y1="13" x2="8" y2="13"/>
+              <line x1="16" y1="17" x2="8" y2="17"/>
+              <polyline points="10 9 9 9 8 9"/>
+            </svg>
+          </div>
+        </div>
+      </div>
+      <div class="featured-body">
+        <div class="featured-meta">
+          <span class="featured-tag">CV & LM</span>
+          <span class="featured-read">15 min de lecture</span>
+        </div>
+        <h2 class="featured-title">Recherche d'emploi 2024 : le guide complet pour trouver un poste en moins de 3 mois</h2>
+        <p class="featured-excerpt">De la rédaction de votre CV à la négociation salariale, en passant par l'optimisation LinkedIn et la préparation aux entretiens — tout ce qu'il faut savoir pour mener une recherche d'emploi efficace et structurée.</p>
+        <div class="featured-author">
+          <div class="author-avatar" style="background:linear-gradient(135deg,#1e40af,#2563eb);">SR</div>
+          <div>
+            <div class="author-name">Sophie Renard</div>
+            <div class="author-date">2 mai 2024</div>
+          </div>
+        </div>
+        <a href="article-guide-recherche-emploi.html" class="featured-link">
+          Lire l'article
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ───────── ARTICLES ───────── -->
+<section class="articles-section">
+  <div class="container">
+    <div class="articles-header reveal">
+      <div class="articles-header-left">
+        <p class="section-label">Tous les articles</p>
+        <h2 class="section-title">Conseils de nos <span class="underline-blue">experts</span></h2>
+      </div>
+      <div class="filter-tabs" id="filterTabs">
+        <div class="filter-tab active" data-filter="all">Tous</div>
+        <div class="filter-tab" data-filter="cv">CV & LM</div>
+        <div class="filter-tab" data-filter="li">LinkedIn</div>
+        <div class="filter-tab" data-filter="coach">Coaching</div>
+        <div class="filter-tab" data-filter="carriere">Carrière</div>
+      </div>
+    </div>
+
+    <div class="articles-grid" id="articlesGrid">
+
+      <a href="#" class="article-card reveal" data-cat="cv">
+        <div class="article-cover ac-cv">
+          <div class="cover-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg></div>
+          <span class="article-read-time">8 min</span>
+        </div>
+        <div class="article-body">
+          <div class="article-cat"><span class="cat-badge cat-cv">CV & LM</span></div>
+          <h3 class="article-title">5 erreurs qui font rejeter votre CV en moins de 10 secondes</h3>
+          <p class="article-excerpt">Un recruteur passe en moyenne 7 secondes sur un CV. Découvrez les pièges les plus courants et comment les éviter pour retenir l'attention immédiatement.</p>
+          <div class="article-footer">
+            <div class="article-author">
+              <div class="article-author-avatar" style="background:linear-gradient(135deg,#1e40af,#2563eb);">ML</div>
+              <span class="article-author-name">Marc Lefebvre</span>
+            </div>
+            <span class="article-date">12 jan. 2024</span>
+          </div>
+        </div>
+      </a>
+
+      <a href="#" class="article-card reveal reveal-delay-1" data-cat="li">
+        <div class="article-cover ac-li">
+          <div class="cover-icon"><svg viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" opacity=".85"/></svg></div>
+          <span class="article-read-time">12 min</span>
+        </div>
+        <div class="article-body">
+          <div class="article-cat"><span class="cat-badge cat-li">LinkedIn</span></div>
+          <h3 class="article-title">LinkedIn 2024 : comment l'algorithme fonctionne et comment en tirer parti</h3>
+          <p class="article-excerpt">Comprendre la logique de l'algorithme LinkedIn est la clé pour apparaître dans les recherches des recruteurs. Toutes les stratégies décryptées.</p>
+          <div class="article-footer">
+            <div class="article-author">
+              <div class="article-author-avatar" style="background:linear-gradient(135deg,#0369a1,#0a66c2);">AC</div>
+              <span class="article-author-name">Amelia Chen</span>
+            </div>
+            <span class="article-date">28 fév. 2024</span>
+          </div>
+        </div>
+      </a>
+
+      <a href="#" class="article-card reveal reveal-delay-2" data-cat="coach">
+        <div class="article-cover ac-coach">
+          <div class="cover-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/></svg></div>
+          <span class="article-read-time">10 min</span>
+        </div>
+        <div class="article-body">
+          <div class="article-cat"><span class="cat-badge cat-coach">Coaching</span></div>
+          <h3 class="article-title">Méthode STAR : structurer ses réponses pour n'importe quelle question d'entretien</h3>
+          <p class="article-excerpt">Situation, Tâche, Action, Résultat. Cette méthode simple transforme vos anecdotes en preuves convaincantes de votre valeur. Mode d'emploi complet.</p>
+          <div class="article-footer">
+            <div class="article-author">
+              <div class="article-author-avatar" style="background:linear-gradient(135deg,#5b21b6,#6d28d9);">BM</div>
+              <span class="article-author-name">Bertrand Moreau</span>
+            </div>
+            <span class="article-date">15 mars 2024</span>
+          </div>
+        </div>
+      </a>
+
+      <a href="#" class="article-card reveal" data-cat="carriere">
+        <div class="article-cover ac-carriere">
+          <div class="cover-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></div>
+          <span class="article-read-time">15 min</span>
+        </div>
+        <div class="article-body">
+          <div class="article-cat"><span class="cat-badge cat-carriere">Carrière</span></div>
+          <h3 class="article-title">Reconversion professionnelle : 7 étapes pour réussir votre transition</h3>
+          <p class="article-excerpt">Se reconvertir n'est pas un saut dans le vide si on l'anticipe bien. De l'auto-bilan au premier jour dans le nouveau poste, le guide étape par étape.</p>
+          <div class="article-footer">
+            <div class="article-author">
+              <div class="article-author-avatar" style="background:linear-gradient(135deg,#1e40af,#2563eb);">SR</div>
+              <span class="article-author-name">Sophie Renard</span>
+            </div>
+            <span class="article-date">3 avr. 2024</span>
+          </div>
+        </div>
+      </a>
+
+      <a href="#" class="article-card reveal reveal-delay-1" data-cat="cv">
+        <div class="article-cover ac-cv">
+          <div class="cover-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg></div>
+          <span class="article-read-time">6 min</span>
+        </div>
+        <div class="article-body">
+          <div class="article-cat"><span class="cat-badge cat-cv">CV & LM</span></div>
+          <h3 class="article-title">CV chronologique vs fonctionnel : lequel choisir selon votre profil ?</h3>
+          <p class="article-excerpt">La forme de votre CV est presque aussi importante que son contenu. Voici comment choisir la structure qui met le mieux en valeur votre parcours.</p>
+          <div class="article-footer">
+            <div class="article-author">
+              <div class="article-author-avatar" style="background:linear-gradient(135deg,#1e40af,#2563eb);">ML</div>
+              <span class="article-author-name">Marc Lefebvre</span>
+            </div>
+            <span class="article-date">22 avr. 2024</span>
+          </div>
+        </div>
+      </a>
+
+      <a href="#" class="article-card reveal reveal-delay-2" data-cat="li">
+        <div class="article-cover ac-li">
+          <div class="cover-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg></div>
+          <span class="article-read-time">9 min</span>
+        </div>
+        <div class="article-body">
+          <div class="article-cat"><span class="cat-badge cat-li">LinkedIn</span></div>
+          <h3 class="article-title">Les 10 sections LinkedIn que 90% des candidats négligent complètement</h3>
+          <p class="article-excerpt">Au-delà du titre et du résumé, LinkedIn offre des dizaines de champs que presque personne n'exploite. Voici ceux qui font vraiment la différence.</p>
+          <div class="article-footer">
+            <div class="article-author">
+              <div class="article-author-avatar" style="background:linear-gradient(135deg,#0369a1,#0a66c2);">AC</div>
+              <span class="article-author-name">Amelia Chen</span>
+            </div>
+            <span class="article-date">8 mai 2024</span>
+          </div>
+        </div>
+      </a>
+
+    </div>
+  </div>
+</section>
+
+<!-- ───────── GUIDES ───────── -->
+<section class="guides-section">
+  <div class="container">
+    <div class="guides-header reveal">
+      <p class="section-label">Guides gratuits</p>
+      <h2 class="section-title">Téléchargez nos <span class="underline-blue">ressources</span></h2>
+      <p style="font-size:15px;color:var(--gray-500);max-width:480px;margin:16px auto 0;line-height:1.65;text-align:center;">
+        Des guides pratiques rédigés par nos experts, offerts en échange de votre email.
+      </p>
+    </div>
+    <div class="guides-grid">
+
+      <!-- Guide 1 -->
+      <div class="guide-card reveal">
+        <div class="guide-cover gc-blue">
+          <span class="guide-badge">PDF · 24 pages</span>
+          <div class="guide-mock-pages">
+            <div class="guide-page"><div class="guide-page-lines"><div class="guide-page-line accent"></div><div class="guide-page-line"></div><div class="guide-page-line"></div><div class="guide-page-line" style="width:50%"></div></div></div>
+            <div class="guide-page"><div class="guide-page-lines"><div class="guide-page-line accent"></div><div class="guide-page-line"></div><div class="guide-page-line"></div><div class="guide-page-line" style="width:60%"></div></div></div>
+            <div class="guide-page"><div class="guide-page-lines"><div class="guide-page-line accent"></div><div class="guide-page-line"></div><div class="guide-page-line" style="width:40%"></div></div></div>
+          </div>
+        </div>
+        <div class="guide-body">
+          <div class="guide-tag"><span class="cat-badge cat-cv">CV & LM</span></div>
+          <h3 class="guide-title">Le Guide Ultime du CV 2024</h3>
+          <p class="guide-desc">Tout ce qu'il faut savoir pour rédiger un CV percutant : structure, mise en page, mots-clés ATS, erreurs à éviter et exemples commentés.</p>
+          <div class="guide-includes">
+            <div class="guide-stat"><span class="guide-stat-num">24</span><span class="guide-stat-label">pages</span></div>
+            <div class="guide-stat"><span class="guide-stat-num">12</span><span class="guide-stat-label">exemples</span></div>
+            <div class="guide-stat"><span class="guide-stat-num">5★</span><span class="guide-stat-label">4 800 téléchargements</span></div>
+          </div>
+          <div class="guide-cta">
+            <div class="guide-form">
+              <input type="email" class="guide-input" placeholder="Votre adresse email" />
+              <button class="guide-btn">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                Télécharger
+              </button>
+            </div>
+            <p class="guide-note">Gratuit · Sans spam · Désabonnement en 1 clic</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Guide 2 -->
+      <div class="guide-card reveal reveal-delay-1">
+        <div class="guide-cover gc-li">
+          <span class="guide-badge">PDF · 16 pages</span>
+          <div class="guide-mock-pages">
+            <div class="guide-page"><div class="guide-page-lines"><div class="guide-page-line" style="background:#bfdbfe;width:80%"></div><div class="guide-page-line"></div><div class="guide-page-line"></div><div class="guide-page-line" style="width:50%"></div></div></div>
+            <div class="guide-page"><div class="guide-page-lines"><div class="guide-page-line" style="background:#bfdbfe"></div><div class="guide-page-line"></div><div class="guide-page-line"></div><div class="guide-page-line" style="width:60%"></div></div></div>
+            <div class="guide-page"><div class="guide-page-lines"><div class="guide-page-line" style="background:#bfdbfe;width:70%"></div><div class="guide-page-line"></div><div class="guide-page-line" style="width:40%"></div></div></div>
+          </div>
+        </div>
+        <div class="guide-body">
+          <div class="guide-tag"><span class="cat-badge cat-li">LinkedIn</span></div>
+          <h3 class="guide-title">Checklist LinkedIn : 30 Points à Optimiser</h3>
+          <p class="guide-desc">Une checklist complète pour auditer et optimiser chaque section de votre profil LinkedIn, avec les critères utilisés par les recruteurs et l'algorithme.</p>
+          <div class="guide-includes">
+            <div class="guide-stat"><span class="guide-stat-num">30</span><span class="guide-stat-label">points</span></div>
+            <div class="guide-stat"><span class="guide-stat-num">16</span><span class="guide-stat-label">pages</span></div>
+            <div class="guide-stat"><span class="guide-stat-num">5★</span><span class="guide-stat-label">3 200 téléchargements</span></div>
+          </div>
+          <div class="guide-cta">
+            <div class="guide-form">
+              <input type="email" class="guide-input" placeholder="Votre adresse email" />
+              <button class="guide-btn">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                Télécharger
+              </button>
+            </div>
+            <p class="guide-note">Gratuit · Sans spam · Désabonnement en 1 clic</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Guide 3 -->
+      <div class="guide-card reveal reveal-delay-2">
+        <div class="guide-cover gc-purple">
+          <span class="guide-badge">PDF · 32 pages</span>
+          <div class="guide-mock-pages">
+            <div class="guide-page"><div class="guide-page-lines"><div class="guide-page-line" style="background:#ddd6fe;width:80%"></div><div class="guide-page-line"></div><div class="guide-page-line"></div><div class="guide-page-line" style="width:50%"></div></div></div>
+            <div class="guide-page"><div class="guide-page-lines"><div class="guide-page-line" style="background:#ddd6fe"></div><div class="guide-page-line"></div><div class="guide-page-line"></div><div class="guide-page-line" style="width:60%"></div></div></div>
+            <div class="guide-page"><div class="guide-page-lines"><div class="guide-page-line" style="background:#ddd6fe;width:70%"></div><div class="guide-page-line"></div><div class="guide-page-line" style="width:40%"></div></div></div>
+          </div>
+        </div>
+        <div class="guide-body">
+          <div class="guide-tag"><span class="cat-badge cat-coach">Coaching</span></div>
+          <h3 class="guide-title">50 Questions d'Entretien & Leurs Réponses</h3>
+          <p class="guide-desc">Les 50 questions les plus fréquentes en entretien d'embauche, avec pour chacune une analyse des attentes du recruteur et un exemple de réponse structurée.</p>
+          <div class="guide-includes">
+            <div class="guide-stat"><span class="guide-stat-num">50</span><span class="guide-stat-label">questions</span></div>
+            <div class="guide-stat"><span class="guide-stat-num">32</span><span class="guide-stat-label">pages</span></div>
+            <div class="guide-stat"><span class="guide-stat-num">5★</span><span class="guide-stat-label">6 100 téléchargements</span></div>
+          </div>
+          <div class="guide-cta">
+            <div class="guide-form">
+              <input type="email" class="guide-input" placeholder="Votre adresse email" />
+              <button class="guide-btn">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                Télécharger
+              </button>
+            </div>
+            <p class="guide-note">Gratuit · Sans spam · Désabonnement en 1 clic</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ───────── NEWSLETTER ───────── -->
+<section class="newsletter-section">
+  <div class="container">
+    <div class="newsletter-card reveal">
+      <div class="newsletter-text">
+        <p class="newsletter-label">Newsletter hebdomadaire</p>
+        <h2 class="newsletter-title">Recevez chaque semaine les meilleurs conseils carrière</h2>
+        <p class="newsletter-subtitle">Rejoignez 8 400 professionnels qui reçoivent chaque lundi nos conseils, nos ressources exclusives et nos offres en avant-première.</p>
+        <div class="newsletter-perks">
+          <div class="newsletter-perk"><div class="perk-dot"></div>1 article de fond par semaine</div>
+          <div class="newsletter-perk"><div class="perk-dot"></div>Des astuces CV & LinkedIn actionnables</div>
+          <div class="newsletter-perk"><div class="perk-dot"></div>Des offres exclusives réservées aux abonnés</div>
+          <div class="newsletter-perk"><div class="perk-dot"></div>Désabonnement en un clic, à tout moment</div>
+        </div>
+      </div>
+      <div class="newsletter-form-wrap">
+        <p class="newsletter-form-title">Rejoindre la newsletter</p>
+        <div class="newsletter-field">
+          <label>Prénom</label>
+          <input type="text" class="newsletter-input" placeholder="Jean" />
+        </div>
+        <div class="newsletter-field">
+          <label>Adresse email</label>
+          <input type="email" class="newsletter-input" placeholder="jean@email.com" />
+        </div>
+        <button class="newsletter-submit">Je m'abonne gratuitement</button>
+        <p class="newsletter-privacy">Aucun spam. Vos données sont sécurisées.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ───────── CTA BANNER ───────── -->
+<section class="cta-banner">
+  <div class="container">
+    <div class="cta-inner-card reveal">
+      <div class="cta-inner">
+        <div class="cta-logo-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 00-2.91-.09z"/>
+            <path d="M12 15l-3-3a22 22 0 012-3.95A12.88 12.88 0 0122 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 01-4 2z"/>
+          </svg>
+        </div>
+        <div class="cta-text">
+          <h2>Prêt à passer à l'action ?</h2>
+          <p>Les conseils c'est bien — être accompagné par un expert, c'est encore mieux.</p>
+        </div>
+        <a href="services.html" class="btn btn-white">
+          Voir nos formules
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ───────── FOOTER ───────── -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <a href="index.html" class="footer-logo">
+          <img src="images/profilboost_logo_sombre.svg" alt="ProfilBoost" class="footer-logo-img" />
+        </a>
+        <p class="footer-brand-desc">Nous aidons les professionnels à valoriser leur profil et à atteindre leurs objectifs de carrière.</p>
+        <div class="footer-socials">
+          <a href="#" class="social-link" aria-label="LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg></a>
+          <a href="#" class="social-link" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></a>
+          <a href="#" class="social-link" aria-label="YouTube"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22.54 6.42a2.78 2.78 0 00-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46A2.78 2.78 0 001.46 6.42 29 29 0 001 12a29 29 0 00.46 5.58 2.78 2.78 0 001.95 1.95C5.12 20 12 20 12 20s6.88 0 8.59-.46a2.78 2.78 0 001.95-1.95A29 29 0 0023 12a29 29 0 00-.46-5.58z"/><polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02"/></svg></a>
+        </div>
+      </div>
+      <div>
+        <h4 class="footer-col-title">Navigation</h4>
+        <ul class="footer-col-links">
+          <li><a href="index.html">Accueil</a></li>
+          <li><a href="services.html">Formules</a></li>
+          <li><a href="about.html">Qui sommes-nous</a></li>
+          <li><a href="resources.html">Ressources</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="footer-col-title">Nos services</h4>
+        <ul class="footer-col-links">
+          <li><a href="service-cv-lm.html">Création de CV &amp; LM</a></li>
+          <li><a href="service-linkedin.html">Optimisation LinkedIn</a></li>
+          <li><a href="service-coaching.html">Coaching entretien</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="footer-col-title">Ressources</h4>
+        <ul class="footer-col-links">
+          <li><a href="resources.html">Tous les articles</a></li>
+          <li><a href="resources.html#guides">Guides gratuits</a></li>
+          <li><a href="resources.html">Newsletter</a></li>
+          <li><a href="services.html#faq">FAQ</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="footer-col-title">Newsletter</h4>
+        <p class="footer-newsletter-desc">Recevez nos conseils carrière et nos offres exclusives.</p>
+        <div class="footer-newsletter-form">
+          <input type="email" class="footer-newsletter-input" placeholder="Votre email" />
+          <button class="footer-newsletter-btn">S'inscrire</button>
+        </div>
+      </div>
+    </div>
+    <hr class="footer-divider" />
+    <div class="footer-bottom">
+      <p class="footer-copy">© 2024 ProfilBoost. Tous droits réservés.</p>
+      <div class="footer-legal">
+        <a href="#">Mentions légales</a>
+        <a href="#">Politique de confidentialité</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  /* Scroll reveal */
+  const revealEls = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); } });
+  }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+  revealEls.forEach(el => io.observe(el));
+
+  /* Hamburger */
+  const hamburger = document.getElementById('hamburger');
+  const mobileMenu = document.getElementById('mobileMenu');
+  hamburger.addEventListener('click', () => {
+    hamburger.classList.toggle('open');
+    mobileMenu.classList.toggle('open');
+    document.body.style.overflow = mobileMenu.classList.contains('open') ? 'hidden' : '';
+  });
+  function closeMenu() { hamburger.classList.remove('open'); mobileMenu.classList.remove('open'); document.body.style.overflow = ''; }
+
+  /* Navbar shadow */
+  const navbar = document.querySelector('.navbar');
+  window.addEventListener('scroll', () => { navbar.style.boxShadow = window.scrollY > 20 ? '0 4px 24px rgba(0,0,0,.25)' : 'none'; });
+
+  /* Category filters */
+  document.getElementById('filterTabs').addEventListener('click', function(e) {
+    const tab = e.target.closest('.filter-tab');
+    if (!tab) return;
+    document.querySelectorAll('.filter-tab').forEach(t => t.classList.remove('active'));
+    tab.classList.add('active');
+    const filter = tab.dataset.filter;
+    document.querySelectorAll('.article-card').forEach(card => {
+      if (filter === 'all' || card.dataset.cat === filter) {
+        card.classList.remove('hidden');
+      } else {
+        card.classList.add('hidden');
+      }
+    });
+  });
+
+  /* Search */
+  document.getElementById('searchInput').addEventListener('input', function() {
+    const q = this.value.toLowerCase().trim();
+    if (!q) { document.querySelectorAll('.article-card').forEach(c => c.classList.remove('hidden')); return; }
+    document.querySelectorAll('.article-card').forEach(card => {
+      const text = card.querySelector('.article-title').textContent.toLowerCase() + card.querySelector('.article-excerpt').textContent.toLowerCase();
+      card.classList.toggle('hidden', !text.includes(q));
+    });
+  });
+</script>
+</body>
+</html>

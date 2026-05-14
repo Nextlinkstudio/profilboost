@@ -1,0 +1,809 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Qui sommes-nous — ProfilBoost</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --navy: #0d1b3e;
+      --navy-mid: #112354;
+      --blue: #2563eb;
+      --blue-light: #3b82f6;
+      --blue-pale: #dbeafe;
+      --white: #ffffff;
+      --gray-50: #f8fafc;
+      --gray-100: #f1f5f9;
+      --gray-300: #cbd5e1;
+      --gray-500: #64748b;
+      --gray-700: #334155;
+      --gray-900: #0f172a;
+      --radius: 12px;
+      --radius-lg: 20px;
+      --shadow: 0 4px 24px rgba(13,27,62,.08);
+      --shadow-md: 0 8px 40px rgba(13,27,62,.14);
+      --shadow-lg: 0 20px 60px rgba(13,27,62,.20);
+    }
+
+    html { scroll-behavior: smooth; overflow-x: hidden; }
+    body { font-family: 'Poppins', sans-serif; color: var(--gray-900); background: var(--white); -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+
+    /* ─── UTILITIES ─── */
+    .container { max-width: 1140px; margin: 0 auto; padding: 0 24px; }
+    .btn { display: inline-flex; align-items: center; gap: 8px; padding: 13px 26px; border-radius: 50px; font-size: 15px; font-weight: 600; cursor: pointer; border: none; text-decoration: none; transition: all .22s ease; white-space: nowrap; }
+    .btn-primary { background: var(--blue); color: var(--white); box-shadow: 0 4px 20px rgba(37,99,235,.40); }
+    .btn-primary:hover { background: #1d4ed8; transform: translateY(-1px); box-shadow: 0 8px 28px rgba(37,99,235,.50); }
+    .btn-white { background: var(--white); color: var(--blue); box-shadow: 0 4px 20px rgba(0,0,0,.15); }
+    .btn-white:hover { background: #f0f6ff; transform: translateY(-1px); }
+    .btn-outline-blue { background: transparent; color: var(--blue); border: 2px solid var(--blue-pale); border-radius: 50px; padding: 12px 24px; font-size: 14px; font-weight: 700; text-decoration: none; display: inline-flex; align-items: center; gap: 8px; transition: all .22s; }
+    .btn-outline-blue:hover { background: var(--blue-pale); }
+
+    /* ─── NAVBAR ─── */
+    .navbar { position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: var(--navy); border-bottom: 1px solid rgba(255,255,255,.07); backdrop-filter: blur(12px); }
+    body { padding-top: 68px; }
+    .navbar-inner { display: flex; align-items: center; justify-content: space-between; height: 68px; }
+    .nav-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; color: var(--white); font-weight: 800; font-size: 20px; letter-spacing: -.3px; }
+    .nav-logo-img { height: 36px; width: auto; display: block; }
+    .footer-logo-img { height: 30px; width: auto; display: block; }
+    .nav-links { display: flex; align-items: center; gap: 36px; list-style: none; }
+    .nav-links a { color: rgba(255,255,255,.80); text-decoration: none; font-size: 12.5px; font-weight: 600; letter-spacing: .8px; text-transform: uppercase; transition: color .18s; }
+    .nav-links a:hover, .nav-links a.active { color: var(--white); }
+    .nav-links a.active { border-bottom: 2px solid var(--blue); padding-bottom: 2px; }
+    .nav-cta { display: flex; align-items: center; gap: 12px; }
+
+    /* ─── HERO ─── */
+    .hero {
+      background: linear-gradient(160deg, #08122a 0%, #0b1a3e 35%, #0d2055 65%, #0e2460 100%);
+      padding: 56px 0 72px; overflow: hidden; position: relative;
+    }
+    .hero::before {
+      content: ''; position: absolute; inset: 0;
+      background:
+        radial-gradient(ellipse 55% 70% at 75% 40%, rgba(37,99,235,.16) 0%, transparent 65%),
+        radial-gradient(ellipse 30% 40% at 10% 80%, rgba(14,36,96,.5) 0%, transparent 60%);
+      pointer-events: none;
+    }
+    .hero-inner { display: grid; grid-template-columns: 55% 45%; gap: 40px; align-items: center; position: relative; z-index: 1; }
+    .breadcrumb { display: flex; align-items: center; gap: 8px; font-size: 13px; font-weight: 500; margin-bottom: 28px; }
+    .breadcrumb a { color: var(--blue-light); text-decoration: none; }
+    .breadcrumb a:hover { text-decoration: underline; }
+    .breadcrumb-sep { color: rgba(255,255,255,.4); font-size: 11px; }
+    .breadcrumb-current { color: rgba(255,255,255,.6); }
+    .hero-label { font-size: 11px; font-weight: 700; letter-spacing: 2.5px; text-transform: uppercase; color: var(--blue-light); margin-bottom: 14px; }
+    .hero-title { font-size: clamp(32px, 4vw, 52px); font-weight: 900; line-height: 1.1; color: var(--white); margin-bottom: 22px; letter-spacing: -.5px; }
+    .hero-subtitle { color: rgba(255,255,255,.62); font-size: 15px; line-height: 1.7; max-width: 480px; margin-bottom: 32px; }
+    .hero-actions { display: flex; gap: 16px; flex-wrap: wrap; }
+
+    /* Hero visual — abstract grid of people */
+    .hero-visual { display: flex; align-items: center; justify-content: center; position: relative; height: 340px; }
+    .team-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; width: 340px; }
+    .team-tile { border-radius: 16px; overflow: hidden; position: relative; }
+    .team-tile-inner { width: 100%; aspect-ratio: 3/4; border-radius: 16px; display: flex; align-items: flex-end; padding: 14px; position: relative; overflow: hidden; }
+    .team-tile-inner::before { content: ''; position: absolute; inset: 0; border-radius: 16px; }
+    .t1 .team-tile-inner::before { background: linear-gradient(155deg, #1e3a8a 0%, #2563eb 100%); }
+    .t2 .team-tile-inner::before { background: linear-gradient(155deg, #0a1628 0%, #1e40af 100%); }
+    .t3 .team-tile-inner::before { background: linear-gradient(155deg, #1a0a2a 0%, #6d28d9 100%); }
+    .t4 .team-tile-inner::before { background: linear-gradient(155deg, #002855 0%, #0a66c2 100%); }
+    .t5 .team-tile-inner::before { background: linear-gradient(155deg, #0c1a2e 0%, #1d4ed8 100%); }
+    .t6 .team-tile-inner::before { background: linear-gradient(155deg, #0f2d1a 0%, #059669 100%); }
+    .tile-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(0,0,0,.5) 0%, transparent 60%); border-radius: 16px; }
+    .tile-initials { position: relative; z-index: 1; font-size: 22px; font-weight: 900; color: rgba(255,255,255,.9); letter-spacing: -1px; }
+    .tile-dots { position: absolute; top: 12px; right: 12px; z-index: 1; display: flex; flex-direction: column; gap: 3px; }
+    .tile-dots span { display: block; width: 4px; height: 4px; border-radius: 50%; background: rgba(255,255,255,.4); }
+    .hero-founded-badge {
+      position: absolute; bottom: -12px; left: 50%; transform: translateX(-50%);
+      background: white; border-radius: 50px; padding: 10px 20px;
+      display: flex; align-items: center; gap: 10px;
+      box-shadow: var(--shadow-md); white-space: nowrap;
+      font-size: 13px; font-weight: 700; color: var(--gray-900);
+    }
+    .founded-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--blue); }
+
+    /* ─── SECTION COMMONS ─── */
+    .section-label { font-size: 11px; font-weight: 700; letter-spacing: 2.5px; text-transform: uppercase; color: var(--blue); margin-bottom: 12px; }
+    .section-title { font-size: clamp(24px, 2.8vw, 36px); font-weight: 800; color: var(--gray-900); letter-spacing: -.4px; margin-bottom: 14px; line-height: 1.2; }
+    .underline-blue { position: relative; display: inline-block; }
+    .underline-blue::after { content: ''; position: absolute; bottom: -4px; left: 0; right: 0; height: 3px; border-radius: 2px; background: var(--blue); }
+
+    /* ─── STORY SECTION ─── */
+    .story-section { padding: 96px 0 80px; background: var(--white); }
+    .story-inner { display: grid; grid-template-columns: 1fr 480px; gap: 80px; align-items: center; }
+    .story-content .section-label { text-align: left; }
+    .story-content .section-title { text-align: left; }
+    .story-body { font-size: 15px; color: var(--gray-500); line-height: 1.8; display: flex; flex-direction: column; gap: 18px; margin-bottom: 36px; }
+    .story-body strong { color: var(--gray-700); font-weight: 600; }
+    .story-quote {
+      padding: 24px 28px; background: var(--gray-50);
+      border-left: 4px solid var(--blue); border-radius: 0 var(--radius) var(--radius) 0;
+      font-size: 15px; font-style: italic; color: var(--gray-700); line-height: 1.7;
+      margin-bottom: 32px;
+    }
+    .story-quote cite { display: block; margin-top: 10px; font-size: 13px; font-style: normal; font-weight: 700; color: var(--blue); }
+
+    /* Story visual: stats mosaic */
+    .stats-mosaic { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .stat-block {
+      border-radius: var(--radius-lg); padding: 28px 24px;
+      display: flex; flex-direction: column; justify-content: flex-end;
+      min-height: 140px; position: relative; overflow: hidden;
+    }
+    .stat-block.sb-navy { background: linear-gradient(145deg, #0a1628, #1e40af); }
+    .stat-block.sb-blue { background: linear-gradient(145deg, #1e40af, #3b82f6); }
+    .stat-block.sb-purple { background: linear-gradient(145deg, #1a0a2a, #6d28d9); }
+    .stat-block.sb-light { background: var(--gray-50); border: 1px solid var(--gray-100); }
+    .stat-block::after { content:''; position:absolute; top:-30px; right:-30px; width:100px; height:100px; border-radius:50%; background:rgba(255,255,255,.06); }
+    .stat-num { font-size: 36px; font-weight: 900; line-height: 1; letter-spacing: -1.5px; }
+    .stat-label { font-size: 12.5px; font-weight: 500; margin-top: 6px; opacity: .75; line-height: 1.4; }
+    .sb-navy .stat-num, .sb-blue .stat-num, .sb-purple .stat-num { color: white; }
+    .sb-navy .stat-label, .sb-blue .stat-label, .sb-purple .stat-label { color: rgba(255,255,255,.7); }
+    .sb-light .stat-num { color: var(--blue); }
+    .sb-light .stat-label { color: var(--gray-500); opacity: 1; }
+
+    /* ─── VALUES SECTION ─── */
+    .values-section { padding: 80px 0; background: var(--gray-50); }
+    .values-header { text-align: center; margin-bottom: 52px; }
+    .values-header .section-label { text-align: center; }
+    .values-header .section-title { text-align: center; }
+    .values-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; }
+    .value-card {
+      background: white; border-radius: var(--radius-lg); padding: 32px 24px;
+      border: 1px solid var(--gray-100); box-shadow: var(--shadow);
+      transition: all .25s; display: flex; flex-direction: column; gap: 16px;
+    }
+    .value-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); border-color: var(--blue-pale); }
+    .value-icon { width: 54px; height: 54px; border-radius: 14px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .vi-blue   { background: var(--blue-pale); }
+    .vi-purple { background: #ede9fe; }
+    .vi-green  { background: #dcfce7; }
+    .vi-amber  { background: #fef9c3; }
+    .vi-blue svg   { color: var(--blue); }
+    .vi-purple svg { color: #7c3aed; }
+    .vi-green svg  { color: #16a34a; }
+    .vi-amber svg  { color: #ca8a04; }
+    .value-icon svg { width: 26px; height: 26px; }
+    .value-title { font-size: 15px; font-weight: 800; color: var(--gray-900); }
+    .value-desc { font-size: 13.5px; color: var(--gray-500); line-height: 1.65; }
+
+    /* ─── TEAM SECTION ─── */
+    .team-section { padding: 80px 0; background: var(--white); }
+    .team-header { text-align: center; margin-bottom: 52px; }
+    .team-header .section-label { text-align: center; }
+    .team-header .section-title { text-align: center; }
+    .team-grid-main { display: grid; grid-template-columns: repeat(4, 1fr); gap: 28px; }
+    .team-card {
+      border-radius: var(--radius-lg); overflow: hidden;
+      box-shadow: var(--shadow); border: 1px solid var(--gray-100);
+      transition: all .25s;
+    }
+    .team-card:hover { transform: translateY(-5px); box-shadow: var(--shadow-md); }
+    .team-avatar-wrap {
+      height: 200px; position: relative; overflow: hidden;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .ta-1 { background: linear-gradient(155deg, #1e3a8a, #2563eb); }
+    .ta-2 { background: linear-gradient(155deg, #0f2d1a, #059669); }
+    .ta-3 { background: linear-gradient(155deg, #002855, #0a66c2); }
+    .ta-4 { background: linear-gradient(155deg, #1a0a2a, #6d28d9); }
+    .team-avatar-wrap::after { content:''; position:absolute; bottom:-40px; right:-40px; width:120px; height:120px; border-radius:50%; background:rgba(255,255,255,.06); }
+    .team-avatar-wrap::before { content:''; position:absolute; top:-25px; left:-25px; width:80px; height:80px; border-radius:50%; background:rgba(255,255,255,.05); }
+    .team-initials-circle {
+      width: 80px; height: 80px; border-radius: 50%;
+      background: rgba(255,255,255,.2); border: 3px solid rgba(255,255,255,.35);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 26px; font-weight: 900; color: white;
+      position: relative; z-index: 1; letter-spacing: -1px;
+    }
+    .team-body { padding: 20px 22px 24px; background: white; }
+    .team-name { font-size: 15px; font-weight: 800; color: var(--gray-900); margin-bottom: 4px; }
+    .team-role { font-size: 12.5px; font-weight: 600; color: var(--blue); margin-bottom: 12px; }
+    .team-bio { font-size: 13px; color: var(--gray-500); line-height: 1.6; margin-bottom: 16px; }
+    .team-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+    .team-tag { font-size: 11px; font-weight: 600; padding: 4px 10px; border-radius: 20px; background: var(--gray-50); border: 1px solid var(--gray-100); color: var(--gray-500); }
+
+    /* ─── TIMELINE ─── */
+    .timeline-section { padding: 80px 0; background: var(--gray-50); }
+    .timeline-header { text-align: center; margin-bottom: 56px; }
+    .timeline-header .section-label { text-align: center; }
+    .timeline-header .section-title { text-align: center; }
+    .timeline { position: relative; max-width: 720px; margin: 0 auto; display: flex; flex-direction: column; gap: 0; }
+    .timeline::before { content:''; position:absolute; left:50%; top:0; bottom:0; width:2px; background:var(--blue-pale); transform:translateX(-50%); }
+    .tl-item { display: grid; grid-template-columns: 1fr 40px 1fr; gap: 24px; align-items: start; margin-bottom: 48px; }
+    .tl-item:last-child { margin-bottom: 0; }
+    .tl-left { text-align: right; padding-top: 4px; }
+    .tl-right { padding-top: 4px; }
+    .tl-center { display: flex; align-items: flex-start; justify-content: center; padding-top: 2px; }
+    .tl-dot { width: 40px; height: 40px; border-radius: 50%; background: var(--blue); border: 4px solid white; box-shadow: 0 0 0 3px var(--blue-pale); display: flex; align-items: center; justify-content: center; flex-shrink: 0; position: relative; z-index: 1; }
+    .tl-dot svg { width: 16px; height: 16px; color: white; }
+    .tl-year { font-size: 11px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--blue); margin-bottom: 6px; }
+    .tl-title { font-size: 15px; font-weight: 700; color: var(--gray-900); margin-bottom: 6px; line-height: 1.3; }
+    .tl-desc { font-size: 13px; color: var(--gray-500); line-height: 1.6; }
+    .tl-item.alt .tl-left { text-align: right; }
+    .tl-item.alt .tl-right { text-align: left; }
+    .tl-item:nth-child(even) .tl-left, .tl-item:nth-child(even) .tl-right { }
+
+    /* ─── CTA BANNER ─── */
+    .cta-banner { padding: 0 0 80px; }
+    .cta-inner-card { background: linear-gradient(140deg, #0a1628 0%, #0d1e44 60%, #0e2050 100%); border-radius: 24px; padding: 52px 56px; position: relative; overflow: hidden; }
+    .cta-inner-card::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse 50% 80% at 20% 50%, rgba(37,99,235,.12) 0%, transparent 70%); }
+    .cta-inner { display: flex; align-items: center; justify-content: space-between; gap: 40px; position: relative; z-index: 1; }
+    .cta-logo-icon { width: 64px; height: 64px; border-radius: 16px; background: rgba(37,99,235,.25); border: 1.5px solid rgba(37,99,235,.4); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .cta-logo-icon svg { width: 32px; height: 32px; color: white; }
+    .cta-text h2 { font-size: clamp(20px, 2.2vw, 28px); font-weight: 800; color: white; margin-bottom: 8px; letter-spacing: -.3px; }
+    .cta-text p { color: rgba(255,255,255,.65); font-size: 14.5px; max-width: 380px; line-height: 1.65; }
+
+    /* ─── FOOTER ─── */
+    .footer { background: var(--navy); padding: 56px 0 24px; }
+    .footer-top { display: grid; grid-template-columns: 1.5fr 1fr 1fr 1fr 1.4fr; gap: 40px; margin-bottom: 48px; }
+    .footer-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; color: white; font-weight: 800; font-size: 18px; margin-bottom: 16px; }
+    .footer-brand-desc { font-size: 13px; color: rgba(255,255,255,.45); line-height: 1.65; margin-bottom: 20px; max-width: 220px; }
+    .footer-socials { display: flex; gap: 10px; }
+    .social-link { width: 34px; height: 34px; border-radius: 8px; border: 1px solid rgba(255,255,255,.18); display: flex; align-items: center; justify-content: center; color: rgba(255,255,255,.6); text-decoration: none; transition: all .18s; }
+    .social-link:hover { background: rgba(255,255,255,.1); color: white; border-color: rgba(255,255,255,.35); }
+    .social-link svg { width: 15px; height: 15px; }
+    .footer-col-title { font-size: 13px; font-weight: 700; color: var(--white); margin-bottom: 18px; letter-spacing: .3px; }
+    .footer-col-links { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+    .footer-col-links a { color: rgba(255,255,255,.48); text-decoration: none; font-size: 13px; transition: color .18s; }
+    .footer-col-links a:hover { color: rgba(255,255,255,.85); }
+    .footer-newsletter-form { display: flex; gap: 8px; margin-top: 4px; }
+    .footer-newsletter-input { flex: 1; padding: 10px 14px; border-radius: 8px; background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.14); color: white; font-size: 13px; font-family: 'Poppins', sans-serif; outline: none; transition: border-color .18s; }
+    .footer-newsletter-input::placeholder { color: rgba(255,255,255,.35); }
+    .footer-newsletter-input:focus { border-color: var(--blue); }
+    .footer-newsletter-btn { padding: 10px 16px; border-radius: 8px; border: none; background: var(--blue); color: white; font-size: 13px; font-weight: 600; cursor: pointer; transition: background .18s; font-family: 'Poppins', sans-serif; white-space: nowrap; }
+    .footer-newsletter-btn:hover { background: #1d4ed8; }
+    .footer-newsletter-desc { font-size: 12px; color: rgba(255,255,255,.35); margin-bottom: 14px; line-height: 1.5; }
+    .footer-divider { border: none; border-top: 1px solid rgba(255,255,255,.08); margin-bottom: 20px; }
+    .footer-bottom { display: flex; align-items: center; justify-content: space-between; }
+    .footer-copy { color: rgba(255,255,255,.32); font-size: 13px; }
+    .footer-legal { display: flex; gap: 24px; }
+    .footer-legal a { color: rgba(255,255,255,.32); text-decoration: none; font-size: 13px; transition: color .18s; }
+    .footer-legal a:hover { color: rgba(255,255,255,.65); }
+
+    /* ─── ANIMATIONS ─── */
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
+    .fade-up   { animation: fadeUp .65s ease both; }
+    .fade-up-2 { animation: fadeUp .65s .12s ease both; }
+    .fade-up-3 { animation: fadeUp .65s .24s ease both; }
+    .fade-up-4 { animation: fadeUp .65s .36s ease both; }
+    .reveal { opacity: 0; transform: translateY(28px); transition: opacity .6s ease, transform .6s ease; }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    .reveal-delay-1 { transition-delay: .1s; }
+    .reveal-delay-2 { transition-delay: .2s; }
+    .reveal-delay-3 { transition-delay: .3s; }
+
+    /* ─── HAMBURGER ─── */
+    .hamburger { display: none; flex-direction: column; justify-content: center; gap: 5px; width: 36px; height: 36px; cursor: pointer; background: none; border: none; padding: 4px; }
+    .hamburger span { display: block; height: 2px; background: white; border-radius: 2px; transition: all .3s ease; transform-origin: center; }
+    .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .hamburger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+    .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+    .mobile-menu { display: none; position: fixed; inset: 0; top: 68px; background: var(--navy); z-index: 99; flex-direction: column; align-items: center; justify-content: center; gap: 8px; opacity: 0; transform: translateY(-12px); transition: opacity .3s ease, transform .3s ease; pointer-events: none; }
+    .mobile-menu.open { opacity: 1; transform: translateY(0); pointer-events: all; }
+    .mobile-menu a { color: white; text-decoration: none; font-size: 22px; font-weight: 700; padding: 14px 32px; letter-spacing: .5px; width: 100%; text-align: center; transition: background .18s; }
+    .mobile-menu a:hover { background: rgba(255,255,255,.07); }
+    .mobile-menu .mobile-cta { margin-top: 16px; }
+
+    /* ─── RESPONSIVE ─── */
+    @media (max-width: 1024px) {
+      .values-grid { grid-template-columns: 1fr 1fr; }
+      .team-grid-main { grid-template-columns: 1fr 1fr; }
+      .footer-top { grid-template-columns: 1fr 1fr 1fr; }
+      .footer-brand { grid-column: 1 / -1; }
+    }
+    @media (max-width: 900px) {
+      .nav-links { display: none; }
+      .hamburger { display: flex; }
+      .mobile-menu { display: flex; }
+      .nav-cta .btn-primary { display: none; }
+      .hero-inner { grid-template-columns: 1fr; }
+      .hero-visual { height: 280px; }
+      .story-inner { grid-template-columns: 1fr; gap: 48px; }
+      .timeline::before { left: 20px; transform: none; }
+      .tl-item { grid-template-columns: 40px 1fr; gap: 16px; }
+      .tl-left { display: none; }
+      .tl-right { text-align: left; }
+      .cta-inner { flex-direction: column; text-align: center; }
+      .cta-inner-card { padding: 40px 24px; border-radius: 16px; }
+      .footer-top { grid-template-columns: 1fr 1fr; }
+      .footer-brand { grid-column: 1 / -1; }
+      .footer-bottom { flex-direction: column; gap: 12px; text-align: center; }
+    }
+    @media (max-width: 600px) {
+      .team-grid-main { grid-template-columns: 1fr; }
+      .values-grid { grid-template-columns: 1fr; }
+      .stats-mosaic { grid-template-columns: 1fr 1fr; }
+      .footer-top { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ───────── NAVBAR ───────── -->
+<header class="navbar">
+  <div class="container navbar-inner">
+    <a href="index.html" class="nav-logo">
+      <img src="images/profilboost_logo_sombre.svg" alt="ProfilBoost" class="nav-logo-img" />
+    </a>
+    <ul class="nav-links">
+      <li><a href="index.html">Accueil</a></li>
+      <li><a href="services.html">Formules</a></li>
+      <li><a href="about.html" class="active">Qui sommes-nous</a></li>
+      <li><a href="resources.html">Ressources</a></li>
+    </ul>
+    <div class="nav-cta">
+      <a href="contact.html" class="btn btn-primary">Nous contacter</a>
+      <button class="hamburger" id="hamburger" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- ───────── MOBILE MENU ───────── -->
+<nav class="mobile-menu" id="mobileMenu">
+  <a href="index.html" onclick="closeMenu()">Accueil</a>
+  <a href="services.html" onclick="closeMenu()">Formules</a>
+  <a href="about.html" onclick="closeMenu()">Qui sommes-nous</a>
+  <a href="resources.html" onclick="closeMenu()">Ressources</a>
+  <a href="contact.html" class="btn btn-primary mobile-cta" onclick="closeMenu()">Nous contacter</a>
+</nav>
+
+<!-- ───────── HERO ───────── -->
+<section class="hero">
+  <div class="container">
+    <div class="hero-inner">
+
+      <div class="hero-content">
+        <div class="breadcrumb fade-up">
+          <a href="index.html">Accueil</a>
+          <span class="breadcrumb-sep">›</span>
+          <span class="breadcrumb-current">Qui sommes-nous</span>
+        </div>
+        <p class="hero-label fade-up">Notre équipe</p>
+        <h1 class="hero-title fade-up-2">Des experts passionnés<br>à votre service</h1>
+        <p class="hero-subtitle fade-up-3">
+          ProfilBoost est né d'une conviction simple : chaque candidat mérite d'être vu à sa juste valeur. Depuis 2018, nous aidons les professionnels à se démarquer et à décrocher les postes qu'ils méritent.
+        </p>
+        <div class="hero-actions fade-up-4">
+          <a href="contact.html" class="btn btn-primary">
+            Nous contacter
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+          <a href="services.html" class="btn-outline-blue">Voir nos formules</a>
+        </div>
+      </div>
+
+      <div class="hero-visual fade-up-3">
+        <div class="team-grid">
+          <div class="team-tile t1">
+            <div class="team-tile-inner">
+              <div class="tile-dots"><span></span><span></span><span></span></div>
+              <div class="tile-overlay"></div>
+              <span class="tile-initials">SR</span>
+            </div>
+          </div>
+          <div class="team-tile t2">
+            <div class="team-tile-inner">
+              <div class="tile-overlay"></div>
+              <span class="tile-initials">ML</span>
+            </div>
+          </div>
+          <div class="team-tile t3">
+            <div class="team-tile-inner">
+              <div class="tile-dots"><span></span><span></span><span></span></div>
+              <div class="tile-overlay"></div>
+              <span class="tile-initials">AC</span>
+            </div>
+          </div>
+          <div class="team-tile t4">
+            <div class="team-tile-inner">
+              <div class="tile-overlay"></div>
+              <span class="tile-initials">BM</span>
+            </div>
+          </div>
+          <div class="team-tile t5">
+            <div class="team-tile-inner">
+              <div class="tile-dots"><span></span><span></span><span></span></div>
+              <div class="tile-overlay"></div>
+              <span class="tile-initials">LV</span>
+            </div>
+          </div>
+          <div class="team-tile t6">
+            <div class="team-tile-inner">
+              <div class="tile-overlay"></div>
+              <span class="tile-initials">JD</span>
+            </div>
+          </div>
+        </div>
+        <div class="hero-founded-badge">
+          <div class="founded-dot"></div>
+          Fondé en 2018 · Paris
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ───────── NOTRE HISTOIRE ───────── -->
+<section class="story-section">
+  <div class="container">
+    <div class="story-inner">
+
+      <div class="story-content reveal">
+        <p class="section-label">Notre histoire</p>
+        <h2 class="section-title">Nés d'une frustration,<br>animés par une <span class="underline-blue">mission</span></h2>
+        <div class="story-body">
+          <p>
+            Tout a commencé en 2018 lorsque <strong>Sophie Renard</strong>, après 10 ans en tant que DRH dans un grand groupe, a réalisé quelque chose de frappant : des dizaines de candidats hautement qualifiés étaient éliminés dès la première sélection — non par manque de compétences, mais à cause d'un CV mal structuré ou d'un profil LinkedIn invisible.
+          </p>
+          <p>
+            Elle a fondé ProfilBoost avec une ambition claire : <strong>mettre l'expertise RH au service des candidats</strong>, pas seulement des entreprises. Entourée d'une équipe de recruteurs, de coaches certifiés et de spécialistes du personal branding, elle a bâti une méthode qui a déjà transformé plus de 1 200 parcours professionnels.
+          </p>
+          <p>
+            Aujourd'hui, ProfilBoost est la référence pour les professionnels qui veulent valoriser leur profil, gagner en visibilité et décrocher les postes qu'ils méritent vraiment.
+          </p>
+        </div>
+        <blockquote class="story-quote">
+          "Trop de talents passent inaperçus. Notre mission, c'est de leur donner la visibilité qu'ils méritent."
+          <cite>— Sophie Renard, Co-fondatrice & Directrice de ProfilBoost</cite>
+        </blockquote>
+        <a href="contact.html" class="btn btn-primary">
+          Discutons de votre projet
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+
+      <div class="stats-mosaic reveal reveal-delay-1">
+        <div class="stat-block sb-navy">
+          <div class="stat-num">1 200+</div>
+          <div class="stat-label">clients accompagnés depuis 2018</div>
+        </div>
+        <div class="stat-block sb-blue">
+          <div class="stat-num">96%</div>
+          <div class="stat-label">taux de satisfaction client</div>
+        </div>
+        <div class="stat-block sb-light">
+          <div class="stat-num">72h</div>
+          <div class="stat-label">délai de livraison moyen</div>
+        </div>
+        <div class="stat-block sb-purple">
+          <div class="stat-num">×3</div>
+          <div class="stat-label">plus de chances de décrocher un entretien</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ───────── NOS VALEURS ───────── -->
+<section class="values-section">
+  <div class="container">
+    <div class="values-header reveal">
+      <p class="section-label">Ce qui nous anime</p>
+      <h2 class="section-title">Nos <span class="underline-blue">valeurs</span></h2>
+      <p style="font-size:15px;color:var(--gray-500);max-width:480px;margin:16px auto 0;line-height:1.65;text-align:center;">
+        Quatre convictions fondamentales qui guident chacune de nos actions et définissent notre façon de travailler.
+      </p>
+    </div>
+    <div class="values-grid">
+
+      <div class="value-card reveal">
+        <div class="value-icon vi-blue">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+          </svg>
+        </div>
+        <div class="value-title">Excellence</div>
+        <div class="value-desc">Chaque document que nous produisons est soumis à un contrôle qualité rigoureux. Nous n'envoyons que ce que nous sommes fiers de livrer.</div>
+      </div>
+
+      <div class="value-card reveal reveal-delay-1">
+        <div class="value-icon vi-purple">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/>
+          </svg>
+        </div>
+        <div class="value-title">Personnalisation</div>
+        <div class="value-desc">Pas de template générique. Chaque profil est unique, chaque solution est construite sur mesure pour refléter votre singularité.</div>
+      </div>
+
+      <div class="value-card reveal reveal-delay-2">
+        <div class="value-icon vi-green">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+          </svg>
+        </div>
+        <div class="value-title">Confiance</div>
+        <div class="value-desc">Vos données restent strictement confidentielles. Nous nous engageons sur des résultats concrets et assumons notre responsabilité.</div>
+      </div>
+
+      <div class="value-card reveal reveal-delay-3">
+        <div class="value-icon vi-amber">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>
+          </svg>
+        </div>
+        <div class="value-title">Impact</div>
+        <div class="value-desc">Nous mesurons notre succès à travers le vôtre. Des résultats tangibles, mesurables, dès les premières candidatures envoyées.</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ───────── NOTRE ÉQUIPE ───────── -->
+<section class="team-section">
+  <div class="container">
+    <div class="team-header reveal">
+      <p class="section-label">L'équipe</p>
+      <h2 class="section-title">Des experts à vos <span class="underline-blue">côtés</span></h2>
+      <p style="font-size:15px;color:var(--gray-500);max-width:480px;margin:16px auto 0;line-height:1.65;text-align:center;">
+        Une équipe de professionnels du recrutement, du branding et du coaching, tous engagés pour votre réussite.
+      </p>
+    </div>
+    <div class="team-grid-main">
+
+      <div class="team-card reveal">
+        <div class="team-avatar-wrap ta-1">
+          <div class="team-initials-circle">SR</div>
+        </div>
+        <div class="team-body">
+          <div class="team-name">Sophie Renard</div>
+          <div class="team-role">Co-fondatrice & Directrice</div>
+          <div class="team-bio">Ancienne DRH dans un grand groupe industriel, Sophie a 10 ans d'expérience en recrutement et gestion des talents. Elle pilote la vision et la qualité de ProfilBoost.</div>
+          <div class="team-tags">
+            <span class="team-tag">Recrutement</span>
+            <span class="team-tag">RH</span>
+            <span class="team-tag">Stratégie</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="team-card reveal reveal-delay-1">
+        <div class="team-avatar-wrap ta-2">
+          <div class="team-initials-circle">ML</div>
+        </div>
+        <div class="team-body">
+          <div class="team-name">Marc Lefebvre</div>
+          <div class="team-role">Expert CV & Lettre de Motivation</div>
+          <div class="team-bio">Ancien recruteur pour plusieurs cabinets de conseil, Marc maîtrise les codes des ATS et des processus de présélection. Il rédige des CV qui passent les filtres et captivent les recruteurs.</div>
+          <div class="team-tags">
+            <span class="team-tag">CV</span>
+            <span class="team-tag">ATS</span>
+            <span class="team-tag">Copywriting</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="team-card reveal reveal-delay-2">
+        <div class="team-avatar-wrap ta-3">
+          <div class="team-initials-circle">AC</div>
+        </div>
+        <div class="team-body">
+          <div class="team-name">Amelia Chen</div>
+          <div class="team-role">Spécialiste LinkedIn & Personal Branding</div>
+          <div class="team-bio">Experte en marketing digital et personal branding, Amelia optimise chaque profil pour maximiser la visibilité dans les recherches LinkedIn et attirer les bonnes opportunités.</div>
+          <div class="team-tags">
+            <span class="team-tag">LinkedIn</span>
+            <span class="team-tag">SEO</span>
+            <span class="team-tag">Branding</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="team-card reveal reveal-delay-3">
+        <div class="team-avatar-wrap ta-4">
+          <div class="team-initials-circle">BM</div>
+        </div>
+        <div class="team-body">
+          <div class="team-name">Bertrand Moreau</div>
+          <div class="team-role">Coach Carrière Certifié</div>
+          <div class="team-bio">Coach certifié ICF et ancien manager RH, Bertrand prépare les candidats à exceller en entretien. Sa méthode structurée a déjà aidé 300+ professionnels à décrocher leur poste idéal.</div>
+          <div class="team-tags">
+            <span class="team-tag">Coaching</span>
+            <span class="team-tag">Entretien</span>
+            <span class="team-tag">ICF</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ───────── TIMELINE ───────── -->
+<section class="timeline-section">
+  <div class="container">
+    <div class="timeline-header reveal">
+      <p class="section-label">Notre parcours</p>
+      <h2 class="section-title">ProfilBoost en quelques <span class="underline-blue">étapes clés</span></h2>
+    </div>
+
+    <div class="timeline reveal">
+
+      <div class="tl-item">
+        <div class="tl-left">
+          <div class="tl-year">2018</div>
+          <div class="tl-title">Fondation de ProfilBoost</div>
+          <div class="tl-desc">Sophie Renard crée ProfilBoost à Paris avec une équipe de 2 experts RH et les premiers services de rédaction de CV.</div>
+        </div>
+        <div class="tl-center">
+          <div class="tl-dot">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 00-2.91-.09z"/><path d="M12 15l-3-3a22 22 0 012-3.95A12.88 12.88 0 0122 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 01-4 2z"/></svg>
+          </div>
+        </div>
+        <div class="tl-right"></div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-left"></div>
+        <div class="tl-center">
+          <div class="tl-dot">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
+          </div>
+        </div>
+        <div class="tl-right">
+          <div class="tl-year">2019</div>
+          <div class="tl-title">Lancement du service LinkedIn</div>
+          <div class="tl-desc">Face à la montée en puissance de LinkedIn dans le recrutement, Amelia Chen rejoint l'équipe et lance l'offre d'optimisation de profil.</div>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-left">
+          <div class="tl-year">2021</div>
+          <div class="tl-title">500 clients accompagnés</div>
+          <div class="tl-desc">ProfilBoost franchit le cap des 500 clients et étoffe son équipe avec Bertrand Moreau pour lancer le service de coaching entretien.</div>
+        </div>
+        <div class="tl-center">
+          <div class="tl-dot">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg>
+          </div>
+        </div>
+        <div class="tl-right"></div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-left"></div>
+        <div class="tl-center">
+          <div class="tl-dot">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          </div>
+        </div>
+        <div class="tl-right">
+          <div class="tl-year">2024</div>
+          <div class="tl-title">1 200+ clients & note 5 étoiles</div>
+          <div class="tl-desc">ProfilBoost atteint 1 200 clients accompagnés avec un taux de satisfaction de 96% et une note moyenne de 5 étoiles sur toutes les plateformes d'avis.</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ───────── CTA BANNER ───────── -->
+<section class="cta-banner">
+  <div class="container">
+    <div class="cta-inner-card reveal">
+      <div class="cta-inner">
+        <div class="cta-logo-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/>
+          </svg>
+        </div>
+        <div class="cta-text">
+          <h2>Prêt à écrire la suite de votre histoire ?</h2>
+          <p>Notre équipe est là pour vous accompagner à chaque étape de votre parcours professionnel.</p>
+        </div>
+        <a href="contact.html" class="btn btn-white">
+          Nous contacter
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ───────── FOOTER ───────── -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <a href="index.html" class="footer-logo">
+          <img src="images/profilboost_logo_sombre.svg" alt="ProfilBoost" class="footer-logo-img" />
+        </a>
+        <p class="footer-brand-desc">Nous aidons les professionnels à valoriser leur profil et à atteindre leurs objectifs de carrière.</p>
+        <div class="footer-socials">
+          <a href="#" class="social-link" aria-label="LinkedIn">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
+          </a>
+          <a href="#" class="social-link" aria-label="Instagram">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+          </a>
+          <a href="#" class="social-link" aria-label="YouTube">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22.54 6.42a2.78 2.78 0 00-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46A2.78 2.78 0 001.46 6.42 29 29 0 001 12a29 29 0 00.46 5.58 2.78 2.78 0 001.95 1.95C5.12 20 12 20 12 20s6.88 0 8.59-.46a2.78 2.78 0 001.95-1.95A29 29 0 0023 12a29 29 0 00-.46-5.58z"/><polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02"/></svg>
+          </a>
+        </div>
+      </div>
+      <div>
+        <h4 class="footer-col-title">Navigation</h4>
+        <ul class="footer-col-links">
+          <li><a href="index.html">Accueil</a></li>
+          <li><a href="services.html">Formules</a></li>
+          <li><a href="about.html">Qui sommes-nous</a></li>
+          <li><a href="resources.html">Ressources</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="footer-col-title">Nos services</h4>
+        <ul class="footer-col-links">
+          <li><a href="service-cv-lm.html">Création de CV &amp; LM</a></li>
+          <li><a href="service-linkedin.html">Optimisation LinkedIn</a></li>
+          <li><a href="service-coaching.html">Coaching entretien</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="footer-col-title">Ressources</h4>
+        <ul class="footer-col-links">
+          <li><a href="#">Conseils carrière</a></li>
+          <li><a href="#">Guides gratuits</a></li>
+          <li><a href="#">Blog</a></li>
+          <li><a href="#">FAQ</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="footer-col-title">Newsletter</h4>
+        <p class="footer-newsletter-desc">Recevez nos conseils carrière et nos offres exclusives.</p>
+        <div class="footer-newsletter-form">
+          <input type="email" class="footer-newsletter-input" placeholder="Votre email" />
+          <button class="footer-newsletter-btn">S'inscrire</button>
+        </div>
+      </div>
+    </div>
+    <hr class="footer-divider" />
+    <div class="footer-bottom">
+      <p class="footer-copy">© 2024 ProfilBoost. Tous droits réservés.</p>
+      <div class="footer-legal">
+        <a href="#">Mentions légales</a>
+        <a href="#">Politique de confidentialité</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  const revealEls = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); }
+    });
+  }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+  revealEls.forEach(el => io.observe(el));
+
+  const hamburger = document.getElementById('hamburger');
+  const mobileMenu = document.getElementById('mobileMenu');
+  hamburger.addEventListener('click', () => {
+    hamburger.classList.toggle('open');
+    mobileMenu.classList.toggle('open');
+    document.body.style.overflow = mobileMenu.classList.contains('open') ? 'hidden' : '';
+  });
+  function closeMenu() {
+    hamburger.classList.remove('open');
+    mobileMenu.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  const navbar = document.querySelector('.navbar');
+  window.addEventListener('scroll', () => {
+    navbar.style.boxShadow = window.scrollY > 20 ? '0 4px 24px rgba(0,0,0,.25)' : 'none';
+  });
+</script>
+</body>
+</html>
