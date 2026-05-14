@@ -40,8 +40,8 @@
     .btn-primary:hover { background: #1d4ed8; transform: translateY(-1px); box-shadow: 0 8px 28px rgba(37,99,235,.50); }
     .btn-white { background: var(--white); color: var(--blue); box-shadow: 0 4px 20px rgba(0,0,0,.15); }
     .btn-white:hover { background: #f0f6ff; transform: translateY(-1px); }
-    .btn-outline-blue { background: transparent; color: var(--blue); border: 2px solid var(--blue-pale); border-radius: 50px; padding: 12px 24px; font-size: 14px; font-weight: 700; text-decoration: none; display: inline-flex; align-items: center; gap: 8px; transition: all .22s; }
-    .btn-outline-blue:hover { background: var(--blue-pale); }
+    .btn-outline-blue { background: transparent; color: var(--white); border: 2px solid rgba(255,255,255,.40); border-radius: 50px; padding: 12px 24px; font-size: 14px; font-weight: 700; text-decoration: none; display: inline-flex; align-items: center; gap: 8px; transition: all .22s; }
+    .btn-outline-blue:hover { background: rgba(255,255,255,.10); border-color: rgba(255,255,255,.70); }
 
     /* ─── NAVBAR ─── */
     .navbar { position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: var(--navy); border-bottom: 1px solid rgba(255,255,255,.07); backdrop-filter: blur(12px); }
@@ -194,6 +194,7 @@
     .team-avatar-wrap::after { content:''; position:absolute; bottom:-40px; right:-40px; width:120px; height:120px; border-radius:50%; background:rgba(255,255,255,.06); }
     .team-avatar-wrap::before { content:''; position:absolute; top:-25px; left:-25px; width:80px; height:80px; border-radius:50%; background:rgba(255,255,255,.05); }
     .team-avatar-photo { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:top; z-index:1; }
+    .bertrand-photo { object-position: center 35%; }
     .team-initials-circle {
       width: 80px; height: 80px; border-radius: 50%;
       background: rgba(255,255,255,.2); border: 3px solid rgba(255,255,255,.35);
@@ -288,7 +289,7 @@
     .mobile-menu.open { opacity: 1; transform: translateY(0); pointer-events: all; }
     .mobile-menu a { color: white; text-decoration: none; font-size: 22px; font-weight: 700; padding: 14px 32px; letter-spacing: .5px; width: 100%; text-align: center; transition: background .18s; }
     .mobile-menu a:hover { background: rgba(255,255,255,.07); }
-    .mobile-menu .mobile-cta { margin-top: 16px; }
+    .mobile-menu .mobile-cta { margin-top: 24px; width: auto; padding: 13px 26px; }
 
     /* ─── RESPONSIVE ─── */
     @media (max-width: 1024px) {
@@ -303,12 +304,13 @@
       .mobile-menu { display: flex; }
       .nav-cta .btn-primary { display: none; }
       .hero-inner { grid-template-columns: 1fr; }
-      .hero-visual { height: 280px; }
+      .hero-visual { display: none; }
       .story-inner { grid-template-columns: 1fr; gap: 48px; }
       .timeline::before { left: 20px; transform: none; }
-      .tl-item { grid-template-columns: 40px 1fr; gap: 16px; }
-      .tl-left { display: none; }
-      .tl-right { text-align: left; }
+      .tl-item { display: flex; flex-direction: row; gap: 16px; align-items: flex-start; }
+      .tl-center { order: 1; flex-shrink: 0; }
+      .tl-left { display: block; text-align: left; order: 2; }
+      .tl-right { text-align: left; order: 2; }
       .cta-inner { flex-direction: column; text-align: center; }
       .cta-inner-card { padding: 40px 24px; border-radius: 16px; }
       .footer-top { grid-template-columns: 1fr 1fr; }
@@ -320,6 +322,8 @@
       .values-grid { grid-template-columns: 1fr; }
       .stats-mosaic { grid-template-columns: 1fr 1fr; }
       .footer-top { grid-template-columns: 1fr; }
+      .marc-photo { object-position: center 30%; }
+      .bertrand-photo { object-position: center 45%; }
     }
   </style>
 </head>
@@ -552,7 +556,7 @@
 
       <div class="team-card reveal reveal-delay-1">
         <div class="team-avatar-wrap ta-2">
-          <img src="images/marc_lefebvre.jpg" alt="Marc Lefebvre" class="team-avatar-photo" />
+          <img src="images/marc_lefebvre.jpg" alt="Marc Lefebvre" class="team-avatar-photo marc-photo" />
         </div>
         <div class="team-body">
           <div class="team-name">Marc Lefebvre</div>
@@ -584,7 +588,7 @@
 
       <div class="team-card reveal reveal-delay-3">
         <div class="team-avatar-wrap ta-4">
-          <img src="images/bertrand_moreau.jpg" alt="Bertrand Moreau" class="team-avatar-photo" style="object-position: center 35%;" />
+          <img src="images/bertrand_moreau.jpg" alt="Bertrand Moreau" class="team-avatar-photo bertrand-photo" />
         </div>
         <div class="team-body">
           <div class="team-name">Bertrand Moreau</div>
@@ -792,3 +796,5 @@
 </script>
 </body>
 </html>
+
+
