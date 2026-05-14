@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="fr">
 <head>
   <meta charset="UTF-8" />
@@ -302,10 +302,10 @@
     .newsletter-privacy { font-size: 11.5px; color: rgba(255,255,255,.35); text-align: center; margin-top: 10px; }
 
     /* ─── CTA BANNER ─── */
-    .cta-banner { padding: 80px 0; }
-    .cta-inner-card { background: linear-gradient(140deg, #0a1628 0%, #0d1e44 60%, #0e2050 100%); border-radius: 24px; padding: 52px 56px; position: relative; overflow: hidden; }
-    .cta-inner-card::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse 50% 80% at 20% 50%, rgba(37,99,235,.12) 0%, transparent 70%); }
-    .cta-inner { display: flex; align-items: center; justify-content: space-between; gap: 40px; position: relative; z-index: 1; }
+    .cta-banner { padding: 80px 0 0; }
+    .cta-inner-card { background: linear-gradient(140deg, #1a3eb8 0%, #1d4ed8 50%, #2563eb 100%); border-radius: 0; padding: 64px 0; position: relative; overflow: hidden; }
+    .cta-inner-card::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse 50% 80% at 20% 50%, rgba(255,255,255,.08) 0%, transparent 70%); }
+    .cta-inner { display: flex; align-items: center; justify-content: space-between; gap: 40px; position: relative; z-index: 1; max-width: 1140px; margin: 0 auto; padding: 0 24px; }
     .cta-logo-icon { width: 64px; height: 64px; border-radius: 16px; background: rgba(37,99,235,.25); border: 1.5px solid rgba(37,99,235,.4); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
     .cta-logo-icon svg { width: 32px; height: 32px; color: white; }
     .cta-text h2 { font-size: clamp(20px, 2.2vw, 28px); font-weight: 800; color: white; margin-bottom: 8px; letter-spacing: -.3px; }
@@ -398,7 +398,7 @@
     </a>
     <ul class="nav-links">
       <li><a href="index.html">Accueil</a></li>
-      <li><a href="services.html">Formules</a></li>
+      <li><a href="formules.html">Formules</a></li>
       <li><a href="about.html">Qui sommes-nous</a></li>
       <li><a href="resources.html" class="active">Ressources</a></li>
     </ul>
@@ -412,7 +412,7 @@
 <!-- ───────── MOBILE MENU ───────── -->
 <nav class="mobile-menu" id="mobileMenu">
   <a href="index.html" onclick="closeMenu()">Accueil</a>
-  <a href="services.html" onclick="closeMenu()">Formules</a>
+  <a href="formules.html" onclick="closeMenu()">Formules</a>
   <a href="about.html" onclick="closeMenu()">Qui sommes-nous</a>
   <a href="resources.html" onclick="closeMenu()">Ressources</a>
   <a href="contact.html" class="btn btn-primary mobile-cta" onclick="closeMenu()">Nous contacter</a>
@@ -422,11 +422,6 @@
 <section class="hero">
   <div class="container">
     <div class="hero-inner">
-      <div class="breadcrumb fade-up">
-        <a href="index.html">Accueil</a>
-        <span class="breadcrumb-sep">›</span>
-        <span class="breadcrumb-current">Ressources</span>
-      </div>
       <h1 class="hero-title fade-up-2">Conseils, guides & <span style="color:#60a5fa;">astuces carrière</span></h1>
       <p class="hero-subtitle fade-up-3">
         Des articles rédigés par nos experts RH pour vous aider à valoriser votre profil, préparer vos entretiens et booster votre carrière. Gratuitement.
@@ -589,13 +584,8 @@
 
       <!-- Guide 1 -->
       <div class="guide-card reveal">
-        <div class="guide-cover gc-blue">
+        <div class="guide-cover gc-blue" style="background: linear-gradient(145deg, rgba(10,22,40,.45), rgba(37,99,235,.35)), url('images/guide.jpg') center/cover no-repeat;">
           <span class="guide-badge">PDF · 24 pages</span>
-          <div class="guide-mock-pages">
-            <div class="guide-page"><div class="guide-page-lines"><div class="guide-page-line accent"></div><div class="guide-page-line"></div><div class="guide-page-line"></div><div class="guide-page-line" style="width:50%"></div></div></div>
-            <div class="guide-page"><div class="guide-page-lines"><div class="guide-page-line accent"></div><div class="guide-page-line"></div><div class="guide-page-line"></div><div class="guide-page-line" style="width:60%"></div></div></div>
-            <div class="guide-page"><div class="guide-page-lines"><div class="guide-page-line accent"></div><div class="guide-page-line"></div><div class="guide-page-line" style="width:40%"></div></div></div>
-          </div>
         </div>
         <div class="guide-body">
           <div class="guide-tag"><span class="cat-badge cat-cv">CV & LM</span></div>
@@ -621,13 +611,8 @@
 
       <!-- Guide 2 -->
       <div class="guide-card reveal reveal-delay-1">
-        <div class="guide-cover gc-li">
+        <div class="guide-cover gc-li" style="background: linear-gradient(145deg, rgba(0,40,85,.45), rgba(10,102,194,.35)), url('images/checklist.jpg') center/cover no-repeat;">
           <span class="guide-badge">PDF · 16 pages</span>
-          <div class="guide-mock-pages">
-            <div class="guide-page"><div class="guide-page-lines"><div class="guide-page-line" style="background:#bfdbfe;width:80%"></div><div class="guide-page-line"></div><div class="guide-page-line"></div><div class="guide-page-line" style="width:50%"></div></div></div>
-            <div class="guide-page"><div class="guide-page-lines"><div class="guide-page-line" style="background:#bfdbfe"></div><div class="guide-page-line"></div><div class="guide-page-line"></div><div class="guide-page-line" style="width:60%"></div></div></div>
-            <div class="guide-page"><div class="guide-page-lines"><div class="guide-page-line" style="background:#bfdbfe;width:70%"></div><div class="guide-page-line"></div><div class="guide-page-line" style="width:40%"></div></div></div>
-          </div>
         </div>
         <div class="guide-body">
           <div class="guide-tag"><span class="cat-badge cat-li">LinkedIn</span></div>
@@ -653,13 +638,8 @@
 
       <!-- Guide 3 -->
       <div class="guide-card reveal reveal-delay-2">
-        <div class="guide-cover gc-purple">
+        <div class="guide-cover gc-purple" style="background: linear-gradient(145deg, rgba(26,10,42,.45), rgba(109,40,217,.35)), url('images/questions.jpg') center/cover no-repeat;">
           <span class="guide-badge">PDF · 32 pages</span>
-          <div class="guide-mock-pages">
-            <div class="guide-page"><div class="guide-page-lines"><div class="guide-page-line" style="background:#ddd6fe;width:80%"></div><div class="guide-page-line"></div><div class="guide-page-line"></div><div class="guide-page-line" style="width:50%"></div></div></div>
-            <div class="guide-page"><div class="guide-page-lines"><div class="guide-page-line" style="background:#ddd6fe"></div><div class="guide-page-line"></div><div class="guide-page-line"></div><div class="guide-page-line" style="width:60%"></div></div></div>
-            <div class="guide-page"><div class="guide-page-lines"><div class="guide-page-line" style="background:#ddd6fe;width:70%"></div><div class="guide-page-line"></div><div class="guide-page-line" style="width:40%"></div></div></div>
-          </div>
         </div>
         <div class="guide-body">
           <div class="guide-tag"><span class="cat-badge cat-coach">Coaching</span></div>
@@ -721,9 +701,8 @@
 
 <!-- ───────── CTA BANNER ───────── -->
 <section class="cta-banner">
-  <div class="container">
-    <div class="cta-inner-card reveal">
-      <div class="cta-inner">
+  <div class="cta-inner-card reveal">
+    <div class="cta-inner">
         <div class="cta-logo-icon">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 00-2.91-.09z"/>
@@ -734,11 +713,10 @@
           <h2>Prêt à passer à l'action ?</h2>
           <p>Les conseils c'est bien — être accompagné par un expert, c'est encore mieux.</p>
         </div>
-        <a href="services.html" class="btn btn-white">
+        <a href="formules.html" class="btn btn-white">
           Voir nos formules
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
         </a>
-      </div>
     </div>
   </div>
 </section>
@@ -762,7 +740,7 @@
         <h4 class="footer-col-title">Navigation</h4>
         <ul class="footer-col-links">
           <li><a href="index.html">Accueil</a></li>
-          <li><a href="services.html">Formules</a></li>
+          <li><a href="formules.html">Formules</a></li>
           <li><a href="about.html">Qui sommes-nous</a></li>
           <li><a href="resources.html">Ressources</a></li>
           <li><a href="contact.html">Contact</a></li>
@@ -782,7 +760,7 @@
           <li><a href="resources.html">Tous les articles</a></li>
           <li><a href="resources.html#guides">Guides gratuits</a></li>
           <li><a href="resources.html">Newsletter</a></li>
-          <li><a href="services.html#faq">FAQ</a></li>
+          <li><a href="formules.html#faq">FAQ</a></li>
         </ul>
       </div>
       <div>

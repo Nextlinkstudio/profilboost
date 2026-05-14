@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="fr">
 <head>
   <meta charset="UTF-8" />
@@ -141,9 +141,9 @@
     }
 
     .pricing-head { padding: 32px 28px 28px; position: relative; overflow: hidden; }
-    .svc-head-cv       { background: linear-gradient(145deg, #0a1628 0%, #1e40af 100%); }
-    .svc-head-li       { background: linear-gradient(145deg, #002855 0%, #0a66c2 100%); }
-    .svc-head-coaching { background: linear-gradient(145deg, #1a0a2a 0%, #6d28d9 100%); }
+    .svc-head-cv       { background: linear-gradient(145deg, rgba(10,22,40,.72) 0%, rgba(30,64,175,.60) 100%), url('images/Service_n_1.jpg') center/cover no-repeat; }
+    .svc-head-li       { background: linear-gradient(145deg, rgba(0,40,85,.72) 0%, rgba(10,102,194,.60) 100%), url('images/service_n_2.jpg') center/cover no-repeat; }
+    .svc-head-coaching { background: linear-gradient(145deg, rgba(26,10,42,.72) 0%, rgba(109,40,217,.60) 100%), url('images/service_n_3.jpg') center/cover no-repeat; }
     .pricing-head::after  { content:''; position:absolute; bottom:-40px; right:-40px; width:140px; height:140px; border-radius:50%; background:rgba(255,255,255,.07); pointer-events:none; }
     .pricing-head::before { content:''; position:absolute; top:-25px; left:-25px; width:90px; height:90px; border-radius:50%; background:rgba(255,255,255,.05); pointer-events:none; }
 
@@ -356,7 +356,7 @@
     </a>
     <ul class="nav-links">
       <li><a href="index.html">Accueil</a></li>
-      <li><a href="services.html" class="active">Formules</a></li>
+      <li><a href="formules.html" class="active">Formules</a></li>
       <li><a href="about.html">Qui sommes-nous</a></li>
       <li><a href="resources.html">Ressources</a></li>
     </ul>
@@ -372,7 +372,7 @@
 <!-- ───────── MOBILE MENU ───────── -->
 <nav class="mobile-menu" id="mobileMenu">
   <a href="index.html" onclick="closeMenu()">Accueil</a>
-  <a href="services.html" onclick="closeMenu()">Formules</a>
+  <a href="formules.html" onclick="closeMenu()">Formules</a>
   <a href="about.html" onclick="closeMenu()">Qui sommes-nous</a>
   <a href="resources.html" onclick="closeMenu()">Ressources</a>
   <a href="contact.html" class="btn btn-primary mobile-cta" onclick="closeMenu()">Nous contacter</a>
@@ -382,11 +382,6 @@
 <section class="hero">
   <div class="container">
     <div class="hero-inner">
-      <div class="breadcrumb fade-up">
-        <a href="index.html">Accueil</a>
-        <span class="breadcrumb-sep">›</span>
-        <span class="breadcrumb-current">Formules</span>
-      </div>
       <h1 class="hero-title fade-up-2">Choisissez votre<br>formule de <span style="color:#60a5fa;">succès</span></h1>
       <p class="hero-subtitle fade-up-3">
         Des prestations sur mesure pour valoriser votre profil, séduire les recruteurs et décrocher le poste que vous méritez.
@@ -974,7 +969,7 @@
         <h4 class="footer-col-title">Navigation</h4>
         <ul class="footer-col-links">
           <li><a href="index.html">Accueil</a></li>
-          <li><a href="services.html">Formules</a></li>
+          <li><a href="formules.html">Formules</a></li>
           <li><a href="about.html">Qui sommes-nous</a></li>
           <li><a href="resources.html">Ressources</a></li>
           <li><a href="#">Contact</a></li>
